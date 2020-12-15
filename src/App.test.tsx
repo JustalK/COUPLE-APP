@@ -6,6 +6,7 @@ import App from './App';
 
 describe('<App />', () => {
 	it('has 1 child', () => {
-		expect(true).toBe(true);
+		const tree = renderer.create(<App />).toJSON();
+	    expect(tree).toMatchSnapshot();
 	});
 });

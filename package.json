@@ -6,7 +6,7 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "test": "jest --coverage",
+    "test": "nyc jest --coverage",
     "lint": "eslint --fix './src/**/*.{ts,tsx}'",
     "format": "prettier --write './src/**/*.{ts,tsx}'",
     "coverage": "coveralls < coverage/lcov.info"
