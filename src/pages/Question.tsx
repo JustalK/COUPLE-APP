@@ -6,8 +6,8 @@ import { StyleSheet, Text, View } from 'react-native';
 export default class Question extends Component {
 
 	/**
-	* Display the home or the loading screen
-	* return {JSX.Element} Display the home
+	* Display the Question screen
+	* return {JSX.Element} Display the question screen
 	**/
 	render(): JSX.Element {
 		return (

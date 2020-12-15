@@ -6,8 +6,8 @@ import { StyleSheet, Text, View } from 'react-native';
 export default class Result extends Component {
 
 	/**
-	* Display the home or the loading screen
-	* return {JSX.Element} Display the home
+	* Display the Result screen
+	* return {JSX.Element} Display the result screen
 	**/
 	render(): JSX.Element {
 		return (

@@ -6,8 +6,8 @@ import { StyleSheet, Text, View } from 'react-native';
 export default class Dice extends Component {
 
 	/**
-	* Display the home or the loading screen
-	* return {JSX.Element} Display the home
+	* Display the Dice screen
+	* return {JSX.Element} Display the dice screen
 	**/
 	render(): JSX.Element {
 		return (

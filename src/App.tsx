@@ -5,6 +5,9 @@ import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator, StackCardInterpolationProps } from '@react-navigation/stack';
 import Home from 'src/pages/Home'
+import Dice from 'src/pages/Dice'
+import Question from 'src/pages/Question'
+import Result from 'src/pages/Result'
 const Stack = createStackNavigator();
 const WHITE = '#fff';
 
@@ -23,17 +26,17 @@ export default class App extends Component {
 					/>
 					<Stack.Screen
 						name="Dice"
-						component={Home}
+						component={Dice}
 						options={{headerShown: false}}
 					/>
 					<Stack.Screen
 						name="Question"
-						component={Home}
+						component={Question}
 						options={{headerShown: false}}
 					/>
 					<Stack.Screen
 						name="Result"
-						component={Home}
+						component={Result}
 						options={{headerShown: false}}
 					/>
 				</Stack.Navigator>
