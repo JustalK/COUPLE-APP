@@ -2,6 +2,10 @@ import { registerRootComponent } from 'expo';
 import { StatusBar } from 'expo-status-bar';
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator, StackCardInterpolationProps } from '@react-navigation/stack';
+import Home from 'src/pages/Home'
+const Stack = createStackNavigator();
 const WHITE = '#fff';
 
 /**
@@ -10,10 +14,30 @@ const WHITE = '#fff';
 export default class App extends Component {
 	render(): JSX.Element {
 		return (
-			<View style={styles.container}>
-				<Text>Open up App.tsx to start working on your app!</Text>
-				<StatusBar style="auto" />
-			</View>
+			<NavigationContainer>
+				<Stack.Navigator>
+					<Stack.Screen
+						name="Home"
+						component={Home}
+						options={{headerShown: false}}
+					/>
+					<Stack.Screen
+						name="Dice"
+						component={Home}
+						options={{headerShown: false}}
+					/>
+					<Stack.Screen
+						name="Question"
+						component={Home}
+						options={{headerShown: false}}
+					/>
+					<Stack.Screen
+						name="Result"
+						component={Home}
+						options={{headerShown: false}}
+					/>
+				</Stack.Navigator>
+			</NavigationContainer>
 		);
 	}
 }
