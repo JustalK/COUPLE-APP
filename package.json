@@ -8,13 +8,15 @@
     "eject": "expo eject",
     "test": "jest --coverage",
     "lint": "eslint --fix './src/**/*.{ts,tsx}'",
-    "format": "prettier --write './src/**/*.{ts,tsx}'"
+    "format": "prettier --write './src/**/*.{ts,tsx}'",
+    "coverage": "coveralls < coverage/lcov.info"
   },
   "dependencies": {
     "@types/jest": "^26.0.19",
     "@types/react-test-renderer": "^17.0.0",
     "@typescript-eslint/eslint-plugin": "^4.10.0",
     "babel-eslint": "^10.1.0",
+    "coveralls": "^3.1.0",
     "eslint-config-prettier": "^7.0.0",
     "eslint-plugin-prettier": "^3.3.0",
     "eslint-plugin-react": "^7.21.5",
