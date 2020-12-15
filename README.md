@@ -6,4 +6,44 @@
 [![Maintainability Status](https://api.codeclimate.com/v1/badges/c8485eedcb2181b6908a/maintainability)](https://codeclimate.com/github/JustalK/COUPLE-APP/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/c8485eedcb2181b6908a/test_coverage)](https://codeclimate.com/github/JustalK/COUPLE-APP/test_coverage)
 
-In development
+This project is a game. The game is a simple and interactive quizz that will trigger discussion for a couple. The idea came from after my wife and me were looking online for such game and got really disappointed by what we find. So I decide to make my own.
+
+This repository is designed only for the frontend part of the application. I made everything with `React Native`. Once finish the application will be available on Google Play for free.
+
+I do my continuous integration with `Travis` and my coverage is checked by `Coveralls` and `Codeclimate`. I also use `CodeClimate` for checking the level of maintainability of the code. I use `Typescript` for improving the quality of the code, making it simpler to read and less buggy. For the testing, I use `Jess` linked with `Expo`. And finally for the formatting, I use `Prettier` and just after `EsLint` for linting the code.
+
+I document pretty well my code following `JSDoc` standard, so feel free to dig into my code and comment.
+
+## Organization
+
+The following describe how the project is structured. It's an easy way for discovering the project and the way I organize the code.
+
+#### Flowchart of the app
+
+![Alt text](documentation/process/flowchart.png?raw=true "PORTFOLIO-Flowchart")
+
+#### User stories
+
+| As...  | I want...                                            | So that...                                    |
+| :----- | :--------------------------------------------------- | :-------------------------------------------- |
+| Player | I want to play                                       | So that I can have fun                        |
+| Player | I want to setup the duration of the game             | So that the game is not too long              |
+| Player | I want to select topics or levels                    | So that everyone is comfortable               |
+| Player | I want to run the dices                              | So that I can choose who answer first         |
+| Player | I want to answer multiple questions                  | So that the game is long                      |
+| Player | I want to answer only x questions                    | So that the game can stop                     |
+| Player | I want to stop the game in the middle                | So that I can take a pause                    |
+| Player | I want to stop the current game anytime              | So I can restart the game or change options   |
+| Player | I want to skip questions                             | So I can avoid questions                      |
+| Admin  | I want to add questions                              | So that I can increase the number of question |
+| Admin  | I want to edit questions                             | So that I can correct questions               |
+| Admin  | I want to delete question                            | So that I can remove bad question             |
+
+#### Organization general
+
+| Folder's Name | Description of the folder                                                                     |
+| :------------ | :-------------------------------------------------------------------------------------------- |
+| env           | Contains the environment files                                                                |
+| assets        | Contains the public files                                                                     |
+| documentation | Regroup everything for documenting my way of thinking and docs                                |
+| src           | The source code of the app                                                                    |
