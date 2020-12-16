@@ -2,7 +2,10 @@ import { StatusBar } from 'expo-status-bar';
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import ButtonImage from 'src/components/ButtonImage'
-import {HomeProps} from 'src/interfaces/Home'
+import Container from 'src/components/Container';
+import {HomeProps} from 'src/interfaces/Home';
+import { IMAGE_BUTTON } from 'src/utils/Images';
+import styled from 'styled-components/native';
 
 export default class Home extends Component<HomeProps, never> {
 
@@ -12,10 +15,10 @@ export default class Home extends Component<HomeProps, never> {
 	**/
 	render(): JSX.Element {
 		return (
-			<View>
+			<Container>
 				<Text>Home</Text>
-				<ButtonImage navigation={this.props.navigation} />
-			</View>
+				<ButtonImage bottom={true} image={IMAGE_BUTTON} navigation={this.props.navigation} />
+			</Container>
 		);
 	}
 }

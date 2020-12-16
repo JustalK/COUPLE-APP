@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-
+import Container from 'src/components/Container'
 
 export default class Dice extends Component {
 
@@ -11,9 +11,9 @@ export default class Dice extends Component {
 	**/
 	render(): JSX.Element {
 		return (
-			<View>
+			<Container>
 				<Text>Dice</Text>
-			</View>
+			</Container>
 		);
 	}
 }

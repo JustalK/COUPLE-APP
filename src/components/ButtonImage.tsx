@@ -1,7 +1,23 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { Component } from 'react';
-import { TouchableWithoutFeedback, StyleSheet, View, Image } from 'react-native';
+import { StyleSheet, TouchableWithoutFeedback, View, Image } from 'react-native';
 import { ButtonImageProps } from 'src/interfaces/ButtonImage';
+import styled from 'styled-components/native';
+
+const StyledImage = styled.Image`
+	height: 100px;
+	width: 100px;
+	border-bottom-right-radius: 20px;
+	border-bottom-left-radius: 20px;
+`
+
+const StyledView = styled.View`
+	${(props) => props.bottom && `
+		position: absolute;
+		align-self: center;
+		bottom: 0;
+	`}
+`
 
 export default class ButtonImage extends Component<ButtonImageProps, never> {
 
@@ -16,21 +32,10 @@ export default class ButtonImage extends Component<ButtonImageProps, never> {
 	render(): JSX.Element {
 		return (
 			<TouchableWithoutFeedback onPress={() => this.props.navigation.navigate('Dice')}>
-				<View>
-					<Image source={{ uri: 'http://justalk.online:80/./assets/imgs/atlantic-grains/slide_01.jpg'}} style={styles.image} />
-				</View>
+				<StyledView bottom={this.props.bottom}>
+					<StyledImage source={this.props.image} />
+				</StyledView>
 			</TouchableWithoutFeedback>
 		);
 	}
 }
-
-/**
-* Create the custom style for the ButtonImage
-**/
-const styles = StyleSheet.create({
-	image: {
-		height: 200,
-		borderBottomRightRadius: 20,
-		borderBottomLeftRadius: 20
-	}
-});
