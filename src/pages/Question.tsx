@@ -8,7 +8,6 @@ import {QuestionPageProps, QuestionPageStates} from 'src/interfaces/Home';
 
 export default class Question extends Component<QuestionPageProps, QuestionPageStates>  {
 
-
 	/**
 	* The constructor and initializer of the state
 	* @params {HomeProps} props The navigation informations

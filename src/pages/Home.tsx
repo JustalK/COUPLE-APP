@@ -5,6 +5,7 @@ import ButtonImage from 'src/components/ButtonImage'
 import Container from 'src/components/Container';
 import {HomePageProps} from 'src/interfaces/Home';
 import { IMAGE_BUTTON } from 'src/utils/Images';
+import ApiQuestion from 'src/services/ApiQuestion';
 import styled from 'styled-components/native';
 
 export default class Home extends Component<HomePageProps, never> {
@@ -21,7 +22,9 @@ export default class Home extends Component<HomePageProps, never> {
 	/**
 	* Redirect to the game screen
 	**/
-	goGame() {
+	async goGame() {
+		const questions = await ApiQuestion.getAllQuestions();
+		console.log(questions);
 		this.props.navigation.navigate('Question', {options: this.state.options});
 	}
 
