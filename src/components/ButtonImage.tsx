@@ -31,7 +31,7 @@ export default class ButtonImage extends Component<ButtonImageProps, never> {
 	**/
 	render(): JSX.Element {
 		return (
-			<TouchableWithoutFeedback onPress={() => this.props.navigation.navigate('Dice')}>
+			<TouchableWithoutFeedback onPress={() => this.props.callback()}>
 				<StyledView bottom={this.props.bottom}>
 					<StyledImage source={this.props.image} />
 				</StyledView>

@@ -1,5 +1,5 @@
 export interface ButtonImageProps {
-	navigation: any;
+	callback: any;
 	image: any;
 	bottom?: boolean;
 }

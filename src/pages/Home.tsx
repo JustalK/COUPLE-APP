@@ -3,11 +3,27 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import ButtonImage from 'src/components/ButtonImage'
 import Container from 'src/components/Container';
-import {HomeProps} from 'src/interfaces/Home';
+import {HomePageProps} from 'src/interfaces/Home';
 import { IMAGE_BUTTON } from 'src/utils/Images';
 import styled from 'styled-components/native';
 
-export default class Home extends Component<HomeProps, never> {
+export default class Home extends Component<HomePageProps, never> {
+
+	constructor(props: HomePageProps) {
+		super(props);
+		this.state = {
+			options: {
+				total: 5
+			}
+		}
+	}
+
+	/**
+	* Redirect to the game screen
+	**/
+	goGame() {
+		this.props.navigation.navigate('Question', {options: this.state.options});
+	}
 
 	/**
 	* Display the home screen
@@ -17,7 +33,7 @@ export default class Home extends Component<HomeProps, never> {
 		return (
 			<Container>
 				<Text>Home</Text>
-				<ButtonImage bottom={true} image={IMAGE_BUTTON} navigation={this.props.navigation} />
+				<ButtonImage bottom={true} route="Question" image={IMAGE_BUTTON} callback={() => this.goGame()} />
 			</Container>
 		);
 	}

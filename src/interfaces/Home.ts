@@ -1,5 +1,10 @@
-import React from 'react';
+import {GameOption} from 'src/interfaces/Game'
 
-export interface HomeProps {
+export interface HomePageStates {
+	options: GameOption;
+}
+
+
+export interface HomePageProps {
 	navigation: any;
 }
