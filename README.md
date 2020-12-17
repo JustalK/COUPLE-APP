@@ -56,3 +56,8 @@ lt --port 5000 --subdomain couple-api
 | assets        | Contains the public files                                                                     |
 | documentation | Regroup everything for documenting my way of thinking and docs                                |
 | src           | The source code of the app                                                                    |
+
+#### Mockup
+
+![Alt text](documentation/mockups/home.jpg?raw=true "COUPLE-APP-HOME")
+![Alt text](documentation/mockups/question.jpg?raw=true "COUPLE-APP-QUESTIONS")
