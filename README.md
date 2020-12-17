@@ -22,6 +22,15 @@ The following describe how the project is structured. It's an easy way for disco
 
 ![Alt text](documentation/process/flowchart.png?raw=true "PORTFOLIO-Flowchart")
 
+#### Connection to the API during development
+
+For connecting to the API during the test, I use `localtunnel` for exposing the server to `Expo`. The server works on the port 5000, so I use the following commands :
+
+```
+npm install -g localtunnel
+lt --port 5000 --subdomain application-mock-server
+```
+
 #### User stories
 
 | As...  | I want...                                            | So that...                                    |
