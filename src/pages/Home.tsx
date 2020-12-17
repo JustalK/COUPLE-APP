@@ -13,9 +13,7 @@ export default class Home extends Component<HomePageProps, never> {
 	constructor(props: HomePageProps) {
 		super(props);
 		this.state = {
-			options: {
-				total: 5
-			}
+			total: 3
 		}
 	}
 
@@ -23,9 +21,9 @@ export default class Home extends Component<HomePageProps, never> {
 	* Redirect to the game screen
 	**/
 	async goGame() {
-		const questions = await ApiQuestion.getAllQuestions();
-		console.log(questions);
-		this.props.navigation.navigate('Question', {options: this.state.options});
+		const result = await ApiQuestion.getAllQuestions();
+		const questions = result.get_all_questions;
+		this.props.navigation.navigate('Question', {total: this.state.total, questions: questions});
 	}
 
 	/**

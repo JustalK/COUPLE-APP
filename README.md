@@ -28,7 +28,7 @@ For connecting to the API during the test, I use `localtunnel` for exposing the 
 
 ```
 npm install -g localtunnel
-lt --port 5000 --subdomain application-mock-server
+lt --port 5000 --subdomain couple-api
 ```
 
 #### User stories

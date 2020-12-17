@@ -1,7 +1,6 @@
-import {GameOption} from 'src/interfaces/Game'
-
 export interface QuestionPageProps {
-	options: GameOption;
+	total: number;
+	questions: QuestionProps[];
 }
 
 export interface QuestionPageStates {

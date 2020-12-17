@@ -50,7 +50,15 @@ export default class Question extends Component<QuestionPageProps, QuestionPageS
 	* Return {boolean} True if the game is finish or else false
 	**/
 	isGameFinish() {
-		return this.props.route.params.options.total < this.state.answers + 1;
+		return this.props.route.params.total <= this.state.answers + 1;
+	}
+
+	/**
+	* Decide randomly who gonna answer first
+	* return {string} The funny sentance for deciding who answer first
+	**/
+	whoIsFirst() {
+		return Math.random() < 0.5 ? 'Be gentleman ! Men first !' : 'Ladies first !';
 	}
 
 	/**
@@ -60,7 +68,9 @@ export default class Question extends Component<QuestionPageProps, QuestionPageS
 	render(): JSX.Element {
 		return (
 			<Container>
-				<Text>{this.state.answers}/{this.props.route.params.options.total}</Text>
+				<Text>{this.state.answers + 1}/{this.props.route.params.total}</Text>
+				<Text>{this.whoIsFirst()}</Text>
+				<Text>{this.props.route.params.questions[this.state.answers].question}</Text>
 				<ButtonImage bottom={true} route="Question" image={IMAGE_BUTTON} callback={() => this.gameLoop()} />
 			</Container>
 		);

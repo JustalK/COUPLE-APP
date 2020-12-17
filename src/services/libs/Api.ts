@@ -11,13 +11,11 @@ export default class Api {
 	* @return {Object} The result of the query
 	**/
 	static async getter(query) {
-		console.log('asdasdasd')
 		const response = await fetch(apiConfig.api_url + apiConfig.endpoint, {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify(query)
 		})
-		console.log(response);
 		const response_json = await response.json();
 		return response_json.data;
 	}
