@@ -134,6 +134,7 @@ export default class Home extends Component<HomePageProps, never> {
 						</View>
 					</StyledPressable>
 				</StyledBigSquareBottom>
+				<StatusBar hidden />
 			</Container>
 		);
 	}
