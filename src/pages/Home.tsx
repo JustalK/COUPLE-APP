@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Pressable, Text, View } from 'react-native';
 import ButtonImage from 'src/components/ButtonImage'
 import Container from 'src/components/Container';
 import {HomePageProps} from 'src/interfaces/Home';
@@ -10,22 +10,31 @@ import { BLACK, RED, WHITE } from 'src/styles/Colors';
 import ApiQuestion from 'src/services/ApiQuestion';
 import styled from 'styled-components/native';
 
-const StyledSquare = styled.View`
+const StyledBigSquare = styled.View`
 	position: absolute;
-	backgroundColor: ${RED};
-	width: 400px;
-	height: 400px;
+	width: 440px;
+	height: 440px;
 	transform: rotateZ(-45deg);
 `
 
-const StyledSquareTop = styled(StyledSquare)`
-	top: -200px;
-	left: -200px;
+const StyledBigSquareTop = styled(StyledBigSquare)`
+	top: -240px;
+	left: -240px;
+	backgroundColor: ${RED};
 `
 
-const StyledSquareBottom = styled(StyledSquare)`
-	bottom: -200px;
-	right: -200px;
+const StyledBigSquareBottom = styled(StyledBigSquare)`
+	bottom: -240px;
+	right: -240px;
+`
+
+const StyledSquareBottom = styled.View`
+	position: absolute;
+	width: 400px;
+	height: 400px;
+	bottom: 0;
+	left: 0;
+	backgroundColor: ${BLACK};
 `
 
 const StyledSquareText = styled.Text`
@@ -47,7 +56,7 @@ const StyledSquareTopText = styled(StyledSquareText)`
 const StyledSquareBottomText = styled(StyledSquareText)`
 	backgroundColor: ${BLACK};
 	color: ${WHITE};
-	top: -40px;
+	top: 0;
 	left: -50px;
 	text-align: right;
 	padding-right: 40px;
@@ -73,12 +82,18 @@ const StyledSquareTopTriangle = styled(StyledSquareTriangle)`
 `
 
 const StyledSquareBottomTriangle = styled(StyledSquareTriangle)`
-	top: -40px;
+	top: 0;
 	left: 200px;
 	borderBottomWidth: 0px;
 	borderTopWidth: 40px;
 	borderLeftWidth: 40px;
 	borderLeftColor: ${BLACK};
+`
+
+const StyledPressable = styled.Pressable`
+	width: 250px;
+	height: 40px;
+	z-index: 40;
 `
 
 export default class Home extends Component<HomePageProps, never> {
@@ -106,14 +121,19 @@ export default class Home extends Component<HomePageProps, never> {
 	render(): JSX.Element {
 		return (
 			<Container>
-				<StyledSquareTop>
+				<StyledBigSquareTop>
 					<StyledSquareTopText>home</StyledSquareTopText>
 					<StyledSquareTopTriangle />
-				</StyledSquareTop>
-				<StyledSquareBottom>
-					<StyledSquareBottomText>start</StyledSquareBottomText>
-					<StyledSquareBottomTriangle />
-				</StyledSquareBottom>
+				</StyledBigSquareTop>
+				<StyledBigSquareBottom>
+					<StyledSquareBottom />
+					<StyledPressable onPress={() => this.goGame()}>
+						<View>
+							<StyledSquareBottomText onPress={() => this.goGame()}>start</StyledSquareBottomText>
+							<StyledSquareBottomTriangle />
+						</View>
+					</StyledPressable>
+				</StyledBigSquareBottom>
 			</Container>
 		);
 	}
