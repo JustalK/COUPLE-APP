@@ -10,52 +10,28 @@ import { RED } from 'src/styles/Colors';
 import ApiQuestion from 'src/services/ApiQuestion';
 import styled from 'styled-components/native';
 
-const StyledTriangleBottom = styled(StyledTriangle)`
-	borderLeftWidth: 250px;
-	borderTopWidth: 0;
-	borderBottomWidth: 250px;
-	borderLeftColor: transparent;
-	borderTopColor: transparent;
-	borderBottomColor: ${RED};
-	position: absolute;
-	bottom: 0;
-	right: 0;
-`
-
-const StyledText =  styled.Text`
-	backgroundColor: black;
-	color: white;
-	width: 250px
-	line-height: 50px;
-	transform: rotateZ(-45deg);
-	text-align: center;
-	text-transform: uppercase;
-	font-size: 25px;
-`
-
-const StyledTextBottom = styled(StyledText)`
-	position: absolute;
-	bottom: 40px;
-	right: 94px;
-`
-
-const StyledTextTop = styled(StyledText)`
-	position: absolute;
-	top: 40px;
-	right: 94px;
+const StyledSquare = styled.View`
 	backgroundColor: ${RED};
+	width: 400px;
+	height: 400px;
+	position: absolute;
+	top: -200px;
+	left: -200px;
+	z-index: 20;
+	transform: rotateZ(-45deg);
 `
 
-const StyledTriangleTop = styled(StyledTriangle)`
-	borderTopWidth: 0px;
-	borderBottomWidth: 250px;
-	borderLeftWidth: 250px;
-	borderTopColor: transparent;
-	borderBottomColor: transparent;
-	borderLeftColor: ${RED};
+const StyledSquareText = styled.Text`
 	position: absolute;
-	top: 0;
-	left: 0;
+	bottom: -40px;
+	right: -50px;
+	font-size: 30px;
+	text-transform: uppercase;
+	width: 250px;
+	text-align: center;
+	height: 40px;
+	line-height: 40px;
+	backgroundColor: yellow;
 `
 
 export default class Home extends Component<HomePageProps, never> {
@@ -83,11 +59,9 @@ export default class Home extends Component<HomePageProps, never> {
 	render(): JSX.Element {
 		return (
 			<Container>
-				<StyledTriangleBottom />
-				<StyledTextBottom>START</StyledTextBottom>
-				<Text>Home</Text>
-				<StyledTextTop>HOME</StyledTextTop>
-				<StyledTriangleTop />
+				<StyledSquare>
+					<StyledSquareText>home</StyledSquareText>
+				</StyledSquare>
 			</Container>
 		);
 	}
