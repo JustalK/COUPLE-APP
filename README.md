@@ -61,3 +61,9 @@ lt --port 5000 --subdomain couple-api
 
 ![Alt text](documentation/mockups/home.jpg?raw=true "COUPLE-APP-HOME")
 ![Alt text](documentation/mockups/question.jpg?raw=true "COUPLE-APP-QUESTIONS")
+
+#### Technical challenges
+
+**Touch not working outside of a view**
+
+At the moment of development, there was [a bug on react-native](https://github.com/facebook/react-native/issues/27232) where a touch event will not be fired if an element was outside of it's parent. On Home, I was using the start button at the bottom of the screen outside of the square, so it could not work. For fixing that and still getting the desired effect, I create two squares. The bigger one is here for having the touch event inside a parent and the smaller square for creating the visual.
