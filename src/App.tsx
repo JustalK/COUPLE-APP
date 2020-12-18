@@ -7,6 +7,7 @@ import { createStackNavigator, StackCardInterpolationProps } from '@react-naviga
 import Home from 'src/pages/Home'
 import Question from 'src/pages/Question'
 import Result from 'src/pages/Result'
+import Loading from 'src/pages/Loading'
 const Stack = createStackNavigator();
 const WHITE = '#fff';
 
@@ -26,6 +27,11 @@ export default class App extends Component {
 					<Stack.Screen
 						name="Question"
 						component={Question}
+						options={{headerShown: false}}
+					/>
+					<Stack.Screen
+						name="Loading"
+						component={Loading}
 						options={{headerShown: false}}
 					/>
 					<Stack.Screen
