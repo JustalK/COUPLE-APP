@@ -33,7 +33,6 @@ const StyledSquareText = styled.Text`
 	font-size: 30px;
 	text-transform: uppercase;
 	width: 250px;
-	text-align: center;
 	height: 40px;
 	line-height: 40px;
 `
@@ -42,6 +41,7 @@ const StyledSquareTopText = styled(StyledSquareText)`
 	backgroundColor: ${RED};
 	bottom: -40px;
 	right: -50px;
+	padding-left: 40px;
 `
 
 const StyledSquareBottomText = styled(StyledSquareText)`
@@ -49,6 +49,36 @@ const StyledSquareBottomText = styled(StyledSquareText)`
 	color: ${WHITE};
 	top: -40px;
 	left: -50px;
+	text-align: right;
+	padding-right: 40px;
+`
+
+const StyledSquareTriangle = styled.View`
+	position: absolute;
+	width: 0;
+	height: 0;
+	borderStyle: solid;
+	borderBottomColor: transparent;
+	borderTopColor: transparent;
+	borderRightColor: ${RED};
+`
+
+const StyledSquareTopTriangle = styled(StyledSquareTriangle)`
+	bottom: -40px;
+	right: 200px;
+	borderBottomWidth: 40px;
+	borderTopWidth: 0px;
+	borderRightWidth: 40px;
+	borderRightColor: ${RED};
+`
+
+const StyledSquareBottomTriangle = styled(StyledSquareTriangle)`
+	top: -40px;
+	left: 200px;
+	borderBottomWidth: 0px;
+	borderTopWidth: 40px;
+	borderLeftWidth: 40px;
+	borderLeftColor: ${BLACK};
 `
 
 export default class Home extends Component<HomePageProps, never> {
@@ -78,9 +108,11 @@ export default class Home extends Component<HomePageProps, never> {
 			<Container>
 				<StyledSquareTop>
 					<StyledSquareTopText>home</StyledSquareTopText>
+					<StyledSquareTopTriangle />
 				</StyledSquareTop>
 				<StyledSquareBottom>
 					<StyledSquareBottomText>start</StyledSquareBottomText>
+					<StyledSquareBottomTriangle />
 				</StyledSquareBottom>
 			</Container>
 		);
