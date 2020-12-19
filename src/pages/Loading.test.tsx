@@ -15,10 +15,10 @@ describe('<Loading />', () => {
 				}
 			]
 		}}));
-		
+
 		const tree = renderer.create(<Loading navigation={navigation} />);
 		setTimeout(() => {
-			expect(navigation.navigate).toBeCalledWith('Question', {"questions": ['Is this question 1 ?']});
+			expect(navigation.navigate).toBeCalledWith('Question', {"questions": [{'question': 'Is this question 1 ?'}]});
 			done()
 		}, 3000);
 	});
