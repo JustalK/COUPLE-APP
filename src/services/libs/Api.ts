@@ -1,4 +1,5 @@
 import { apiConfig } from './ApiConfig';
+import fetch from 'node-fetch';
 
 /**
 * Superclass for managing the API call
