@@ -109,9 +109,7 @@ export default class Home extends Component<HomePageProps, never> {
 	* Redirect to the game screen
 	**/
 	async goGame() {
-		const result = await ApiQuestion.getAllQuestions();
-		const questions = result.get_all_questions;
-		this.props.navigation.navigate('Question', {total: this.state.total, questions: questions});
+		this.props.navigation.navigate('Loading', {total: this.state.total});
 	}
 
 	/**

@@ -1,9 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import ApiQuestion from 'src/services/ApiQuestion';
+import {LoadingPageProps} from 'src/interfaces/Loading';
 
+export default class Loading extends Component<LoadingPageProps | LoadingPageStates> {
 
-export default class Loading extends Component {
+	async componentDidMount() {
+		const result = await ApiQuestion.getAllQuestions();
+		const questions = result.get_all_questions;
+		this.props.navigation.navigate('Question', {total: this.props.total, questions: questions});
+	}
 
 	/**
 	* Display the Result screen
