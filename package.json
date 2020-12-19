@@ -32,6 +32,8 @@
     "react-dice-roll": "^1.1.1",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-40.0.1.tar.gz",
+    "react-native-elements": "^3.0.1",
+    "react-native-vector-icons": "^7.1.0",
     "react-native-web": "~0.13.12"
   },
   "devDependencies": {
@@ -52,13 +54,13 @@
   },
   "private": true,
   "jest": {
-	"preset": "jest-expo",
-	"transformIgnorePatterns": [
-		"node_modules/(?!(jest-)?react-native|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|@sentry/.*)"
-	],
-	"automock": false,
-	"setupFiles": [
-		"./setupJest.js"
-	]
+    "preset": "jest-expo",
+    "transformIgnorePatterns": [
+      "node_modules/(?!(jest-)?react-native|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|@sentry/.*)"
+    ],
+    "automock": false,
+    "setupFiles": [
+      "./setupJest.js"
+    ]
   }
 }

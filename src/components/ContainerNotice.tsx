@@ -3,18 +3,18 @@ import React, { Component } from 'react';
 import { TouchableWithoutFeedback, View, ImageBackground } from 'react-native';
 import { ContainerProps } from 'src/interfaces/Container';
 import { BACKGROUND } from 'src/utils/Images';
-import { OBLACK, RED } from 'src/styles/Colors';
+import { OBLACK, WHITE } from 'src/styles/Colors';
 import styled from 'styled-components/native';
 
 const StyledView = styled.View`
 	backgroundColor: ${OBLACK};
 	padding: 40px;
 	position: relative;
-	margin: 10%;
+	margin: 0 10%;
 `
 
 const StyledText = styled.Text`
-	color: ${RED};
+	color: ${WHITE};
 	font-size: 24px;
 	text-align: justify;
 `

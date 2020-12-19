@@ -6,11 +6,12 @@ import Container from 'src/components/Container';
 import ContainerNotice from 'src/components/ContainerNotice';
 import {HomePageProps} from 'src/interfaces/Home';
 import { IMAGE_BUTTON } from 'src/utils/Images';
-import { StyledTriangle, StyledMiddleView } from 'src/styles/Main';
+import { StyledMiddleView } from 'src/styles/Main';
 import { OBLACK, BLACK, RED, WHITE } from 'src/styles/Colors';
 import ApiQuestion from 'src/services/ApiQuestion';
 import styled from 'styled-components/native';
 import { LOGO } from 'src/utils/Images';
+import { Icon } from 'react-native-elements';
 
 /**
 * Define the style of the outside square

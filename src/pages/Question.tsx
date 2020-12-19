@@ -1,14 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { Component } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View, Image } from 'react-native';
 import Container from 'src/components/Container';
 import ButtonImage from 'src/components/ButtonImage';
 import ContainerNotice from 'src/components/ContainerNotice';
+import TextPyramide from 'src/components/TextPyramide';
 import { StyledMiddleView } from 'src/styles/Main';
-import { IMAGE_BUTTON } from 'src/utils/Images';
+import { IMAGE_BUTTON, LOGO } from 'src/utils/Images';
 import styled from 'styled-components/native';
 import {QuestionPageProps, QuestionPageStates} from 'src/interfaces/Home';
 import { OBLACK, BLACK, RED, WHITE } from 'src/styles/Colors';
+import { Icon } from 'react-native-elements';
 
 const StyledText = styled.Text`
 	position: absolute;
@@ -25,18 +27,15 @@ const StyledText = styled.Text`
 const StyledPressable = styled.Pressable`
 	position: absolute;
 	bottom: 60px;
-	height: 40px;
 	backgroundColor: ${BLACK};
 	width: 50%;
 `
 
-const StyledTextButton = styled.Text`
-	width: 100%;
-	text-align: center;
-	font-size: 24px;
-	line-height: 40px;
-	text-transform: uppercase;
-	color: ${WHITE};
+const StyledImage = styled.Image`
+	position: absolute;
+	top: 20px;
+	height: 150px;
+	width: 150px;
 `
 
 export default class Question extends Component<QuestionPageProps, QuestionPageStates>  {
@@ -101,12 +100,14 @@ export default class Question extends Component<QuestionPageProps, QuestionPageS
 	render(): JSX.Element {
 		return (
 			<Container>
-				<Text>{this.state.answers + 1}/{this.props.route.params.total}</Text>
+				<StyledImage source={LOGO} />
 				<StyledMiddleView>
+					<TextPyramide text={"Question " + (this.state.answers + 1)} height={30} size={16} backgroundColor={WHITE} color={BLACK} icon="question-circle" />
 					<ContainerNotice text={this.props.route.params.questions[this.state.answers].question} />
+					<TextPyramide text={"10 questions remaining"} height={30} size={16} backgroundColor={WHITE} color={BLACK} isDown={true} />
 				</StyledMiddleView>
 				<StyledPressable onPress={() => this.gameLoop()}>
-					<StyledTextButton>next</StyledTextButton>
+					<TextPyramide text="next question" height={50} size={24} backgroundColor={BLACK} color={WHITE} icon="caret-right" />
 				</StyledPressable>
 				<StyledText>{this.whoIsFirst()}</StyledText>
 			</Container>
