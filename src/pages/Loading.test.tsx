@@ -7,7 +7,7 @@ import Loading from './Loading';
 const navigation = { navigate: jest.fn() };
 
 describe('<Loading />', () => {
-	it('click for starting the game with right option', () => {
+	it('click for starting the game with right option', done => {
 		fetch.mockResponseOnce(JSON.stringify({data:{
 			get_all_questions:[
 				{
