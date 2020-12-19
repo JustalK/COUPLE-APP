@@ -11,6 +11,10 @@ import ApiQuestion from 'src/services/ApiQuestion';
 import styled from 'styled-components/native';
 import { LOGO } from 'src/utils/Images';
 
+/**
+* Define the style of the outside square
+* This square does not have visual but define the area for the button
+**/
 const StyledBigSquare = styled.View`
 	position: absolute;
 	width: 440px;
@@ -18,17 +22,29 @@ const StyledBigSquare = styled.View`
 	transform: rotateZ(-45deg);
 `
 
+/**
+* Extend the style of the outside square for the outside square top
+**/
 const StyledBigSquareTop = styled(StyledBigSquare)`
 	top: -240px;
 	left: -300px;
 	backgroundColor: ${RED};
 `
 
+/**
+* Extend the style of the outside square for the outside square bottom
+**/
 const StyledBigSquareBottom = styled(StyledBigSquare)`
 	bottom: -240px;
 	right: -300px;
 `
 
+/**
+* Define the inside square of the bottom
+* I had to do that for bypassing a bug in react native
+* Actually when I write this word, react native does not allow a touch event outside of his parent.
+* FOr bypassing that, I create two square, one for the visual, the other for defining the area and put the event inside
+**/
 const StyledSquareBottom = styled.View`
 	position: absolute;
 	width: 400px;
@@ -38,6 +54,9 @@ const StyledSquareBottom = styled.View`
 	backgroundColor: ${BLACK};
 `
 
+/**
+* Define the style for the text inside the square
+**/
 const StyledSquareText = styled.Text`
 	position: absolute;
 	font-size: 30px;
@@ -47,6 +66,9 @@ const StyledSquareText = styled.Text`
 	line-height: 40px;
 `
 
+/**
+* Define the style for the text HOME (Extended from parent)
+**/
 const StyledSquareTopText = styled(StyledSquareText)`
 	backgroundColor: ${RED};
 	bottom: -40px;
@@ -54,6 +76,9 @@ const StyledSquareTopText = styled(StyledSquareText)`
 	padding-left: 40px;
 `
 
+/**
+* Define the style for the button down START (Extended from parent)
+**/
 const StyledSquareBottomText = styled(StyledSquareText)`
 	backgroundColor: ${BLACK};
 	color: ${WHITE};
@@ -63,6 +88,9 @@ const StyledSquareBottomText = styled(StyledSquareText)`
 	padding-right: 40px;
 `
 
+/**
+* Create the little triangle on the side of the text of the square
+**/
 const StyledSquareTriangle = styled.View`
 	position: absolute;
 	width: 0;
@@ -73,6 +101,9 @@ const StyledSquareTriangle = styled.View`
 	borderRightColor: ${RED};
 `
 
+/**
+* Extends the style from the parent for defining precisely the style of the triangle beside HOME
+**/
 const StyledSquareTopTriangle = styled(StyledSquareTriangle)`
 	bottom: -40px;
 	right: 200px;
@@ -82,6 +113,9 @@ const StyledSquareTopTriangle = styled(StyledSquareTriangle)`
 	borderRightColor: ${RED};
 `
 
+/**
+* Extends the style from the parent for defining precisely the style of the triangle beside START
+**/
 const StyledSquareBottomTriangle = styled(StyledSquareTriangle)`
 	top: 0;
 	left: 200px;
@@ -91,6 +125,9 @@ const StyledSquareBottomTriangle = styled(StyledSquareTriangle)`
 	borderLeftColor: ${BLACK};
 `
 
+/**
+* Define the style for the Pressable
+**/
 const StyledPressable = styled.Pressable`
 	width: 250px;
 	height: 40px;

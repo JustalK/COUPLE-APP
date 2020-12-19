@@ -1,46 +1,46 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { Component } from 'react';
-import { TouchableWithoutFeedback, View, ImageBackground, StyleSheet } from 'react-native';
+import { TouchableWithoutFeedback, View, ImageBackground } from 'react-native';
 import { ContainerProps } from 'src/interfaces/Container';
 import { BACKGROUND } from 'src/utils/Images';
 import styled from 'styled-components/native';
 
-const StyledContainer = styled.View<{flex?: Int}>`
-	height: 100%;
+/**
+* Style the container for taking all the space and align items
+**/
+const StyledContainer = styled.View`
 	padding: 10%;
 	display: flex;
 	align-items: center;
 	position: relative;
 
-	flex: ${props => props.flex || 1};
+	flex: 1;
 `
 
+/**
+* Style the Image Background for taking all the screen
+**/
+const StyledImageBackground = styled.ImageBackground`
+	flex: 1;
+`
+
+/**
+* Show the background and define the container
+* @params {props} Define the children to be pass to the container
+**/
 export default class Container extends Component<ContainerProps, never> {
 
-	constructor(props: ContainerProps) {
-		super(props);
-	}
-
 	/**
-	* Display the home or the loading screen
-	* return {JSX.Element} Display the home
+	* Display the container
+	* return {JSX.Element} Display the container
 	**/
 	render(): JSX.Element {
 		return (
-			<ImageBackground source={BACKGROUND} style={styles.container}>
-				<StyledContainer flex={this.props.flex}>
+			<StyledImageBackground source={BACKGROUND}>
+				<StyledContainer>
 					{this.props.children}
 				</StyledContainer>
-			</ImageBackground>
+			</StyledImageBackground>
 		);
 	}
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    // remove width and height to override fixed static size
-    width: '100%',
-    height: '100%',
-  }
-});
