@@ -6,18 +6,21 @@ import ApiQuestion from 'src/services/ApiQuestion';
 import {LoadingPageProps} from 'src/interfaces/Loading';
 import styled from 'styled-components/native';
 import { LOGO } from 'src/utils/Images';
+import { WHITE } from 'src/styles/Colors';
 
 const StyledImage = styled.Image`
-	height: 200px;
-	width: 200px;
-	border-bottom-right-radius: 20px;
-	border-bottom-left-radius: 20px;
+	height: 125px;
+	width: 125px;
 `
 
 const StyledView = styled.View`
 	flex: 1;
 	justify-content: center;
 	align-items: center;
+`
+
+const StyledActivityIndicator = styled.ActivityIndicator`
+	position: absolute;
 `
 
 export default class Loading extends Component<LoadingPageProps | LoadingPageStates> {
@@ -37,7 +40,7 @@ export default class Loading extends Component<LoadingPageProps | LoadingPageSta
 			<Container>
 				<StyledView>
 					<StyledImage source={LOGO} />
-					<ActivityIndicator size={20} color="#00ff00" />
+					<StyledActivityIndicator size={200} color={WHITE} />
 				</StyledView>
 			</Container>
 		);

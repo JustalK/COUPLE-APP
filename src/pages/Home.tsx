@@ -3,9 +3,10 @@ import React, { Component } from 'react';
 import { Pressable, Text, View, Image } from 'react-native';
 import ButtonImage from 'src/components/ButtonImage'
 import Container from 'src/components/Container';
+import ContainerNotice from 'src/components/ContainerNotice';
 import {HomePageProps} from 'src/interfaces/Home';
 import { IMAGE_BUTTON } from 'src/utils/Images';
-import { StyledTriangle } from 'src/styles/Main';
+import { StyledTriangle, StyledMiddleView } from 'src/styles/Main';
 import { OBLACK, BLACK, RED, WHITE } from 'src/styles/Colors';
 import ApiQuestion from 'src/services/ApiQuestion';
 import styled from 'styled-components/native';
@@ -134,25 +135,6 @@ const StyledPressable = styled.Pressable`
 	z-index: 40;
 `
 
-const StyledMiddleView = styled.View`
-	flex: 1;
-	justify-content: center;
-	align-items: center;
-	margin-top: 120px;
-`
-
-const ContainerNotice = styled.View`
-	backgroundColor: ${OBLACK};
-	padding: 40px;
-	position: relative;
-`
-
-const StyledText = styled.Text`
-	color: ${RED};
-	font-size: 24px;
-	text-align: justify;
-`
-
 const StyledImage = styled.Image`
 	height: 200px;
 	width: 200px;
@@ -190,10 +172,9 @@ export default class Home extends Component<HomePageProps, never> {
 					<StyledSquareTopText>home</StyledSquareTopText>
 					<StyledSquareTopTriangle />
 				</StyledBigSquareTop>
-				<StyledMiddleView>
-					<ContainerNotice>
+				<StyledMiddleView marginTop={120}>
+					<ContainerNotice text="This game will ask you random questions that you have to answer both of you following the order randomly given.">
 						<StyledImage source={LOGO} />
-						<StyledText>This game will ask you random questions that you have to answer both of you following the order randomly given.</StyledText>
 					</ContainerNotice>
 				</StyledMiddleView>
 				<StyledBigSquareBottom>
