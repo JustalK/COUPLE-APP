@@ -1,3 +1,5 @@
+![Alt text](documentation/logo/logo.png?raw=true "Logo-Couple-App")
+
 # COUPLE-APP
 
 ![Last version](https://img.shields.io/github/v/tag/justalk/couple-app.svg?style=flat-square)

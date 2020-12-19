@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { Component } from 'react';
 import Container from 'src/components/Container';
-import { StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import ApiQuestion from 'src/services/ApiQuestion';
 import {LoadingPageProps} from 'src/interfaces/Loading';
 import styled from 'styled-components/native';
@@ -25,7 +25,7 @@ export default class Loading extends Component<LoadingPageProps | LoadingPageSta
 	async componentDidMount() {
 		const result = await ApiQuestion.getAllQuestions();
 		const questions = result.get_all_questions;
-		// this.props.navigation.navigate('Question', {total: this.props.total, questions: questions});
+		this.props.navigation.navigate('Question', {total: this.props.total, questions: questions});
 	}
 
 	/**
@@ -37,6 +37,7 @@ export default class Loading extends Component<LoadingPageProps | LoadingPageSta
 			<Container>
 				<StyledView>
 					<StyledImage source={LOGO} />
+					<ActivityIndicator size={20} color="#00ff00" />
 				</StyledView>
 			</Container>
 		);
