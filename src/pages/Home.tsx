@@ -6,7 +6,7 @@ import Container from 'src/components/Container';
 import {HomePageProps} from 'src/interfaces/Home';
 import { IMAGE_BUTTON } from 'src/utils/Images';
 import { StyledTriangle } from 'src/styles/Main';
-import { BLACK, RED, WHITE } from 'src/styles/Colors';
+import { OBLACK, BLACK, RED, WHITE } from 'src/styles/Colors';
 import ApiQuestion from 'src/services/ApiQuestion';
 import styled from 'styled-components/native';
 import { LOGO } from 'src/utils/Images';
@@ -105,13 +105,13 @@ const StyledMiddleView = styled.View`
 `
 
 const ContainerNotice = styled.View`
-	backgroundColor: ${BLACK};
+	backgroundColor: ${OBLACK};
 	padding: 40px;
 	position: relative;
 `
 
 const StyledText = styled.Text`
-	color: ${WHITE};
+	color: ${RED};
 	font-size: 24px;
 	text-align: justify;
 `
@@ -163,7 +163,7 @@ export default class Home extends Component<HomePageProps, never> {
 					<StyledSquareBottom />
 					<StyledPressable onPress={() => this.goGame()}>
 						<View>
-							<StyledSquareBottomText onPress={() => this.goGame()}>start</StyledSquareBottomText>
+							<StyledSquareBottomText>start</StyledSquareBottomText>
 							<StyledSquareBottomTriangle />
 						</View>
 					</StyledPressable>
