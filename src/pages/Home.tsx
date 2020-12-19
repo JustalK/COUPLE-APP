@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { Component } from 'react';
-import { Pressable, Text, View } from 'react-native';
+import { Pressable, Text, View, Image } from 'react-native';
 import ButtonImage from 'src/components/ButtonImage'
 import Container from 'src/components/Container';
 import {HomePageProps} from 'src/interfaces/Home';
@@ -9,6 +9,7 @@ import { StyledTriangle } from 'src/styles/Main';
 import { BLACK, RED, WHITE } from 'src/styles/Colors';
 import ApiQuestion from 'src/services/ApiQuestion';
 import styled from 'styled-components/native';
+import { LOGO } from 'src/utils/Images';
 
 const StyledBigSquare = styled.View`
 	position: absolute;
@@ -19,13 +20,13 @@ const StyledBigSquare = styled.View`
 
 const StyledBigSquareTop = styled(StyledBigSquare)`
 	top: -240px;
-	left: -240px;
+	left: -300px;
 	backgroundColor: ${RED};
 `
 
 const StyledBigSquareBottom = styled(StyledBigSquare)`
 	bottom: -240px;
-	right: -240px;
+	right: -300px;
 `
 
 const StyledSquareBottom = styled.View`
@@ -96,6 +97,35 @@ const StyledPressable = styled.Pressable`
 	z-index: 40;
 `
 
+const StyledMiddleView = styled.View`
+	flex: 1;
+	justify-content: center;
+	align-items: center;
+	margin-top: 120px;
+`
+
+const ContainerNotice = styled.View`
+	backgroundColor: ${BLACK};
+	padding: 40px;
+	position: relative;
+`
+
+const StyledText = styled.Text`
+	color: ${WHITE};
+	font-size: 24px;
+	text-align: justify;
+`
+
+const StyledImage = styled.Image`
+	height: 200px;
+	width: 200px;
+	position: absolute;
+	transform: translateX(-60px);
+	left: 50%;
+	top: -150px;
+	margin: auto;
+`
+
 export default class Home extends Component<HomePageProps, never> {
 
 	constructor(props: HomePageProps) {
@@ -123,6 +153,12 @@ export default class Home extends Component<HomePageProps, never> {
 					<StyledSquareTopText>home</StyledSquareTopText>
 					<StyledSquareTopTriangle />
 				</StyledBigSquareTop>
+				<StyledMiddleView>
+					<ContainerNotice>
+						<StyledImage source={LOGO} />
+						<StyledText>This game will ask you random questions that you have to answer both of you following the order randomly given.</StyledText>
+					</ContainerNotice>
+				</StyledMiddleView>
 				<StyledBigSquareBottom>
 					<StyledSquareBottom />
 					<StyledPressable onPress={() => this.goGame()}>
