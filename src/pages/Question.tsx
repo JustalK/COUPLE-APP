@@ -102,12 +102,12 @@ export default class Question extends Component<QuestionPageProps, QuestionPageS
 			<Container>
 				<StyledImage source={LOGO} />
 				<StyledMiddleView>
-					<TextPyramide text={"Question " + (this.state.answers + 1)} height={30} size={16} backgroundColor={WHITE} color={BLACK} icon="question-circle" />
+					<TextPyramide text={"Question " + (this.state.answers + 1)} height={30} size={16} backgroundColor={BLACK} color={RED} icon="question-circle" />
 					<ContainerNotice text={this.props.route.params.questions[this.state.answers].question} />
-					<TextPyramide text={"10 questions remaining"} height={30} size={16} backgroundColor={WHITE} color={BLACK} isDown={true} />
+					<TextPyramide text={"10 questions remaining"} height={30} size={16} backgroundColor={BLACK} color={RED} isDown={true} />
 				</StyledMiddleView>
 				<StyledPressable onPress={() => this.gameLoop()}>
-					<TextPyramide text="next question" height={50} size={24} backgroundColor={BLACK} color={WHITE} icon="caret-right" />
+					<TextPyramide text="next question" height={50} size={24} backgroundColor={WHITE} color={RED} icon="play" />
 				</StyledPressable>
 				<StyledText>{this.whoIsFirst()}</StyledText>
 			</Container>
