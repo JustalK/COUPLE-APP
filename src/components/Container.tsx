@@ -38,9 +38,9 @@ export default class Container extends Component<ContainerProps, never> {
 	render(): JSX.Element {
 		return (
 			<StyledImageBackground source={BACKGROUND}>
-				<StyledContainer bg={this.props.bg}>
-					{this.props.children}
-				</StyledContainer>
+					<StyledContainer bg={this.props.bg}>
+						{this.props.children}
+					</StyledContainer>
 			</StyledImageBackground>
 		);
 	}
