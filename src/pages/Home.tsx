@@ -31,6 +31,15 @@ const StyledPressable = styled.Pressable`
 `
 
 /**
+* Define the pressable area
+**/
+const StyledPressableMenu = styled.Pressable`
+	position: absolute;
+	top: 30px;
+	left: 30px;
+`
+
+/**
 * Display the home component
 * @params {HomePageProps} props The navigation object for redirecting the user to Loading page
 **/
@@ -57,6 +66,13 @@ export default class Home extends Component<HomePageProps, never> {
 	}
 
 	/**
+	* Redirect to the menu screen
+	**/
+	async goMenu() {
+		this.props.navigation.navigate('Menu');
+	}
+
+	/**
 	* Start the animation for starting the game
 	**/
 	gameStarted() {
@@ -70,6 +86,9 @@ export default class Home extends Component<HomePageProps, never> {
 	render(): JSX.Element {
 		return (
 			<Container>
+				<StyledPressableMenu onPress={() => this.goMenu()}>
+					<Icon name="bars" type='font-awesome' size={30} color={WHITE} />
+				</StyledPressableMenu>
 				<StyledMiddleView>
 					<StyledImage source={LOGO} />
 				</StyledMiddleView>

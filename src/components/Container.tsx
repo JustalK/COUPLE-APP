@@ -8,11 +8,13 @@ import styled from 'styled-components/native';
 /**
 * Style the container for taking all the space and align items
 **/
-const StyledContainer = styled.View`
+const StyledContainer = styled.View<{bg?: string}>`
 	display: flex;
 	align-items: center;
 	position: relative;
-
+	${props => props.bg && `
+		backgroundColor: ${props.bg};
+	`}
 	flex: 1;
 `
 
@@ -36,7 +38,7 @@ export default class Container extends Component<ContainerProps, never> {
 	render(): JSX.Element {
 		return (
 			<StyledImageBackground source={BACKGROUND}>
-				<StyledContainer>
+				<StyledContainer bg={this.props.bg}>
 					{this.props.children}
 				</StyledContainer>
 			</StyledImageBackground>

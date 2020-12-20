@@ -42,6 +42,44 @@ export const slideY = ({ current, next, inverted, layouts: { screen } }: StackCa
 	};
 };
 
+export const slideLeft = ({ current, next, inverted, layouts: { screen } }: StackCardInterpolationProps) => {
+	const progress = Animated.add(
+		current.progress.interpolate({
+			inputRange: [0, 1],
+			outputRange: [0, 1],
+			extrapolate: 'clamp',
+		}),
+		next
+			? next.progress.interpolate({
+					inputRange: [0, 1],
+					outputRange: [0, 1],
+					extrapolate: 'clamp',
+			  })
+			: 0,
+	);
+
+	return {
+		cardStyle: {
+			transform: [
+				{
+					translateX: Animated.multiply(
+						progress.interpolate({
+							inputRange: [0, 1, 2],
+							outputRange: [
+								screen.width * -1,
+								0,
+								screen.width,
+							],
+							extrapolate: 'clamp',
+						}),
+						inverted,
+					),
+				},
+			],
+		},
+	};
+};
+
 /**
 * Create a slide effect on the right
 **/

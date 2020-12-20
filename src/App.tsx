@@ -8,7 +8,8 @@ import Home from 'src/pages/Home'
 import Question from 'src/pages/Question'
 import Result from 'src/pages/Result'
 import Loading from 'src/pages/Loading'
-import { slideX, slideY } from 'src/utils/transition';
+import Menu from 'src/pages/Menu'
+import { slideX, slideY, slideLeft } from 'src/utils/transition';
 const Stack = createStackNavigator();
 import { WHITE } from 'src/styles/Colors';
 
@@ -38,7 +39,12 @@ export default class App extends Component {
 					<Stack.Screen
 						name="Result"
 						component={Result}
-						options={{headerShown: false, cardStyleInterpolator: slideY}}
+						options={{headerShown: false, cardStyleInterpolator: slideX}}
+					/>
+					<Stack.Screen
+						name="Menu"
+						component={Menu}
+						options={{headerShown: false, cardStyleInterpolator: slideLeft}}
 					/>
 				</Stack.Navigator>
 			</NavigationContainer>
