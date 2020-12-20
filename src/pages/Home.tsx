@@ -14,22 +14,37 @@ import { LOGO } from 'src/utils/Images';
 import { Icon } from 'react-native-elements';
 import TextPyramide from 'src/components/TextPyramide';
 
+/**
+* Defining the style of the big logo
+**/
 const StyledImage = styled.Image`
 	height: 250px;
 	width: 250px;
 `
 
+/**
+* Define the pressable area
+**/
 const StyledPressable = styled.Pressable`
 	position: absolute;
 	bottom: 0;
 `
 
+/**
+* Display the home component
+* @params {HomePageProps} props The navigation object for redirecting the user to Loading page
+**/
 export default class Home extends Component<HomePageProps, never> {
 
+	/**
+	* Constructor of the home
+	* @params {HomePageProps} props The navigation object for redirecting the user to Loading page
+	**/
 	constructor(props: HomePageProps) {
 		super(props);
 		this.state = {
-			total: 3
+			total: 3,
+			started: false
 		}
 	}
 
@@ -38,6 +53,14 @@ export default class Home extends Component<HomePageProps, never> {
 	**/
 	async goGame() {
 		this.props.navigation.navigate('Loading', {total: this.state.total});
+		this.setState({started: false});
+	}
+
+	/**
+	* Start the animation for starting the game
+	**/
+	gameStarted() {
+		this.setState({started: true});
 	}
 
 	/**
@@ -50,8 +73,8 @@ export default class Home extends Component<HomePageProps, never> {
 				<StyledMiddleView>
 					<StyledImage source={LOGO} />
 				</StyledMiddleView>
-				<StyledPressable onPress={() => this.goGame()}>
-					<TextPyramide text="START" height={50} size={24} backgroundColor={WHITE} color={BLACK} icon="play" />
+				<StyledPressable onPressIn={() => this.gameStarted()} onPress={() => this.goGame()}>
+					<TextPyramide text="START" height={50} size={24} backgroundColor={this.state.started ? BLACK : WHITE} color={this.state.started ? WHITE : BLACK} icon="play" />
 				</StyledPressable>
 				<StatusBar hidden />
 			</Container>

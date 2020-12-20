@@ -5,6 +5,7 @@ export interface QuestionPageProps {
 
 export interface QuestionPageStates {
 	answers: number;
+	next: boolean;
 }
 
 export interface QuestionProps {

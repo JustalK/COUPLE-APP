@@ -64,7 +64,7 @@ const StyledView = styled.View<{height: Int, backgroundColor: String}>`
 export default class TextPyramide extends Component {
 
 	showIcon() {
-		return (<Icon name={this.props.icon} type='font-awesome' size={24} color={RED} />)
+		return (<Icon name={this.props.icon} type='font-awesome' size={24} color={this.props.color} />)
 	}
 	/**
 	* Display the container

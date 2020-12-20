@@ -5,13 +5,16 @@ import Container from 'src/components/Container';
 import ButtonImage from 'src/components/ButtonImage';
 import ContainerNotice from 'src/components/ContainerNotice';
 import TextPyramide from 'src/components/TextPyramide';
-import { StyledMiddleView } from 'src/styles/Main';
+import { StyledMiddleView, StyledMiniLogo } from 'src/styles/Main';
 import { IMAGE_BUTTON, LOGO } from 'src/utils/Images';
 import styled from 'styled-components/native';
 import {QuestionPageProps, QuestionPageStates} from 'src/interfaces/Home';
 import { OBLACK, BLACK, RED, WHITE } from 'src/styles/Colors';
 import { Icon } from 'react-native-elements';
 
+/**
+* Defining the style of the bottom text
+**/
 const StyledText = styled.Text`
 	position: absolute;
 	bottom:0;
@@ -24,6 +27,9 @@ const StyledText = styled.Text`
 	color: ${WHITE};
 `
 
+/**
+* Defining where is the pressable area
+**/
 const StyledPressable = styled.Pressable`
 	position: absolute;
 	bottom: 60px;
@@ -31,13 +37,10 @@ const StyledPressable = styled.Pressable`
 	width: 50%;
 `
 
-const StyledImage = styled.Image`
-	position: absolute;
-	top: 20px;
-	height: 150px;
-	width: 150px;
-`
-
+/**
+* Display the question component
+* @params {HomeProps} props The navigation informations
+**/
 export default class Question extends Component<QuestionPageProps, QuestionPageStates>  {
 
 	/**
@@ -47,7 +50,8 @@ export default class Question extends Component<QuestionPageProps, QuestionPageS
 	constructor(props: QuestionPageProps) {
 		super(props);
 		this.state = {
-			answers: 0
+			answers: 0,
+			next: false
 		};
 	}
 
@@ -74,7 +78,9 @@ export default class Question extends Component<QuestionPageProps, QuestionPageS
 	* Increase the number of answer given
 	**/
 	goNextQuestion() {
-		this.setState({answers: this.state.answers + 1})
+		setTimeout(() => {
+			this.setState({next: false, answers: this.state.answers + 1})
+		}, 200);
 	}
 
 	/**
@@ -94,20 +100,27 @@ export default class Question extends Component<QuestionPageProps, QuestionPageS
 	}
 
 	/**
+	* Start the animation for the next question
+	**/
+	nextStarted() {
+		this.setState({next: true});
+	}
+
+	/**
 	* Display the Question screen
 	* return {JSX.Element} Display the question screen
 	**/
 	render(): JSX.Element {
 		return (
 			<Container>
-				<StyledImage source={LOGO} />
+				<StyledMiniLogo source={LOGO} />
 				<StyledMiddleView>
 					<TextPyramide text={"Question " + (this.state.answers + 1)} height={30} size={16} backgroundColor={BLACK} color={RED} icon="question-circle" />
 					<ContainerNotice text={this.props.route.params.questions[this.state.answers].question} />
 					<TextPyramide text={(this.props.route.params.total - this.state.answers - 1) + " questions remaining"} height={30} size={16} backgroundColor={BLACK} color={RED} isDown={true} />
 				</StyledMiddleView>
-				<StyledPressable onPress={() => this.gameLoop()}>
-					<TextPyramide text="next question" height={50} size={24} backgroundColor={WHITE} color={RED} icon="play" />
+				<StyledPressable onPressIn={() => this.nextStarted()} onPress={() => this.gameLoop()}>
+					<TextPyramide text={this.isGameFinish() ? "End game" : "next question"} height={50} size={24} backgroundColor={this.state.next ? RED : WHITE} color={this.state.next ? WHITE : BLACK} icon="play" />
 				</StyledPressable>
 				<StyledText>{this.whoIsFirst()}</StyledText>
 			</Container>

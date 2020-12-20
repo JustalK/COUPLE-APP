@@ -1,30 +1,21 @@
-import { StatusBar } from 'expo-status-bar';
 import React, { Component } from 'react';
-import { Pressable, Text, View } from 'react-native';
+import { Pressable } from 'react-native';
 import Container from 'src/components/Container';
 import ContainerNotice from 'src/components/ContainerNotice';
 import TextPyramide from 'src/components/TextPyramide';
-import { StyledMiddleView } from 'src/styles/Main';
-import styled from 'styled-components/native';
+import { StyledMiddleView, StyledMiniLogo } from 'src/styles/Main';
+import {ResultPageProps} from 'src/interfaces/Result';
 import { LOGO } from 'src/utils/Images';
 import { WHITE, BLACK, RED } from 'src/styles/Colors';
+/**
+* Display the result screen
+* @params {ResultPageProps} props the navigation object for going back to home
+**/
+export default class Result extends Component<ResultPageProps, never> {
 
-const StyledView = styled.View`
-	flex: 1;
-	justify-content: center;
-	align-items: center;
-`
-
-const StyledImage = styled.Image`
-	position: absolute;
-	align-self: center;
-	top: 20px;
-	height: 150px;
-	width: 150px;
-`
-
-export default class Result extends Component {
-
+	/**
+	* Send the user to the home screen
+	**/
 	goHome() {
 		this.props.navigation.navigate('Home');
 	}
@@ -37,7 +28,7 @@ export default class Result extends Component {
 		return (
 			<Container>
 				<Pressable onPress={() => this.goHome()}>
-					<StyledImage source={LOGO} />
+					<StyledMiniLogo source={LOGO} />
 					<StyledMiddleView marginTop={60}>
 						<TextPyramide text="End of the game" height={30} size={16} backgroundColor={BLACK} color={RED} icon="star-o" />
 						<ContainerNotice text="Thanks for playing. You can change the options for having differents questions." />
