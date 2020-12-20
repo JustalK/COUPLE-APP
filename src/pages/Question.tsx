@@ -104,7 +104,7 @@ export default class Question extends Component<QuestionPageProps, QuestionPageS
 				<StyledMiddleView>
 					<TextPyramide text={"Question " + (this.state.answers + 1)} height={30} size={16} backgroundColor={BLACK} color={RED} icon="question-circle" />
 					<ContainerNotice text={this.props.route.params.questions[this.state.answers].question} />
-					<TextPyramide text={"10 questions remaining"} height={30} size={16} backgroundColor={BLACK} color={RED} isDown={true} />
+					<TextPyramide text={(this.props.route.params.total - this.state.answers - 1) + " questions remaining"} height={30} size={16} backgroundColor={BLACK} color={RED} isDown={true} />
 				</StyledMiddleView>
 				<StyledPressable onPress={() => this.gameLoop()}>
 					<TextPyramide text="next question" height={50} size={24} backgroundColor={WHITE} color={RED} icon="play" />
