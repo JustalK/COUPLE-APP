@@ -42,7 +42,7 @@ export default class Loading extends Component<LoadingPageProps | LoadingPageSta
 
 	goGame() {
 		if(this.state.questions.length !== 0) {
-			this.props.navigation.navigate('Question', {total: this.props.total, questions: this.state.questions});
+			this.props.navigation.navigate('Question', {total: this.props.route.params.total, questions: this.state.questions});
 		}
 	}
 
