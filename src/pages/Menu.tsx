@@ -9,6 +9,7 @@ import { LOGO } from 'src/utils/Images';
 import { WHITE, OBLACK, BLACK, RED } from 'src/styles/Colors';
 import {Picker} from '@react-native-picker/picker';
 import { Icon } from 'react-native-elements';
+import { CommonActions } from '@react-navigation/native';
 import styled from 'styled-components/native';
 
 const SectionTitle = styled.Text`
@@ -56,6 +57,15 @@ const StyledRedCell = styled.View`
 `
 
 /**
+* Define the pressable area
+**/
+const StyledPressableMenu = styled.Pressable`
+	position: absolute;
+	top: 30px;
+	right: 30px;
+`
+
+/**
 * Display the menu screen
 **/
 export default class Menu extends Component {
@@ -68,12 +78,29 @@ export default class Menu extends Component {
 	}
 
 	/**
+	* Redirect to the home screen with the right parameter
+	**/
+	goBackHome() {
+		this.props.navigation.dispatch(
+		  CommonActions.navigate({
+		    name: 'Home',
+		    params: {
+		      total: this.state.total
+		    },
+		  })
+		);
+	}
+
+	/**
 	* Display the Menu screen
 	* return {JSX.Element} Display the menu screen
 	**/
 	render(): JSX.Element {
 		return (
 			<Container bg={OBLACK}>
+				<StyledPressableMenu onPress={() => this.goBackHome()}>
+					<Icon name="long-arrow-right" type='font-awesome' size={30} color={WHITE} />
+				</StyledPressableMenu>
 				<StyledMiniLogo source={LOGO} />
 				<StyledMiddleView marginTop={100}>
 					<TextPyramide text="Game options" height={30} size={16} backgroundColor={WHITE} color={BLACK} icon="gamepad" />
@@ -84,7 +111,7 @@ export default class Menu extends Component {
 								<StyledPicker
 									selectedValue={this.state.total}
 									onValueChange={value => {
-										this.setState({total: value})
+										this.setState({total: value});
 									}}>
 									<Picker.Item color={RED} label="3" value={3} />
 									<Picker.Item color={RED} label="5" value={5} />

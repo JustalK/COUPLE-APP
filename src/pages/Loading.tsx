@@ -31,8 +31,8 @@ export default class Loading extends Component<LoadingPageProps | LoadingPageSta
 	* Call the api and activate the redirection when finished
 	**/
 	async componentDidMount() {
-		const result = await ApiQuestion.getAllQuestions();
-		const questions = result.get_all_questions;
+		const result = await ApiQuestion.getRandomQuestions(this.props.route.params.total);
+		const questions = result.get_random_questions;
 		this.setState({questions});
 	}
 

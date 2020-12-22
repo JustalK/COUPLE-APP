@@ -57,6 +57,10 @@ export default class Home extends Component<HomePageProps, never> {
 		}
 	}
 
+	updateTotal(total) {
+		this.setState(total)
+	}
+
 	/**
 	* Redirect to the game screen
 	**/
@@ -65,10 +69,16 @@ export default class Home extends Component<HomePageProps, never> {
 		this.setState({started: false});
 	}
 
+	componentDidUpdate(prevProps){
+		if (prevProps.route.params != undefined && this.state.total !== prevProps.route.params.total) {
+			this.setState({total: prevProps.route.params.total});
+		}
+	}
+
 	/**
 	* Redirect to the menu screen
 	**/
-	async goMenu() {
+	goMenu() {
 		this.props.navigation.navigate('Menu');
 	}
 

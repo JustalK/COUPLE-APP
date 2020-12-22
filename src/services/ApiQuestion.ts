@@ -11,4 +11,14 @@ export default class ApiQuestion {
 			}`
 		});
 	}
+
+	static async getRandomQuestions(limit) {
+		return Api.getter({ query: `
+			query {
+				get_random_questions(limit: ${limit}) {
+					question
+				}
+			}`
+		});
+	}
 }
