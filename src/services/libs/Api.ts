@@ -11,7 +11,7 @@ export default class Api {
 	* @params {Object} query The graphql query
 	* @return {Object} The result of the query
 	**/
-	static async getter(query) {
+	static async getter(query: any) {
 		const response = await fetch(apiConfig.api_url + apiConfig.endpoint, {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },

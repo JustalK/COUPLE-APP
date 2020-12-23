@@ -1,11 +1,13 @@
-import {GameOption} from 'src/interfaces/Game'
+import {NavigationProps, RouteProps} from 'src/interfaces/Navigation'
 
 export interface HomePageStates {
-	total: number;
-	started: boolean;
+	total: number
+	started: boolean
+	startedMenu: boolean
 }
 
 
 export interface HomePageProps {
-	navigation: any;
+	route: RouteProps
+	navigation: NavigationProps
 }

@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { Component } from 'react';
-import { Pressable, StyleSheet, Text, View, Image } from 'react-native';
+import { TouchableWithoutFeedback, StyleSheet, Text, View, Image } from 'react-native';
 import Container from 'src/components/Container';
 import ButtonImage from 'src/components/ButtonImage';
 import ContainerNotice from 'src/components/ContainerNotice';
@@ -8,7 +8,7 @@ import TextPyramide from 'src/components/TextPyramide';
 import { StyledMiddleView, StyledMiniLogo } from 'src/styles/Main';
 import { IMAGE_BUTTON, LOGO } from 'src/utils/Images';
 import styled from 'styled-components/native';
-import {QuestionPageProps, QuestionPageStates} from 'src/interfaces/Home';
+import {QuestionPageProps, QuestionPageStates} from 'src/interfaces/Question';
 import { OBLACK, BLACK, RED, WHITE } from 'src/styles/Colors';
 import { Icon } from 'react-native-elements';
 
@@ -30,7 +30,7 @@ const StyledText = styled.Text`
 /**
 * Defining where is the pressable area
 **/
-const StyledPressable = styled.Pressable`
+const StyledPressable = styled.TouchableWithoutFeedback`
 	position: absolute;
 	bottom: 60px;
 	backgroundColor: ${BLACK};

@@ -3,6 +3,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import Api from './Api';
+import fetch from 'jest-fetch-mock';
 
 const navigation = { navigate: jest.fn() };
 

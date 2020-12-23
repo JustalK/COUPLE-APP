@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Container from 'src/components/Container';
 import { Pressable } from 'react-native';
 import ApiQuestion from 'src/services/ApiQuestion';
-import {LoadingPageProps} from 'src/interfaces/Loading';
+import {LoadingPageProps, LoadingPageStates} from 'src/interfaces/Loading';
 import ContainerNotice from 'src/components/ContainerNotice';
 import TextPyramide from 'src/components/TextPyramide';
 import { StyledMiddleView, StyledMiniLogo } from 'src/styles/Main';
@@ -13,7 +13,7 @@ import { WHITE, BLACK, RED } from 'src/styles/Colors';
 * Display the loading component
 * @params {LoadingPageProps} props The navigation object for redirecting the suer to question and getting the total questions
 **/
-export default class Loading extends Component<LoadingPageProps | LoadingPageStates> {
+export default class Loading extends Component<LoadingPageProps, LoadingPageStates> {
 
 	/**
 	* The constructor of the loading screen

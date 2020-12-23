@@ -11,7 +11,7 @@ const StyledImage = styled.Image`
 	border-bottom-left-radius: 20px;
 `
 
-const StyledView = styled.View`
+const StyledView = styled.View<{bottom?: boolean}>`
 	${(props) => props.bottom && `
 		position: absolute;
 		align-self: center;

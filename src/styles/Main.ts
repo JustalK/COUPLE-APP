@@ -8,7 +8,7 @@ export const StyledTriangle = styled.View`
 	borderStyle: solid;
 `
 
-export const StyledMiddleView = styled.View`
+export const StyledMiddleView = styled.View<{marginTop?: number}>`
 	flex: 1;
 	justify-content: center;
 	align-items: center;

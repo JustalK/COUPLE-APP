@@ -12,7 +12,7 @@ export default class ApiQuestion {
 		});
 	}
 
-	static async getRandomQuestions(limit) {
+	static async getRandomQuestions(limit: number) {
 		return Api.getter({ query: `
 			query {
 				get_random_questions(limit: ${limit}) {
@@ -35,7 +35,7 @@ export default class ApiQuestion {
 	* @params {string} The question to add
 	* @return {Question} The question added
 	**/
-	static async addNewQuestion(question) {
+	static async addNewQuestion(question: string) {
 		return Api.getter({ query: `
 			mutation {
 				add_new_question(question: "${question}") {

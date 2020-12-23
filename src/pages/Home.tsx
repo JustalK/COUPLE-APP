@@ -1,10 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { Component } from 'react';
-import { Pressable, Text, View, Image } from 'react-native';
+import { TouchableWithoutFeedback, Text, View, Image } from 'react-native';
 import ButtonImage from 'src/components/ButtonImage'
 import Container from 'src/components/Container';
 import ContainerNotice from 'src/components/ContainerNotice';
-import {HomePageProps} from 'src/interfaces/Home';
+import {HomePageProps, HomePageStates} from 'src/interfaces/Home';
 import { IMAGE_BUTTON } from 'src/utils/Images';
 import { StyledMiddleView } from 'src/styles/Main';
 import { OBLACK, BLACK, RED, WHITE } from 'src/styles/Colors';
@@ -25,7 +25,7 @@ const StyledImage = styled.Image`
 /**
 * Define the pressable area
 **/
-const StyledPressable = styled.Pressable`
+const StyledPressable = styled.TouchableWithoutFeedback`
 	position: absolute;
 	bottom: 0;
 `
@@ -33,7 +33,7 @@ const StyledPressable = styled.Pressable`
 /**
 * Define the pressable area
 **/
-const StyledPressableMenu = styled.Pressable`
+const StyledPressableMenu = styled.TouchableWithoutFeedback`
 	position: absolute;
 	top: 30px;
 	left: 30px;
@@ -43,7 +43,7 @@ const StyledPressableMenu = styled.Pressable`
 * Display the home component
 * @params {HomePageProps} props The navigation object for redirecting the user to Loading page
 **/
-export default class Home extends Component<HomePageProps, never> {
+export default class Home extends Component<HomePageProps, HomePageStates> {
 
 	/**
 	* Constructor of the home
@@ -58,8 +58,8 @@ export default class Home extends Component<HomePageProps, never> {
 		}
 	}
 
-	updateTotal(total) {
-		this.setState(total)
+	updateTotal(total: number) {
+		this.setState({total: total})
 	}
 
 	/**
@@ -70,7 +70,7 @@ export default class Home extends Component<HomePageProps, never> {
 		this.setState({started: false});
 	}
 
-	componentDidUpdate(prevProps){
+	componentDidUpdate(prevProps: HomePageProps){
 		if (prevProps.route.params != undefined && this.state.total !== prevProps.route.params.total) {
 			this.setState({total: prevProps.route.params.total});
 		}

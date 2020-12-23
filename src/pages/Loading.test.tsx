@@ -3,6 +3,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import Loading from './Loading';
+import fetch from 'jest-fetch-mock';
 
 const navigation = { navigate: jest.fn() };
 
@@ -16,7 +17,7 @@ describe('<Loading />', () => {
 			]
 		}}));
 
-		const tree = renderer.create(<Loading navigation={navigation} />);
+		const tree = renderer.create(<Loading total={5} route={{params: {total: 5}}} navigation={navigation} />);
 		setTimeout(() => {
 			expect(navigation.navigate).toBeCalledWith('Question', {"questions": [{'question': 'Is this question 1 ?'}]});
 			done()

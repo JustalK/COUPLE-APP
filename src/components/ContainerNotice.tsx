@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { Component } from 'react';
 import { TouchableWithoutFeedback, View, ImageBackground } from 'react-native';
-import { ContainerProps } from 'src/interfaces/Container';
+import { ContainerNoticeProps } from 'src/interfaces/Container';
 import { BACKGROUND } from 'src/utils/Images';
 import { OBLACK, WHITE, BLACK } from 'src/styles/Colors';
 import styled from 'styled-components/native';

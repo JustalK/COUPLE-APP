@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { TextInput, StyleSheet, Pressable, Text, View } from 'react-native';
+import { TextInput, StyleSheet, TouchableWithoutFeedback, Text, View } from 'react-native';
 import ApiQuestion from 'src/services/ApiQuestion';
 import Container from 'src/components/Container';
 import ContainerNotice from 'src/components/ContainerNotice';
 import TextPyramide from 'src/components/TextPyramide';
 import { StyledMiddleView, StyledMiniLogo } from 'src/styles/Main';
-import {ResultPageProps} from 'src/interfaces/Result';
+import {MenuPageProps, MenuPageStates} from 'src/interfaces/Menu';
 import { LOGO } from 'src/utils/Images';
 import { WHITE, OBLACK, BLACK, RED } from 'src/styles/Colors';
 import {Picker} from '@react-native-picker/picker';
@@ -64,7 +64,7 @@ const StyledResponse = styled.Text`
 /**
 * Define the pressable area
 **/
-const StyledPressableMenu = styled.Pressable`
+const StyledPressableMenu = styled.TouchableWithoutFeedback`
 	position: absolute;
 	top: 30px;
 	right: 30px;
@@ -73,9 +73,9 @@ const StyledPressableMenu = styled.Pressable`
 /**
 * Display the menu screen
 **/
-export default class Menu extends Component {
+export default class Menu extends Component<MenuPageProps, MenuPageStates> {
 
-	constructor(props) {
+	constructor(props: MenuPageProps) {
 		super(props);
 		this.state = {
 			total: 3,
@@ -113,15 +113,15 @@ export default class Menu extends Component {
 	* Add a question to the game
 	**/
 	async addNewQuestion() {
-		if (isNewQuestionWorthIt()) {
-			const newQuestion = sanitizeNewQuestion();
+		if (this.isNewQuestionWorthIt()) {
+			const newQuestion = this.sanitizeNewQuestion();
 			await ApiQuestion.addNewQuestion(newQuestion);
 			this.setState({questionAdded: false, text: '', max: this.state.max + 1});
 		}
 	}
 
 	questionAdded() {
-		if (isNewQuestionWorthIt()) {
+		if (this.isNewQuestionWorthIt()) {
 			this.setState({questionAdded: true});
 		}
 	}
@@ -138,7 +138,7 @@ export default class Menu extends Component {
 	}
 
 	isNewQuestionWorthIt() {
-		return sanitizeNewQuestion() !== '';
+		return this.sanitizeNewQuestion() !== '';
 	}
 
 	/**
@@ -181,9 +181,9 @@ export default class Menu extends Component {
 								onChangeText={(text) => this.setState({text})}
 								value={this.state.text} />
 								<StyledRedCell>
-									<Pressable onPressIn={() => this.questionAdded()} onPress={() => this.addNewQuestion()}>
+									<TouchableWithoutFeedback onPressIn={() => this.questionAdded()} onPress={() => this.addNewQuestion()}>
 										<Icon name='check' type='font-awesome' size={24} color={this.state.questionAdded ? BLACK : WHITE} style={{paddingLeft: 10, paddingRight: 20}} />
-									</Pressable>
+									</TouchableWithoutFeedback>
 								</StyledRedCell>
 						</StyledRow>
 						<StyledRow style={{backgroundColor: WHITE, height: 50, borderTopWidth: 0, alignItems: 'center', justifyContent: 'center'}}>
