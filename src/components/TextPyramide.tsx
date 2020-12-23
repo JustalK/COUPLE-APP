@@ -63,9 +63,14 @@ const StyledView = styled.View<{height: number, backgroundColor: string}>`
 **/
 export default class TextPyramide extends Component<TextPyramideProps, never> {
 
+	/**
+	* Display the icon beside the title
+	* @params {string} name The title to show
+	**/
 	showIcon(name: string) {
 		return (<Icon name={name} type='font-awesome' size={24} color={this.props.color} />)
 	}
+
 	/**
 	* Display the container
 	* return {JSX.Element} Display the container
