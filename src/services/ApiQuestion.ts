@@ -21,4 +21,27 @@ export default class ApiQuestion {
 			}`
 		});
 	}
+
+	static async countTotalQuestions() {
+		return Api.getter({ query: `
+			query {
+				count_total_questions
+			}`
+		});
+	}
+
+	/**
+	* Add a question to the database
+	* @params {string} The question to add
+	* @return {Question} The question added
+	**/
+	static async addNewQuestion(question) {
+		return Api.getter({ query: `
+			mutation {
+				add_new_question(question: "${question}") {
+					question
+				}
+			}`
+		});
+	}
 }

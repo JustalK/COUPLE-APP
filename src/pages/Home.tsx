@@ -53,7 +53,8 @@ export default class Home extends Component<HomePageProps, never> {
 		super(props);
 		this.state = {
 			total: 3,
-			started: false
+			started: false,
+			startedMenu: false
 		}
 	}
 
@@ -80,6 +81,7 @@ export default class Home extends Component<HomePageProps, never> {
 	**/
 	goMenu() {
 		this.props.navigation.navigate('Menu');
+		this.setState({startedMenu: false});
 	}
 
 	/**
@@ -90,14 +92,21 @@ export default class Home extends Component<HomePageProps, never> {
 	}
 
 	/**
+	* Start the animation for going to the menu
+	**/
+	startedMenu() {
+		this.setState({startedMenu: true});
+	}
+
+	/**
 	* Display the home screen
 	* return {JSX.Element} Display the home
 	**/
 	render(): JSX.Element {
 		return (
 			<Container>
-				<StyledPressableMenu onPress={() => this.goMenu()}>
-					<Icon name="bars" type='font-awesome' size={30} color={WHITE} />
+				<StyledPressableMenu onPressIn={() => this.startedMenu()} onPress={() => this.goMenu()}>
+					<Icon name="bars" type='font-awesome' size={30} color={this.state.startedMenu ? BLACK : WHITE} />
 				</StyledPressableMenu>
 				<StyledMiddleView>
 					<StyledImage source={LOGO} />

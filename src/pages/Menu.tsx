@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { TextInput, StyleSheet, Pressable, Text, View } from 'react-native';
+import ApiQuestion from 'src/services/ApiQuestion';
 import Container from 'src/components/Container';
 import ContainerNotice from 'src/components/ContainerNotice';
 import TextPyramide from 'src/components/TextPyramide';
@@ -21,11 +22,11 @@ const StyledView = styled.View`
 	backgroundColor: ${OBLACK};
 	margin: 0 10%;
 	margin-bottom: 50px;
-	border: 1px solid ${WHITE};
 `
 
 const StyledRow = styled.View`
 	flex-direction: row;
+	border: 1px solid ${WHITE};
 `
 
 const StyledLegend = styled.Text`
@@ -56,6 +57,10 @@ const StyledRedCell = styled.View`
 	justifyContent: center;
 `
 
+const StyledResponse = styled.Text`
+	color: ${RED};
+`
+
 /**
 * Define the pressable area
 **/
@@ -73,8 +78,21 @@ export default class Menu extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			total: 3
+			total: 3,
+			text: '',
+			questionAdded: false,
+			max: 0
 		}
+	}
+
+	/**
+	* Call only once when the component is loaded
+	* Call the api and activate the redirection when finished
+	**/
+	async componentDidMount() {
+		const result = await ApiQuestion.countTotalQuestions();
+		const max = result.count_total_questions;
+		this.setState({max});
 	}
 
 	/**
@@ -89,6 +107,38 @@ export default class Menu extends Component {
 		    },
 		  })
 		);
+	}
+
+	/**
+	* Add a question to the game
+	**/
+	async addNewQuestion() {
+		if (isNewQuestionWorthIt()) {
+			const newQuestion = sanitizeNewQuestion();
+			await ApiQuestion.addNewQuestion(newQuestion);
+			this.setState({questionAdded: false, text: '', max: this.state.max + 1});
+		}
+	}
+
+	questionAdded() {
+		if (isNewQuestionWorthIt()) {
+			this.setState({questionAdded: true});
+		}
+	}
+
+	sanitizeNewQuestion() {
+		if (this.state.text === undefined || this.state.text === null) {
+			return '';
+		}
+
+		let newQuestion = this.state.text.trim();
+		newQuestion = newQuestion.replace(/'/g, "\\'");
+
+		return newQuestion;
+	}
+
+	isNewQuestionWorthIt() {
+		return sanitizeNewQuestion() !== '';
 	}
 
 	/**
@@ -116,7 +166,8 @@ export default class Menu extends Component {
 									<Picker.Item color={RED} label="3" value={3} />
 									<Picker.Item color={RED} label="5" value={5} />
 									<Picker.Item color={RED} label="10" value={10} />
-									<Picker.Item color={RED} label="ALL" value="ALL" />
+									<Picker.Item color={RED} label="25" value={25} />
+									<Picker.Item color={RED} label="ALL" value={this.state.max} />
 								</StyledPicker>
 							</StyledRedCell>
 						</StyledRow>
@@ -129,10 +180,17 @@ export default class Menu extends Component {
 								numberOfLines={4}
 								onChangeText={(text) => this.setState({text})}
 								value={this.state.text} />
-							<StyledRedCell>
-								<Icon name='check' type='font-awesome' size={24} color={WHITE} style={{paddingLeft: 10, paddingRight: 20}} />
-							</StyledRedCell>
+								<StyledRedCell>
+									<Pressable onPressIn={() => this.questionAdded()} onPress={() => this.addNewQuestion()}>
+										<Icon name='check' type='font-awesome' size={24} color={this.state.questionAdded ? BLACK : WHITE} style={{paddingLeft: 10, paddingRight: 20}} />
+									</Pressable>
+								</StyledRedCell>
 						</StyledRow>
+						<StyledRow style={{backgroundColor: WHITE, height: 50, borderTopWidth: 0, alignItems: 'center', justifyContent: 'center'}}>
+							<Text>The game contains {this.state.max} questions.</Text>
+						</StyledRow>
+					</StyledView>
+					<StyledView>
 					</StyledView>
 				</StyledMiddleView>
 			</Container>

@@ -51,6 +51,7 @@ export default class Question extends Component<QuestionPageProps, QuestionPageS
 		super(props);
 		this.state = {
 			answers: 0,
+			lock: false,
 			next: false
 		};
 	}
@@ -60,10 +61,13 @@ export default class Question extends Component<QuestionPageProps, QuestionPageS
 	* Control what to do if the game is not over or when the game is over
 	**/
 	gameLoop() {
-		if (this.isGameFinish()) {
-			this.goResult();
-		} else {
-			this.goNextQuestion();
+		if (!this.state.lock) {
+			this.setState({lock: true});
+			if (this.isGameFinish()) {
+				this.goResult();
+			} else {
+				this.goNextQuestion();
+			}
 		}
 	}
 
@@ -79,7 +83,7 @@ export default class Question extends Component<QuestionPageProps, QuestionPageS
 	**/
 	goNextQuestion() {
 		setTimeout(() => {
-			this.setState({next: false, answers: this.state.answers + 1})
+			this.setState({next: false, lock: false, answers: this.state.answers + 1})
 		}, 200);
 	}
 
