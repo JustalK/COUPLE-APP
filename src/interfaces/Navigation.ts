@@ -1,12 +1,12 @@
 export interface NavigationProps {
-	navigate: any
-	dispatch?: any
+	navigate: any; // eslint-disable-line @typescript-eslint/no-explicit-any
+	dispatch?: any; // eslint-disable-line @typescript-eslint/no-explicit-any
 }
 
 export interface RouteProps {
-	params: ParamsProps
+	params: ParamsProps;
 }
 
 export interface ParamsProps {
-	[key: string]: any
+	[key: string]: any; // eslint-disable-line @typescript-eslint/no-explicit-any
 }

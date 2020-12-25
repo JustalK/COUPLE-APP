@@ -1,12 +1,12 @@
-import {NavigationProps} from 'src/interfaces/Navigation'
+import { NavigationProps } from 'src/interfaces/Navigation';
 
 export interface MenuPageProps {
-	navigation: NavigationProps
+	navigation: NavigationProps;
 }
 
 export interface MenuPageStates {
-	total: number
-	text: string
-	questionAdded: boolean
-	max: number
+	total: number;
+	text: string;
+	questionAdded: boolean;
+	max: number;
 }

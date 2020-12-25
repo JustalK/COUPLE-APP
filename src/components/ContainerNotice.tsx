@@ -1,35 +1,32 @@
-import { StatusBar } from 'expo-status-bar';
 import React, { Component } from 'react';
-import { Pressable, View, ImageBackground } from 'react-native';
+import { View, Text } from 'react-native';
 import { ContainerNoticeProps } from 'src/interfaces/Container';
-import { BACKGROUND } from 'src/utils/Images';
 import { OBLACK, WHITE, BLACK } from 'src/styles/Colors';
 import styled from 'styled-components/native';
 
-const StyledView = styled.View`
-	backgroundColor: ${OBLACK};
+const StyledView = styled(View)`
+	backgroundcolor: ${OBLACK};
 	padding: 40px;
 	position: relative;
 	margin: 0 10%;
 	border: 1px solid ${BLACK};
-`
+`;
 
-const StyledText = styled.Text`
+const StyledText = styled(Text)`
 	color: ${WHITE};
 	font-size: 24px;
 	text-align: justify;
-`
+`;
 
 /**
-* Show the background and define the container
-* @params {props} Define the children to be pass to the container
-**/
+ * Show the background and define the container
+ * @params {props} Define the children to be pass to the container
+ **/
 export default class ContainerNotice extends Component<ContainerNoticeProps, never> {
-
 	/**
-	* Display the container
-	* return {JSX.Element} Display the container
-	**/
+	 * Display the container
+	 * return {JSX.Element} Display the container
+	 **/
 	render(): JSX.Element {
 		return (
 			<StyledView>

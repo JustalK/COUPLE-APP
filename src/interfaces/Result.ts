@@ -1,3 +1,5 @@
+import { NavigationProps } from 'src/interfaces/Navigation';
+
 export interface ResultPageProps {
-	navigation: any
+	navigation: NavigationProps;
 }
