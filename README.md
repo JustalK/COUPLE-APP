@@ -71,3 +71,45 @@ lt --port 5000 --subdomain couple-api
 **Touch not working outside of a view**
 
 At the moment of development, there was [a bug on react-native](https://github.com/facebook/react-native/issues/27232) where a touch event will not be fired if an element was outside of it's parent. On Home, I was using the start button at the bottom of the screen outside of the square, so it could not work. For fixing that and still getting the desired effect, I create two squares. The bigger one is here for having the touch event inside a parent and the smaller square for creating the visual.
+
+**Styled-components does not have Pressable**
+
+Pressable is a touch event from react native but it have not been typed by styled-components. So typescript cannot be use with a Pressable. For bypassing the problem, I have to comeback on the normal StyleSheet creation.
+
+**Prettier does not want to use Camel Case on css**
+
+Prettier recognize css properties like backgroundColor as an error. So for fixing and bypassing the problem. I use another convention like background-color.
+
+#### Developing
+
+For running the project, simply use :
+
+```
+npm run start
+```
+
+It will then run a browser with a QR code that you can use on expo for testing the app.
+
+#### Tools
+
+For linting the code :
+```
+npm run lint
+```
+
+For formatting the code :
+```
+npm run format
+```
+
+#### Building
+
+For building an apk or app-bundle that could be use on Google Store or Apple Store :
+```
+npm run build-android
+npm run build-ios
+```
+
+## License
+
+MIT - Copyright &copy; [JUSTAL Kevin](http://justalk.online/)
