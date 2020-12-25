@@ -8,19 +8,19 @@ const Triangle = styled(View)<{ isDown?: boolean }>`
 	position: absolute;
 	width: 0;
 	height: 0;
-	borderstyle: solid;
-	borderbottomcolor: transparent;
-	bordertopcolor: transparent;
-	borderrightcolor: transparent;
+	border-style: solid;
+	border-bottom-color: transparent;
+	border-top-color: transparent;
+	border-right-color: transparent;
 `;
 
 const TriangleLeft = styled(Triangle)<{ isDown?: boolean; height: number; borderLeftColor: string }>`
 	top: 0;
 	right: -${(props) => props.height}px;
-	borderbottomwidth: 0px;
-	bordertopwidth: ${(props) => props.height}px;
-	borderleftwidth: ${(props) => props.height}px;
-	borderleftcolor: ${(props) => props.borderLeftColor};
+	border-bottom-width: 0px;
+	border-top-width: ${(props) => props.height}px;
+	border-left-width: ${(props) => props.height}px;
+	border-left-color: ${(props) => props.borderLeftColor};
 	${(props) =>
 		props.isDown &&
 		`
@@ -31,10 +31,10 @@ const TriangleLeft = styled(Triangle)<{ isDown?: boolean; height: number; border
 const TriangleRight = styled(Triangle)<{ isDown?: boolean; height: number; borderRightColor: string }>`
 	top: 0;
 	left: -${(props) => props.height}px;
-	borderbottomwidth: 0px;
-	bordertopwidth: ${(props) => props.height}px;
-	borderrightwidth: ${(props) => props.height}px;
-	borderrightcolor: ${(props) => props.borderRightColor};
+	border-bottom-width: 0px;
+	border-top-width: ${(props) => props.height}px;
+	border-right-width: ${(props) => props.height}px;
+	border-right-color: ${(props) => props.borderRightColor};
 	${(props) =>
 		props.isDown &&
 		`
@@ -52,10 +52,10 @@ const StyledText = styled(Text)<{ color: string; size: number }>`
 const StyledView = styled(View)<{ height: number; backgroundColor: string }>`
 	height: ${(props) => props.height}px;
 	padding: 0 15px;
-	backgroundcolor: ${(props) => props.backgroundColor};
-	flexdirection: row;
-	alignitems: center;
-	justifycontent: center;
+	background-color: ${(props) => props.backgroundColor};
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
 `;
 
 /**

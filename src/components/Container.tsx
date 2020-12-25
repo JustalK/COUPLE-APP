@@ -14,7 +14,7 @@ const StyledContainer = styled(View)<{ bg?: string }>`
 	${(props) =>
 		props.bg &&
 		`
-		backgroundColor: ${props.bg};
+		background-color: ${props.bg};
 	`}
 	flex: 1;
 `;

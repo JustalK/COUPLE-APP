@@ -8,7 +8,7 @@
     "eject": "expo eject",
     "build-android": "expo build:android",
     "test": "nyc jest --coverage",
-    "lint": "eslint --fix './src/**/*.{ts,tsx}'",
+    "lint": "eslint './src/**/*.{ts,tsx}'",
     "format": "prettier --write './src/**/*.{ts,tsx}'",
     "coverage": "coveralls < coverage/lcov.info"
   },

@@ -5,7 +5,7 @@ import { OBLACK, WHITE, BLACK } from 'src/styles/Colors';
 import styled from 'styled-components/native';
 
 const StyledView = styled(View)`
-	backgroundcolor: ${OBLACK};
+	background-color: ${OBLACK};
 	padding: 40px;
 	position: relative;
 	margin: 0 10%;

@@ -13,14 +13,24 @@ import { CommonActions } from '@react-navigation/native';
 import styled from 'styled-components/native';
 
 const StyledView = styled(View)`
-	backgroundcolor: ${OBLACK};
+	background-color: ${OBLACK};
 	margin: 0 10%;
 	margin-bottom: 50px;
 `;
 
-const StyledRow = styled(View)`
+const StyledRow = styled(View)<{ isWhite?: boolean }>`
 	flex-direction: row;
 	border: 1px solid ${WHITE};
+
+	${(props) =>
+		props.isWhite &&
+		`
+		background-color: ${WHITE};
+		height: 50px;
+		borderTopWidth: 0;
+		alignItems: center;
+		justifyContent: center;
+	`}
 `;
 
 const StyledLegend = styled(Text)`
@@ -44,11 +54,11 @@ const StyledTextInput = styled(TextInput)`
 `;
 
 const StyledRedCell = styled(View)`
-	borderleftwidth: 1px;
-	borderleftcolor: ${WHITE};
-	backgroundcolor: ${RED};
-	paddingleft: 10px;
-	justifycontent: center;
+	border-left-width: 1px;
+	border-left-color: ${WHITE};
+	background-color: ${RED};
+	padding-left: 10px;
+	justify-content: center;
 `;
 
 /**
@@ -183,20 +193,12 @@ export default class Menu extends Component<MenuPageProps, MenuPageStates> {
 										type="font-awesome"
 										size={24}
 										color={this.state.questionAdded ? BLACK : WHITE}
-										style={{ paddingLeft: 10, paddingRight: 20 }}
+										style={styles.iconCustom}
 									/>
 								</Pressable>
 							</StyledRedCell>
 						</StyledRow>
-						<StyledRow
-							style={{
-								backgroundColor: WHITE,
-								height: 50,
-								borderTopWidth: 0,
-								alignItems: 'center',
-								justifyContent: 'center',
-							}}
-						>
+						<StyledRow isWhite={true}>
 							<Text>The game contains {this.state.max} questions.</Text>
 						</StyledRow>
 					</StyledView>
@@ -208,6 +210,10 @@ export default class Menu extends Component<MenuPageProps, MenuPageStates> {
 }
 
 const styles = StyleSheet.create({
+	iconCustom: {
+		paddingLeft: 10,
+		paddingRight: 20,
+	},
 	pressableMenu: {
 		position: 'absolute',
 		top: 30,

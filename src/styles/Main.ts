@@ -4,8 +4,8 @@ import { View, Image } from 'react-native';
 export const StyledTriangle = styled(View)`
 	width: 0;
 	height: 0;
-	backgroundcolor: transparent;
-	borderstyle: solid;
+	background-color: transparent;
+	border-style: solid;
 `;
 
 export const StyledMiddleView = styled(View)<{ marginTop?: number }>`

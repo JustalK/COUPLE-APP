@@ -20,7 +20,7 @@ const StyledText = styled(Text)`
 	text-align: center;
 	line-height: 60px;
 	font-size: 24px;
-	backgroundcolor: ${RED};
+	background-color: ${RED};
 	color: ${WHITE};
 `;
 
