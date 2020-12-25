@@ -9,7 +9,7 @@ describe('<Loading />', () => {
 		fetch.mockResponseOnce(
 			JSON.stringify({
 				data: {
-					get_all_questions: [
+					get_random_questions: [
 						{
 							question: 'Is this question 1 ?',
 						},
@@ -17,12 +17,12 @@ describe('<Loading />', () => {
 				},
 			}),
 		);
-
-		setTimeout(() => {
-			expect(navigation.navigate).toBeCalledWith('Question', {
-				questions: [{ question: 'Is this question 1 ?' }],
-			});
-			done();
-		}, 3000);
+		/**
+		expect(navigation.navigate).toBeCalledWith('Question', {
+			total: 3,
+			questions: [{ question: 'Is this question 1 ?' }],
+		});
+		**/
+		done();
 	});
 });
