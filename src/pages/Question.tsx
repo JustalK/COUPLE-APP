@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { Component } from 'react';
-import { TouchableWithoutFeedback, StyleSheet, Text, View, Image } from 'react-native';
+import { Pressable, StyleSheet, Text, View, Image } from 'react-native';
 import Container from 'src/components/Container';
 import ButtonImage from 'src/components/ButtonImage';
 import ContainerNotice from 'src/components/ContainerNotice';
@@ -25,16 +25,6 @@ const StyledText = styled.Text`
 	font-size: 24px;
 	backgroundColor: ${RED};
 	color: ${WHITE};
-`
-
-/**
-* Defining where is the pressable area
-**/
-const StyledPressable = styled.TouchableWithoutFeedback`
-	position: absolute;
-	bottom: 60px;
-	backgroundColor: ${BLACK};
-	width: 50%;
 `
 
 /**
@@ -123,11 +113,20 @@ export default class Question extends Component<QuestionPageProps, QuestionPageS
 					<ContainerNotice text={this.props.route.params.questions[this.state.answers].question} />
 					<TextPyramide text={(this.props.route.params.total - this.state.answers - 1) + " questions remaining"} height={30} size={16} backgroundColor={BLACK} color={RED} isDown={true} />
 				</StyledMiddleView>
-				<StyledPressable onPressIn={() => this.nextStarted()} onPress={() => this.gameLoop()}>
+				<Pressable style={styles.pressableNext} onPressIn={() => this.nextStarted()} onPress={() => this.gameLoop()}>
 					<TextPyramide text={this.isGameFinish() ? "End game" : "next question"} height={50} size={24} backgroundColor={this.state.next ? RED : WHITE} color={this.state.next ? WHITE : BLACK} icon="play" />
-				</StyledPressable>
+				</Pressable>
 				<StyledText>{this.whoIsFirst()}</StyledText>
 			</Container>
 		);
 	}
 }
+
+const styles = StyleSheet.create({
+	pressableNext: {
+		position: 'absolute',
+		bottom: 60,
+		backgroundColor: BLACK,
+		width: '50%'
+	}
+})

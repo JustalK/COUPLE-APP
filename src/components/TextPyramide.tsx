@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { Component } from 'react';
-import { TouchableWithoutFeedback, View, ImageBackground } from 'react-native';
+import { Pressable, View, ImageBackground } from 'react-native';
 import { TextPyramideProps } from 'src/interfaces/TextPyramide';
 import { BACKGROUND } from 'src/utils/Images';
 import { OBLACK, WHITE, BLACK, RED } from 'src/styles/Colors';

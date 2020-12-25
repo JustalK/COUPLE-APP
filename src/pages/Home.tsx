@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { Component } from 'react';
-import { TouchableWithoutFeedback, Text, View, Image } from 'react-native';
+import { StyleSheet, Pressable, Text, View, Image } from 'react-native';
 import ButtonImage from 'src/components/ButtonImage'
 import Container from 'src/components/Container';
 import ContainerNotice from 'src/components/ContainerNotice';
@@ -20,23 +20,6 @@ import TextPyramide from 'src/components/TextPyramide';
 const StyledImage = styled.Image`
 	height: 250px;
 	width: 250px;
-`
-
-/**
-* Define the pressable area
-**/
-const StyledPressable = styled.TouchableWithoutFeedback`
-	position: absolute;
-	bottom: 0;
-`
-
-/**
-* Define the pressable area
-**/
-const StyledPressableMenu = styled.TouchableWithoutFeedback`
-	position: absolute;
-	top: 30px;
-	left: 30px;
 `
 
 /**
@@ -105,17 +88,29 @@ export default class Home extends Component<HomePageProps, HomePageStates> {
 	render(): JSX.Element {
 		return (
 			<Container>
-				<StyledPressableMenu onPressIn={() => this.startedMenu()} onPress={() => this.goMenu()}>
+				<Pressable style={styles.pressableMenu} onPressIn={() => this.startedMenu()} onPress={() => this.goMenu()}>
 					<Icon name="bars" type='font-awesome' size={30} color={this.state.startedMenu ? BLACK : WHITE} />
-				</StyledPressableMenu>
+				</Pressable>
 				<StyledMiddleView>
 					<StyledImage source={LOGO} />
 				</StyledMiddleView>
-				<StyledPressable onPressIn={() => this.gameStarted()} onPress={() => this.goGame()}>
+				<Pressable style={styles.pressableGame} onPressIn={() => this.gameStarted()} onPress={() => this.goGame()}>
 					<TextPyramide text="START" height={50} size={24} backgroundColor={this.state.started ? BLACK : WHITE} color={this.state.started ? WHITE : BLACK} icon="play" />
-				</StyledPressable>
+				</Pressable>
 				<StatusBar hidden />
 			</Container>
 		);
 	}
 }
+
+const styles = StyleSheet.create({
+	pressableGame: {
+		position: 'absolute',
+		bottom: 0
+	},
+	pressableMenu: {
+		position: 'absolute',
+		top: 30,
+		left: 30
+	}
+});

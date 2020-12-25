@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { Component } from 'react';
-import { StyleSheet, TouchableWithoutFeedback, View, Image } from 'react-native';
+import { StyleSheet, Pressable, View, Image } from 'react-native';
 import { ButtonImageProps } from 'src/interfaces/ButtonImage';
 import styled from 'styled-components/native';
 
@@ -31,11 +31,11 @@ export default class ButtonImage extends Component<ButtonImageProps, never> {
 	**/
 	render(): JSX.Element {
 		return (
-			<TouchableWithoutFeedback onPress={() => this.props.callback()}>
+			<Pressable onPress={() => this.props.callback()}>
 				<StyledView bottom={this.props.bottom}>
 					<StyledImage source={this.props.image} />
 				</StyledView>
-			</TouchableWithoutFeedback>
+			</Pressable>
 		);
 	}
 }

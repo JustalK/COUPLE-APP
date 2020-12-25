@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { TextInput, StyleSheet, TouchableWithoutFeedback, Text, View } from 'react-native';
+import { TextInput, StyleSheet, Pressable, Text, View } from 'react-native';
 import ApiQuestion from 'src/services/ApiQuestion';
 import Container from 'src/components/Container';
 import ContainerNotice from 'src/components/ContainerNotice';
@@ -59,15 +59,6 @@ const StyledRedCell = styled.View`
 
 const StyledResponse = styled.Text`
 	color: ${RED};
-`
-
-/**
-* Define the pressable area
-**/
-const StyledPressableMenu = styled.TouchableWithoutFeedback`
-	position: absolute;
-	top: 30px;
-	right: 30px;
 `
 
 /**
@@ -148,9 +139,9 @@ export default class Menu extends Component<MenuPageProps, MenuPageStates> {
 	render(): JSX.Element {
 		return (
 			<Container bg={OBLACK}>
-				<StyledPressableMenu onPress={() => this.goBackHome()}>
+				<Pressable style={styles.pressableMenu} onPress={() => this.goBackHome()}>
 					<Icon name="long-arrow-right" type='font-awesome' size={30} color={WHITE} />
-				</StyledPressableMenu>
+				</Pressable>
 				<StyledMiniLogo source={LOGO} />
 				<StyledMiddleView marginTop={100}>
 					<TextPyramide text="Game options" height={30} size={16} backgroundColor={WHITE} color={BLACK} icon="gamepad" />
@@ -181,9 +172,9 @@ export default class Menu extends Component<MenuPageProps, MenuPageStates> {
 								onChangeText={(text) => this.setState({text})}
 								value={this.state.text} />
 								<StyledRedCell>
-									<TouchableWithoutFeedback onPressIn={() => this.questionAdded()} onPress={() => this.addNewQuestion()}>
+									<Pressable onPressIn={() => this.questionAdded()} onPress={() => this.addNewQuestion()}>
 										<Icon name='check' type='font-awesome' size={24} color={this.state.questionAdded ? BLACK : WHITE} style={{paddingLeft: 10, paddingRight: 20}} />
-									</TouchableWithoutFeedback>
+									</Pressable>
 								</StyledRedCell>
 						</StyledRow>
 						<StyledRow style={{backgroundColor: WHITE, height: 50, borderTopWidth: 0, alignItems: 'center', justifyContent: 'center'}}>
@@ -202,5 +193,10 @@ const styles = StyleSheet.create({
 	itemStyle: {
 		backgroundColor: WHITE,
 		color: RED
+	},
+	pressableMenu: {
+		position: 'absolute',
+		top: 30,
+		right: 30
 	}
 })
