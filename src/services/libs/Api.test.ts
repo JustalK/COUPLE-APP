@@ -2,6 +2,7 @@
 
 import Api from './Api';
 import fetch from 'jest-fetch-mock';
+import { ApiGetAllQuestions } from 'src/interfaces/Api';
 
 beforeEach(() => {
 	fetch.resetMocks();
@@ -24,7 +25,7 @@ describe('Api Test', () => {
 			}),
 		);
 
-		const result = await Api.getter({
+		const result = await Api.getter<ApiGetAllQuestions>({
 			query: `
 			query {
 				get_all_questions {

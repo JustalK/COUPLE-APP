@@ -7,7 +7,7 @@ import {
 } from 'src/interfaces/Api';
 export default class ApiQuestion {
 	static async getAllQuestions(): Promise<ApiGetAllQuestions> {
-		return Api.getter({
+		return Api.getter<ApiGetAllQuestions>({
 			query: `
 			query {
 				get_all_questions {
@@ -18,7 +18,7 @@ export default class ApiQuestion {
 	}
 
 	static async getRandomQuestions(limit: number): Promise<ApiGetRandomQuestions> {
-		return Api.getter({
+		return Api.getter<ApiGetRandomQuestions>({
 			query: `
 			query {
 				get_random_questions(limit: ${limit}) {
@@ -29,7 +29,7 @@ export default class ApiQuestion {
 	}
 
 	static async countTotalQuestions(): Promise<ApiCountTotalQuestions> {
-		return Api.getter({
+		return Api.getter<ApiCountTotalQuestions>({
 			query: `
 			query {
 				count_total_questions
@@ -43,7 +43,7 @@ export default class ApiQuestion {
 	 * @return {Question} The question added
 	 **/
 	static async addNewQuestion(question: string): Promise<ApiAddNewQuestion> {
-		return Api.getter({
+		return Api.getter<ApiAddNewQuestion>({
 			query: `
 			mutation {
 				add_new_question(question: "${question}") {

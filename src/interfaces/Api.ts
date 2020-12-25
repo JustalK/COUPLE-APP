@@ -1,7 +1,7 @@
 import { QuestionProps } from 'src/interfaces/Question';
 
 export interface ApiGetAllQuestions {
-	count_total_questions: number;
+	get_all_questions: QuestionProps[];
 }
 
 export interface ApiGetRandomQuestions {
