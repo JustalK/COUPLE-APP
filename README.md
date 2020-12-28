@@ -63,8 +63,14 @@ lt --port 5000 --subdomain couple-api
 
 #### Mockup
 
+###### Mockup v1
+
 ![Alt text](documentation/mockups/home.jpg?raw=true "COUPLE-APP-HOME")
 ![Alt text](documentation/mockups/question.jpg?raw=true "COUPLE-APP-QUESTIONS")
+
+###### Mockup v2
+
+I improve the design of the app and created the mockup on [FIGMA](https://www.figma.com/proto/fK0lEXn2VcFoHc9RtRkcSj/Do-you-know-me?node-id=1%3A2&scaling=scale-down)
 
 #### Technical challenges
 
