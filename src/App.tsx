@@ -8,12 +8,41 @@ import Result from 'src/pages/Result';
 import Loading from 'src/pages/Loading';
 import Menu from 'src/pages/Menu';
 import { slideX, slideY, slideLeft } from 'src/utils/transition';
+import * as Font from 'expo-font';
 const Stack = createStackNavigator();
+
+/**
+* The custom font to load
+**/
+const customFonts = {
+	RobotoRegular: require('../assets/fonts/Roboto/Roboto-Regular.ttf'),
+	RobotoBlack: require('../assets/fonts/Roboto/Roboto-Black.ttf')
+};
 
 /**
  * Entry point of the app, display the home by default
  **/
 export default class App extends Component {
+
+	/**
+	* The constructor and initializer of the state
+	**/
+	constructor(props: unknown) {
+		super(props);
+		this.state = {
+			fontsLoaded: false,
+		};
+	}
+
+	/**
+	* When the component is mounted, this method is called once
+	* Load the font and notify the state when loaded
+	**/
+	async componentDidMount(): Promise<void> {
+		await Font.loadAsync(customFonts);
+		this.setState({ fontsLoaded: true });
+	}
+
 	render(): JSX.Element {
 		return (
 			<NavigationContainer>

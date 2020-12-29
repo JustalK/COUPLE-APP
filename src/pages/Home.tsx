@@ -1,11 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { Component } from 'react';
-import { StyleSheet, TouchableWithoutFeedback, Image } from 'react-native';
+import { Text, TouchableWithoutFeedback, View, Image } from 'react-native';
 import Container from 'src/components/Container';
 import CustomButton from 'src/components/CustomButton';
+import CustomTopButton from 'src/components/CustomTopButton';
 import { HomePageProps, HomePageStates } from 'src/interfaces/Home';
 import { StyledMiddleView } from 'src/styles/Main';
-import { BLACK, WHITE } from 'src/styles/Colors';
+import { VERY_CLEAR_PINK, WHITE } from 'src/styles/Colors';
 import styled from 'styled-components/native';
 import { LOGO } from 'src/utils/Images';
 import { Icon } from 'react-native-elements';
@@ -17,7 +18,33 @@ import TextPyramide from 'src/components/TextPyramide';
 const StyledImage = styled(Image)`
 	height: 250px;
 	width: 250px;
+	margin-bottom: 60px;
 `;
+
+const StyledWelcome = styled(Text)`
+	fontFamily: RobotoBlack;
+	font-size: 16px;
+	text-transform: uppercase;
+	color: ${WHITE};
+`
+
+const StyledTitle = styled(Text)`
+	fontFamily: RobotoBlack;
+	color: ${VERY_CLEAR_PINK};
+`
+
+const StyledDescription = styled(Text)`
+	fontFamily: RobotoRegular;
+	font-size: 16px;
+	color: ${WHITE};
+	margin: 40px 30px 60px;
+`
+
+const StyledView = styled(View)`
+	flex: 8;
+	align-items: center;
+	justify-content: flex-end;
+`
 
 /**
  * Display the home component
@@ -31,9 +58,7 @@ export default class Home extends Component<HomePageProps, HomePageStates> {
 	constructor(props: HomePageProps) {
 		super(props);
 		this.state = {
-			total: 3,
-			started: false,
-			startedMenu: false,
+			total: 3
 		};
 	}
 
@@ -46,7 +71,6 @@ export default class Home extends Component<HomePageProps, HomePageStates> {
 	 **/
 	async goGame(): Promise<void> {
 		this.props.navigation.navigate('Loading', { total: this.state.total });
-		this.setState({ started: false });
 	}
 
 	componentDidUpdate(prevProps: HomePageProps): void {
@@ -60,21 +84,6 @@ export default class Home extends Component<HomePageProps, HomePageStates> {
 	 **/
 	goMenu(): void {
 		this.props.navigation.navigate('Menu');
-		this.setState({ startedMenu: false });
-	}
-
-	/**
-	 * Start the animation for starting the game
-	 **/
-	gameStarted(): void {
-		this.setState({ started: true });
-	}
-
-	/**
-	 * Start the animation for going to the menu
-	 **/
-	startedMenu(): void {
-		this.setState({ startedMenu: true });
 	}
 
 	/**
@@ -84,21 +93,15 @@ export default class Home extends Component<HomePageProps, HomePageStates> {
 	render(): JSX.Element {
 		return (
 			<Container>
-				<CustomButton text="START" onPressIn={() => this.gameStarted()} onPress={() => this.goGame()} />
+				<CustomTopButton middleIcon="bars" leftIcon="bars" onPressLeft={() => this.goMenu()} rightIcon="comment" onPressRight={() => this.goMenu()} />
+				<StyledView>
+					<StyledImage source={LOGO} />
+					<StyledWelcome>Welcome</StyledWelcome>
+					<StyledDescription><StyledTitle>Do you know me?</StyledTitle> is a quiz game for couple who want to know more about each other.</StyledDescription>
+				</StyledView>
+				<CustomButton text="START" onPress={() => this.goGame()} />
 				<StatusBar />
 			</Container>
 		);
 	}
 }
-
-const styles = StyleSheet.create({
-	pressableGame: {
-		position: 'absolute',
-		bottom: 0,
-	},
-	pressableMenu: {
-		position: 'absolute',
-		top: 30,
-		left: 30,
-	},
-});
