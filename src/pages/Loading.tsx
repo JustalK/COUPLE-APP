@@ -3,6 +3,7 @@ import Container from 'src/components/Container';
 import { StyleSheet, Text, View, Pressable, Dimensions } from 'react-native';
 import ApiQuestion from 'src/services/ApiQuestion';
 import CustomTopButton from 'src/components/CustomTopButton';
+import Slide from 'src/components/Slide';
 import { LoadingPageProps, LoadingPageStates } from 'src/interfaces/Loading';
 import { TabView, TabBar } from 'react-native-tab-view';
 import ContainerNotice from 'src/components/ContainerNotice';
@@ -14,37 +15,26 @@ import { WHITE, PINK, RED } from 'src/styles/Colors';
 import styled from 'styled-components/native';
 
 
- const StyledSliderView = styled(View)`
+ const StyledSliderDotView = styled(View)`
 	flex: 1
- `
-
-const StyledSlideView = styled(View)`
-	flex: 1;
+	flex-direction: row;
 	align-items: center;
-	justify-content: space-around;
+	justify-content: center;
 `
 
- const StyledCircleView = styled(View)`
-	height: 250px;
-	width: 250px;
-	border-radius: 125px;
-	border: 5px solid ${PINK};
+ const StyledDot = styled(View)<{active: boolean}>`
+	width: 12px;
+	height: 12px;
+	border-radius: 6px;
+	margin: 0 10px;
 	background-color: ${WHITE};
- `
 
-const StyledTitle = styled(Text)`
-	font-family: RobotoBlack;
-	font-size: 18px;
-	color: ${WHITE};
-	text-transform: uppercase;
-`
-
-const StyledDescription = styled(Text)`
-	font-family: RobotoRegular;
-	font-size: 16px;
-	margin: 50px 30px 10px;
-	text-align: center;
-	color: ${WHITE};
+	${(props) =>
+		props.active &&
+		`
+		background-color: ${PINK};
+		border: 1px solid ${WHITE};
+	`}
 `
 
 /**
@@ -62,8 +52,9 @@ export default class Loading extends Component<LoadingPageProps, LoadingPageStat
 			questions: [],
 			index: 0,
 			routes: [
-				{ key: 'first', title: 'First' },
-				{ key: 'second', title: 'Second' }
+				{ key: 'first_slide' },
+				{ key: 'second_slide' },
+				{ key: 'third_slide' }
 			],
 		};
 	}
@@ -99,6 +90,13 @@ export default class Loading extends Component<LoadingPageProps, LoadingPageStat
 	}
 
 	/**
+	 * Redirect to the home screen
+	 **/
+	goHome(): void {
+		this.props.navigation.navigate('Home');
+	}
+
+	/**
 	* Set the index of the tabs
 	* @params {number} index The new index of the tabs
 	**/
@@ -106,23 +104,14 @@ export default class Loading extends Component<LoadingPageProps, LoadingPageStat
 		this.setState({ index });
 	}
 
-	slide(): JSX.Element {
-		return (
-			<StyledSlideView>
-				<StyledTitle>Rules 1</StyledTitle>
-				<StyledCircleView>
-				</StyledCircleView>
-				<StyledDescription>Random question will be choosen from more than thousands questions.</StyledDescription>
-			</StyledSlideView>
-		)
-	}
-
 	renderScene(route: RouteProps, jumpTo: (key: string) => void): JSX.Element | undefined {
 		switch (route.key) {
-			case 'first':
-				return this.slide();
-			case 'second':
-				return (<View style={[styles.scene, { backgroundColor: '#673ab7' }]} />);
+			case 'first_slide':
+				return (<Slide title="Rules 1" description="A question will be shown on the screen." />);
+			case 'second_slide':
+				return (<Slide title="Rules 2" description="Each of you has to answer this question truthfully following the random order decided at each question." />);
+			case 'third_slide':
+				return (<Slide title="Rules 3" description="Once all the questions has been answer, the games will end. You can play again with another set of questions." />);
 		}
 	}
 
@@ -141,7 +130,7 @@ export default class Loading extends Component<LoadingPageProps, LoadingPageStat
 	render(): JSX.Element {
 		return (
 			<Container>
-				<CustomTopButton leftIcon="long-arrow-left" onPressLeft={() => this.goMenu()} />
+				<CustomTopButton leftIcon="long-arrow-left" onPressLeft={() => this.goHome()} />
 				<TabView
 				  navigationState={this.state}
 				  renderScene={(rs) => this.renderScene(rs.route, rs.jumpTo)}
@@ -150,9 +139,12 @@ export default class Loading extends Component<LoadingPageProps, LoadingPageStat
 				  renderTabBar={() => null}
 					style={{flex: 7}}
 				/>
-				<StyledSliderView>
-				</StyledSliderView>
-				<CustomButton text="START" onPress={() => this.goGame()} />
+				<StyledSliderDotView>
+					<StyledDot active={this.state.index === 0} ></StyledDot>
+					<StyledDot active={this.state.index === 1} ></StyledDot>
+					<StyledDot active={this.state.index === 2} ></StyledDot>
+				</StyledSliderDotView>
+				<CustomButton text="START THE QUIZ" onPress={() => this.goGame()} />
 			</Container>
 		);
 	}
