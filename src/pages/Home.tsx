@@ -93,13 +93,13 @@ export default class Home extends Component<HomePageProps, HomePageStates> {
 	render(): JSX.Element {
 		return (
 			<Container>
-				<CustomTopButton middleIcon="bars" leftIcon="bars" onPressLeft={() => this.goMenu()} rightIcon="comment" onPressRight={() => this.goMenu()} />
+				<CustomTopButton leftIcon="bars" onPressLeft={() => this.goMenu()} rightIcon="comment" onPressRight={() => this.goMenu()} />
 				<StyledView>
 					<StyledImage source={LOGO} />
 					<StyledWelcome>Welcome</StyledWelcome>
 					<StyledDescription><StyledTitle>Do you know me?</StyledTitle> is a quiz game for couple who want to know more about each other.</StyledDescription>
 				</StyledView>
-				<CustomButton text="START" onPress={() => this.goGame()} />
+				<CustomButton text="PLAY" onPress={() => this.goGame()} />
 				<StatusBar />
 			</Container>
 		);

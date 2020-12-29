@@ -1,13 +1,51 @@
 import React, { Component } from 'react';
 import Container from 'src/components/Container';
-import { Pressable } from 'react-native';
+import { StyleSheet, Text, View, Pressable, Dimensions } from 'react-native';
 import ApiQuestion from 'src/services/ApiQuestion';
+import CustomTopButton from 'src/components/CustomTopButton';
 import { LoadingPageProps, LoadingPageStates } from 'src/interfaces/Loading';
+import { TabView, TabBar } from 'react-native-tab-view';
 import ContainerNotice from 'src/components/ContainerNotice';
+import CustomButton from 'src/components/CustomButton';
 import TextPyramide from 'src/components/TextPyramide';
 import { StyledMiddleView, StyledMiniLogo } from 'src/styles/Main';
 import { LOGO } from 'src/utils/Images';
-import { WHITE, BLACK, RED } from 'src/styles/Colors';
+import { WHITE, PINK, RED } from 'src/styles/Colors';
+import styled from 'styled-components/native';
+
+
+ const StyledSliderView = styled(View)`
+	flex: 1
+ `
+
+const StyledSlideView = styled(View)`
+	flex: 1;
+	align-items: center;
+	justify-content: space-around;
+`
+
+ const StyledCircleView = styled(View)`
+	height: 250px;
+	width: 250px;
+	border-radius: 125px;
+	border: 5px solid ${PINK};
+	background-color: ${WHITE};
+ `
+
+const StyledTitle = styled(Text)`
+	font-family: RobotoBlack;
+	font-size: 18px;
+	color: ${WHITE};
+	text-transform: uppercase;
+`
+
+const StyledDescription = styled(Text)`
+	font-family: RobotoRegular;
+	font-size: 16px;
+	margin: 50px 30px 10px;
+	text-align: center;
+	color: ${WHITE};
+`
 
 /**
  * Display the loading component
@@ -22,6 +60,11 @@ export default class Loading extends Component<LoadingPageProps, LoadingPageStat
 		super(props);
 		this.state = {
 			questions: [],
+			index: 0,
+			routes: [
+				{ key: 'first', title: 'First' },
+				{ key: 'second', title: 'Second' }
+			],
 		};
 	}
 
@@ -56,35 +99,67 @@ export default class Loading extends Component<LoadingPageProps, LoadingPageStat
 	}
 
 	/**
+	* Set the index of the tabs
+	* @params {number} index The new index of the tabs
+	**/
+	updateIndex(index: number): void {
+		this.setState({ index });
+	}
+
+	slide(): JSX.Element {
+		return (
+			<StyledSlideView>
+				<StyledTitle>Rules 1</StyledTitle>
+				<StyledCircleView>
+				</StyledCircleView>
+				<StyledDescription>Random question will be choosen from more than thousands questions.</StyledDescription>
+			</StyledSlideView>
+		)
+	}
+
+	renderScene(route: RouteProps, jumpTo: (key: string) => void): JSX.Element | undefined {
+		switch (route.key) {
+			case 'first':
+				return this.slide();
+			case 'second':
+				return (<View style={[styles.scene, { backgroundColor: '#673ab7' }]} />);
+		}
+	}
+
+	/**
+	* Return the width of the screen in a Dimension object
+	* @params {number} width The width of the screen
+	**/
+	initialLayout(): { width: number } {
+		return { width: Dimensions.get('window').width };
+	}
+
+	/**
 	 * Display the loading screen
 	 * return {JSX.Element} Display the loading screen
 	 **/
 	render(): JSX.Element {
 		return (
 			<Container>
-				<Pressable onPress={() => this.goGame()}>
-					<StyledMiniLogo source={LOGO} />
-					<StyledMiddleView marginTop={60}>
-						<TextPyramide
-							text="Rules"
-							height={30}
-							size={16}
-							backgroundColor={BLACK}
-							color={RED}
-							icon="warning"
-						/>
-						<ContainerNotice text="You will see questions on the screen. Answer the questions following the turns order. The game ends when all the questions has been answered." />
-						<TextPyramide
-							text={this.instructions()}
-							height={30}
-							size={16}
-							backgroundColor={WHITE}
-							color={BLACK}
-							isDown={true}
-						/>
-					</StyledMiddleView>
-				</Pressable>
+				<CustomTopButton leftIcon="long-arrow-left" onPressLeft={() => this.goMenu()} />
+				<TabView
+				  navigationState={this.state}
+				  renderScene={(rs) => this.renderScene(rs.route, rs.jumpTo)}
+				  onIndexChange={(index) => this.updateIndex(index)}
+				  initialLayout={this.initialLayout()}
+				  renderTabBar={() => null}
+					style={{flex: 7}}
+				/>
+				<StyledSliderView>
+				</StyledSliderView>
+				<CustomButton text="START" onPress={() => this.goGame()} />
 			</Container>
 		);
 	}
 }
+
+const styles = StyleSheet.create({
+	scene: {
+		flex: 1
+	}
+});
