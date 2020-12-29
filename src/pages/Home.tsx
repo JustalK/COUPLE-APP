@@ -1,7 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { Component } from 'react';
-import { StyleSheet, Pressable, Image } from 'react-native';
+import { StyleSheet, TouchableWithoutFeedback, Image } from 'react-native';
 import Container from 'src/components/Container';
+import CustomButton from 'src/components/CustomButton';
 import { HomePageProps, HomePageStates } from 'src/interfaces/Home';
 import { StyledMiddleView } from 'src/styles/Main';
 import { BLACK, WHITE } from 'src/styles/Colors';
@@ -83,31 +84,8 @@ export default class Home extends Component<HomePageProps, HomePageStates> {
 	render(): JSX.Element {
 		return (
 			<Container>
-				<Pressable
-					style={styles.pressableMenu}
-					onPressIn={() => this.startedMenu()}
-					onPress={() => this.goMenu()}
-				>
-					<Icon name="bars" type="font-awesome" size={30} color={this.state.startedMenu ? BLACK : WHITE} />
-				</Pressable>
-				<StyledMiddleView>
-					<StyledImage source={LOGO} />
-				</StyledMiddleView>
-				<Pressable
-					style={styles.pressableGame}
-					onPressIn={() => this.gameStarted()}
-					onPress={() => this.goGame()}
-				>
-					<TextPyramide
-						text="START"
-						height={50}
-						size={24}
-						backgroundColor={this.state.started ? BLACK : WHITE}
-						color={this.state.started ? WHITE : BLACK}
-						icon="play"
-					/>
-				</Pressable>
-				<StatusBar hidden />
+				<CustomButton text="START" onPressIn={() => this.gameStarted()} onPress={() => this.goGame()} />
+				<StatusBar />
 			</Container>
 		);
 	}

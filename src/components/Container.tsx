@@ -2,28 +2,31 @@ import React, { Component } from 'react';
 import { View, ImageBackground } from 'react-native';
 import { ContainerProps } from 'src/interfaces/Container';
 import { BACKGROUND } from 'src/utils/Images';
+import { PINK, DARK_PINK, RED } from 'src/styles/Colors';
 import styled from 'styled-components/native';
+import { LinearGradient } from 'expo-linear-gradient';
 
 /**
  * Style the container for taking all the space and align items
  **/
 const StyledContainer = styled(View)<{ bg?: string }>`
-	display: flex;
-	align-items: center;
-	position: relative;
 	${(props) =>
 		props.bg &&
 		`
 		background-color: ${props.bg};
 	`}
-	flex: 1;
 `;
 
 /**
  * Style the Image Background for taking all the screen
  **/
-const StyledImageBackground = styled(ImageBackground)`
+const StyledLinearGradient = styled(LinearGradient)`
 	flex: 1;
+`;
+
+const StyledViewStatus = styled(View)`
+	background-color: ${DARK_PINK};
+	height: 25px;
 `;
 
 /**
@@ -37,9 +40,10 @@ export default class Container extends Component<ContainerProps, never> {
 	 **/
 	render(): JSX.Element {
 		return (
-			<StyledImageBackground source={BACKGROUND}>
-				<StyledContainer bg={this.props.bg}>{this.props.children}</StyledContainer>
-			</StyledImageBackground>
+			<StyledLinearGradient colors={[PINK, RED]} >
+				<StyledViewStatus />
+					{this.props.children}
+			</StyledLinearGradient>
 		);
 	}
 }
