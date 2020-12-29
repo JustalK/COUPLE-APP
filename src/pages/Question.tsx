@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
-import { Pressable, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 import Container from 'src/components/Container';
+import CustomButton from 'src/components/CustomButton';
+import CustomTopButton from 'src/components/CustomTopButton';
 import ContainerNotice from 'src/components/ContainerNotice';
+import Slide from 'src/components/Slide';
 import TextPyramide from 'src/components/TextPyramide';
 import { StyledMiddleView, StyledMiniLogo } from 'src/styles/Main';
 import { LOGO } from 'src/utils/Images';
@@ -23,6 +26,12 @@ const StyledText = styled(Text)`
 	background-color: ${RED};
 	color: ${WHITE};
 `;
+
+const StyledView = styled(View)`
+	flex: 8;
+	align-items: center;
+	justify-content: flex-end;
+`
 
 /**
  * Display the question component
@@ -103,41 +112,15 @@ export default class Question extends Component<QuestionPageProps, QuestionPageS
 	render(): JSX.Element {
 		return (
 			<Container>
-				<StyledMiniLogo source={LOGO} />
-				<StyledMiddleView>
-					<TextPyramide
-						text={'Question ' + (this.state.answers + 1)}
-						height={30}
-						size={16}
-						backgroundColor={BLACK}
-						color={RED}
-						icon="question-circle"
-					/>
-					<ContainerNotice text={this.props.route.params.questions[this.state.answers].question} />
-					<TextPyramide
-						text={this.props.route.params.total - this.state.answers - 1 + ' questions remaining'}
-						height={30}
-						size={16}
-						backgroundColor={BLACK}
-						color={RED}
-						isDown={true}
-					/>
-				</StyledMiddleView>
-				<Pressable
-					style={styles.pressableNext}
-					onPressIn={() => this.nextStarted()}
-					onPress={() => this.gameLoop()}
-				>
-					<TextPyramide
-						text={this.isGameFinish() ? 'End game' : 'next question'}
-						height={50}
-						size={24}
-						backgroundColor={this.state.next ? RED : WHITE}
-						color={this.state.next ? WHITE : BLACK}
-						icon="play"
-					/>
-				</Pressable>
-				<StyledText>{this.whoIsFirst()}</StyledText>
+				<CustomTopButton leftIcon="long-arrow-left" onPressLeft={() => this.goMenu()} middleIcon="comment" onPressMiddle={() => this.goMenu()} rightIcon="times" onPressRight={() => this.goMenu()} />
+				<StyledView>
+					<Slide
+						title={'Question ' + (this.state.answers + 1)}
+						notice={this.props.route.params.total - this.state.answers - 1 + ' questions remaining'}
+						question={this.props.route.params.questions[this.state.answers].question}
+						description={this.whoIsFirst()} />
+				</StyledView>
+				<CustomButton text="NEXT QUESTION" onPress={() => this.gameLoop()} />
 			</Container>
 		);
 	}

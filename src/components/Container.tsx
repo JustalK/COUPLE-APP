@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, ImageBackground } from 'react-native';
 import { ContainerProps } from 'src/interfaces/Container';
 import { BACKGROUND } from 'src/utils/Images';
-import { PINK, DARK_PINK, RED } from 'src/styles/Colors';
+import { PINK, DARK_PINK, RED, VERY_VERY_CLEAR_PINK } from 'src/styles/Colors';
 import styled from 'styled-components/native';
 import { LinearGradient } from 'expo-linear-gradient';
 
@@ -26,6 +26,8 @@ const StyledLinearGradient = styled(LinearGradient)`
 
 const StyledViewStatus = styled(View)`
 	background-color: ${DARK_PINK};
+	border-bottom-width: 1px;
+	border-bottom-color: ${VERY_VERY_CLEAR_PINK};
 	height: 25px;
 `;
 
@@ -40,7 +42,7 @@ export default class Container extends Component<ContainerProps, never> {
 	 **/
 	render(): JSX.Element {
 		return (
-			<StyledLinearGradient colors={[PINK, RED]} >
+			<StyledLinearGradient colors={[PINK, RED, PINK]} start={{x: 0.2, y: 0.9}} end={{x: 0.8, y: 0.2}} >
 				<StyledViewStatus />
 					{this.props.children}
 			</StyledLinearGradient>

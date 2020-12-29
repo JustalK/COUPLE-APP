@@ -17,6 +17,8 @@ const StyledSlideView = styled(View)`
 	border-radius: 125px;
 	border: 5px solid ${VERY_VERY_CLEAR_PINK};
 	background-color: ${WHITE};
+	align-items: center;
+	justify-content: center;
  `
 
 const StyledTitle = styled(Text)`
@@ -34,11 +36,41 @@ const StyledDescription = styled(Text)`
 	color: ${WHITE};
 `
 
+const StyledNotice = styled(Text)`
+	font-family: RobotoRegular;
+	font-size: 14px;
+	color: ${WHITE};
+`
+
+const StyledCenteredView = styled(View)`
+	align-items: center;
+`
+
+const StyledQuestion = styled(Text)`
+	font-family: RobotoRegular;
+	font-size: 20px;
+	color: ${PINK};
+	margin: 10px;
+	text-align: center;
+`
+
 /**
  * Show the background and define the container
  * @params {props} Define the children to be pass to the container
  **/
 export default class Slide extends Component<SlideProps, never> {
+
+	notice(notice: string): JSX.Element {
+		return (<StyledNotice>{notice}</StyledNotice>);
+	}
+
+	question(question: string): JSX.Element {
+		return (<StyledQuestion>{this.capitalize(question)}</StyledQuestion>);
+	}
+
+	capitalize(str){
+		return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+	}
 
 	/**
 	 * Display the container
@@ -47,8 +79,12 @@ export default class Slide extends Component<SlideProps, never> {
 	render(): JSX.Element {
 		return (
 			<StyledSlideView>
-				<StyledTitle>{this.props.title}</StyledTitle>
+				<StyledCenteredView>
+					<StyledTitle>{this.props.title}</StyledTitle>
+					{this.props.notice && this.notice(this.props.notice)}
+				</StyledCenteredView>
 				<StyledCircleView>
+					{this.props.question && this.question(this.props.question)}
 				</StyledCircleView>
 				<StyledDescription>{this.props.description}</StyledDescription>
 			</StyledSlideView>
