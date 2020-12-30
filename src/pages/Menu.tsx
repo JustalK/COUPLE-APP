@@ -6,7 +6,7 @@ import CustomTopButton from 'src/components/CustomTopButton';
 import { StyledMiddleView, StyledMiniLogo } from 'src/styles/Main';
 import { MenuPageProps, MenuPageStates } from 'src/interfaces/Menu';
 import { LOGO } from 'src/utils/Images';
-import { WHITE, OBLACK, VERY_CLEAR_PINK, RED } from 'src/styles/Colors';
+import { WHITE, PINK, VERY_CLEAR_PINK, VERY_VERY_CLEAR_PINK } from 'src/styles/Colors';
 import { Picker } from '@react-native-picker/picker';
 import { Icon } from 'react-native-elements';
 import { CommonActions } from '@react-navigation/native';
@@ -20,6 +20,13 @@ const StyledTitle = styled(Text)`
 	margin-bottom: 30px;
 `
 
+const StyledDescription = styled(Text)`
+	font-family: RobotoRegular;
+	color: ${VERY_CLEAR_PINK};
+	font-size: 14px;
+	margin-bottom: 30px;
+`
+
 const StyledView = styled(View)`
 	align-items: center;
 	justify-content: flex-end;
@@ -30,8 +37,8 @@ const StyledRowView = styled(View)`
 	width: 100%;
 	flex-direction: row;
 	flex-wrap: wrap;
-	flex-grow: 2;
 	justify-content: space-between;
+	margin-bottom: 30px;
 `
 
 const StyledTopic = styled(View)`
@@ -53,6 +60,28 @@ const IconTitle = styled(Text)<{selected: boolean}>`
 		color: ${VERY_CLEAR_PINK};
 	`}
 `
+
+
+const MainTitle = styled(Text)`
+	font-family: RobotoRegular;
+	color: ${WHITE};
+	font-size: 16px;
+	margin: 5px;
+	line-height: 50px;
+`
+
+const StyledPicker = styled(Picker)`
+	height: 50px;
+	width: 100px;
+	border: 1px solid ${WHITE};
+	color: ${PINK};
+`;
+
+const StyledRedCell = styled(View)`
+	background-color: ${WHITE};
+	padding-left: 10px;
+	justify-content: center;
+`;
 
 /**
  * Display the menu screen
@@ -174,17 +203,37 @@ export default class Menu extends Component<MenuPageProps, MenuPageStates> {
 					<CustomTopButton leftIcon="long-arrow-left" onPressLeft={() => this.goBackHome()} />
 					<StyledView>
 						<StyledTitle>Main</StyledTitle>
+						<StyledDescription>You can select the number of question, you want to answer. The game will select randomly the exact number of question selected.</StyledDescription>
+						<StyledRowView>
+							<MainTitle>Number of questions</MainTitle>
+							<StyledRedCell>
+								<StyledPicker
+									selectedValue={this.state.total}
+									onValueChange={(value) => {
+										this.setState({ total: Number(value) });
+									}}
+								>
+									<Picker.Item color={VERY_VERY_CLEAR_PINK} label="3" value={3} />
+									<Picker.Item color={VERY_VERY_CLEAR_PINK} label="5" value={5} />
+									<Picker.Item color={VERY_VERY_CLEAR_PINK} label="10" value={10} />
+									<Picker.Item color={VERY_VERY_CLEAR_PINK} label="25" value={25} />
+									<Picker.Item color={VERY_VERY_CLEAR_PINK} label="ALL" value={this.state.max} />
+								</StyledPicker>
+							</StyledRedCell>
+						</StyledRowView>
 						<StyledTitle>Topics</StyledTitle>
+						<StyledDescription>You can select the topics or set of questions, you want to answer. You can select multiple topics. If the color of the topic is white, it means it has not been selected.</StyledDescription>
 						<StyledRowView>
 							{this.state.topics.map((topic, index) => {
 								const selected = this.state.selectedTopics && this.state.selectedTopics.includes(topic._id);
 								return (
-									<TouchableWithoutFeedback onPress={() => this.topicSelected(selected, topic._id)}>
+									<TouchableWithoutFeedback key={index} onPress={() => this.topicSelected(selected, topic._id)}>
 										<StyledTopic>
 											<Icon name={topic.icon} type="font-awesome" size={32} color={selected ? VERY_CLEAR_PINK : WHITE} />
 											<IconTitle selected={selected} >{topic.name}</IconTitle>
 										</StyledTopic>
-									</TouchableWithoutFeedback>)
+									</TouchableWithoutFeedback>
+								)
 							})}
 						</StyledRowView>
 					</StyledView>

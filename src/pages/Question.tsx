@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, Text } from 'react-native';
 import Container from 'src/components/Container';
 import CustomButton from 'src/components/CustomButton';
 import CustomTopButton from 'src/components/CustomTopButton';
@@ -7,6 +7,7 @@ import ContainerNotice from 'src/components/ContainerNotice';
 import Slide from 'src/components/Slide';
 import TextPyramide from 'src/components/TextPyramide';
 import { StyledMiddleView, StyledMiniLogo } from 'src/styles/Main';
+import { goResult, goImprove } from 'src/utils/Navigation';
 import { LOGO } from 'src/utils/Images';
 import styled from 'styled-components/native';
 import { QuestionPageProps, QuestionPageStates } from 'src/interfaces/Question';
@@ -116,7 +117,7 @@ export default class Question extends Component<QuestionPageProps, QuestionPageS
 	render(): JSX.Element {
 		return (
 			<Container>
-				<CustomTopButton leftIcon="long-arrow-left" onPressLeft={() => this.goMenu()} middleIcon="comment" onPressMiddle={() => this.goMenu()} rightIcon="times" onPressRight={() => this.goMenu()} />
+				<CustomTopButton leftIcon="long-arrow-left" onPressLeft={() => this.goMenu()} middleIcon="comment" onPressMiddle={() => goImprove(this.props.navigation)} rightIcon="times" onPressRight={() => goResult(this.props.navigation)} />
 				<StyledView>
 					<Slide
 						title={'Question ' + (this.state.answers + 1)}
@@ -130,12 +131,3 @@ export default class Question extends Component<QuestionPageProps, QuestionPageS
 		);
 	}
 }
-
-const styles = StyleSheet.create({
-	pressableNext: {
-		position: 'absolute',
-		bottom: 60,
-		backgroundColor: BLACK,
-		width: '50%',
-	},
-});

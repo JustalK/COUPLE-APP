@@ -15,3 +15,7 @@ export const goMenu = (navigation): void => {
 export const goHome = (navigation): void => {
 	goSomewhere(navigation, 'Home');
 }
+
+export const goImprove = (navigation): void => {
+	goSomewhere(navigation, 'Improve');
+}

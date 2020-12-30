@@ -4,7 +4,7 @@ import { Text, TouchableWithoutFeedback, View, Image } from 'react-native';
 import Container from 'src/components/Container';
 import CustomButton from 'src/components/CustomButton';
 import CustomTopButton from 'src/components/CustomTopButton';
-import { goMenu } from 'src/utils/Navigation';
+import { goMenu, goImprove } from 'src/utils/Navigation';
 import { HomePageProps, HomePageStates } from 'src/interfaces/Home';
 import { StyledMiddleView } from 'src/styles/Main';
 import { VERY_CLEAR_PINK, WHITE } from 'src/styles/Colors';
@@ -87,7 +87,7 @@ export default class Home extends Component<HomePageProps, HomePageStates> {
 	render(): JSX.Element {
 		return (
 			<Container>
-				<CustomTopButton leftIcon="bars" onPressLeft={() => goMenu(this.props.navigation)} rightIcon="comment" onPressRight={() => this.goMenu()} />
+				<CustomTopButton leftIcon="bars" onPressLeft={() => goMenu(this.props.navigation)} rightIcon="comment" onPressRight={() => goImprove(this.props.navigation)} />
 				<StyledView>
 					<StyledImage source={LOGO} />
 					<StyledWelcome>Welcome</StyledWelcome>

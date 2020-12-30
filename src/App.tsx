@@ -7,6 +7,7 @@ import Home from 'src/pages/Home';
 import Question from 'src/pages/Question';
 import Result from 'src/pages/Result';
 import Loading from 'src/pages/Loading';
+import Improve from 'src/pages/Improve';
 import Menu from 'src/pages/Menu';
 import { slideX, slideY, slideLeft } from 'src/utils/transition';
 import * as Font from 'expo-font';
@@ -73,6 +74,11 @@ export default class App extends Component {
 							name="Menu"
 							component={Menu}
 							options={{ headerShown: false, cardStyleInterpolator: slideLeft }}
+						/>
+						<Stack.Screen
+							name="Improve"
+							component={Improve}
+							options={{ headerShown: false, cardStyleInterpolator: slideX }}
 						/>
 					</Stack.Navigator>
 				</NavigationContainer>
