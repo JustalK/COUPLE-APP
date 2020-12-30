@@ -120,7 +120,7 @@ export default class Question extends Component<QuestionPageProps, QuestionPageS
 						question={this.props.route.params.questions[this.state.answers].question}
 						description={this.whoIsFirst()} />
 				</StyledView>
-				<CustomButton text="NEXT QUESTION" onPress={() => this.gameLoop()} />
+				<CustomButton text={this.isGameFinish() ? 'End game' : 'Next question'} onPress={() => this.gameLoop()} />
 			</Container>
 		);
 	}

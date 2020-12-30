@@ -19,6 +19,7 @@ const StyledText = styled(Text)<{hasBeenPressed: boolean}>`
 	padding: 10px;
 	border-radius: 5px;
 	fontFamily: RobotoBlack;
+	text-transform: uppercase;
 
 	${(props) =>
 		props.hasBeenPressed &&

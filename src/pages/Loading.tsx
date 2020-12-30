@@ -4,6 +4,7 @@ import { StyleSheet, Text, View, Pressable, Dimensions } from 'react-native';
 import ApiQuestion from 'src/services/ApiQuestion';
 import CustomTopButton from 'src/components/CustomTopButton';
 import Slide from 'src/components/Slide';
+import { goHome } from 'src/utils/Navigation';
 import { LoadingPageProps, LoadingPageStates } from 'src/interfaces/Loading';
 import { TabView, TabBar } from 'react-native-tab-view';
 import ContainerNotice from 'src/components/ContainerNotice';
@@ -90,13 +91,6 @@ export default class Loading extends Component<LoadingPageProps, LoadingPageStat
 	}
 
 	/**
-	 * Redirect to the home screen
-	 **/
-	goHome(): void {
-		this.props.navigation.navigate('Home');
-	}
-
-	/**
 	* Set the index of the tabs
 	* @params {number} index The new index of the tabs
 	**/
@@ -130,7 +124,7 @@ export default class Loading extends Component<LoadingPageProps, LoadingPageStat
 	render(): JSX.Element {
 		return (
 			<Container>
-				<CustomTopButton leftIcon="long-arrow-left" onPressLeft={() => this.goHome()} />
+				<CustomTopButton leftIcon="long-arrow-left" onPressLeft={() => goHome(this.props.navigation)} />
 				<TabView
 				  navigationState={this.state}
 				  renderScene={(rs) => this.renderScene(rs.route, rs.jumpTo)}
