@@ -18,6 +18,10 @@ const StyledView = styled(View)`
 	justify-content: flex-end;
 `
 
+const StyledEmptyView = styled(View)`
+	flex: 1;
+`
+
 /**
  * Display the result screen
  * @params {ResultPageProps} props the navigation object for going back to home
@@ -37,6 +41,7 @@ export default class Result extends Component<ResultPageProps, never> {
 						title="Congratulation"
 						description="Thanks for playing. You can play again with differents setting. The questions will be completly different." />
 				</StyledView>
+				<StyledEmptyView />
 				<CustomButton text="Back to home" onPress={() => goHome(this.props.navigation)} />
 			</Container>
 		);

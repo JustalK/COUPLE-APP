@@ -33,6 +33,10 @@ const StyledView = styled(View)`
 	justify-content: flex-end;
 `
 
+const StyledEmptyView = styled(View)`
+	flex: 1;
+`
+
 /**
  * Display the question component
  * @params {HomeProps} props The navigation informations
@@ -120,6 +124,7 @@ export default class Question extends Component<QuestionPageProps, QuestionPageS
 						question={this.props.route.params.questions[this.state.answers].question}
 						description={this.whoIsFirst()} />
 				</StyledView>
+				<StyledEmptyView />
 				<CustomButton text={this.isGameFinish() ? 'End game' : 'Next question'} onPress={() => this.gameLoop()} />
 			</Container>
 		);
