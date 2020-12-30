@@ -101,11 +101,11 @@ export default class Loading extends Component<LoadingPageProps, LoadingPageStat
 	renderScene(route: RouteProps, jumpTo: (key: string) => void): JSX.Element | undefined {
 		switch (route.key) {
 			case 'first_slide':
-				return (<Slide title="Rules 1" description="A question will be shown on the screen." />);
+				return (<Slide title="Rules 1" notice="Slide to the left for going throught the rules." description="A question will be shown on the screen." />);
 			case 'second_slide':
-				return (<Slide title="Rules 2" description="Each of you has to answer this question truthfully following the random order decided at each question." />);
+				return (<Slide title="Rules 2" notice="Slide to the left for going throught the rules." description="Each of you has to answer this question truthfully following the random order decided at each question." />);
 			case 'third_slide':
-				return (<Slide title="Rules 3" description="Once all the questions has been answer, the games will end. You can play again with another set of questions." />);
+				return (<Slide title="Rules 3" notice="Slide to the right if you miss a detail." description="Once all the questions has been answer, the games will end. You can play again with another set of questions." />);
 		}
 	}
 

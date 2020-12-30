@@ -39,6 +39,7 @@ export default class Result extends Component<ResultPageProps, never> {
 				<StyledView>
 					<Slide
 						title="Congratulation"
+						notice="You answered all the questions !"
 						description="Thanks for playing. You can play again with differents setting. The questions will be completly different." />
 				</StyledView>
 				<StyledEmptyView />

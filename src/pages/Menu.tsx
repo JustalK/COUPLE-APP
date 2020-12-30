@@ -3,6 +3,7 @@ import { TouchableWithoutFeedback, StyleSheet, ScrollView, Text, View } from 're
 import ApiQuestion from 'src/services/ApiQuestion';
 import Container from 'src/components/Container';
 import CustomTopButton from 'src/components/CustomTopButton';
+import Topic from 'src/components/Topic';
 import { StyledMiddleView, StyledMiniLogo } from 'src/styles/Main';
 import { MenuPageProps, MenuPageStates } from 'src/interfaces/Menu';
 import { LOGO } from 'src/utils/Images';
@@ -223,19 +224,7 @@ export default class Menu extends Component<MenuPageProps, MenuPageStates> {
 						</StyledRowView>
 						<StyledTitle>Topics</StyledTitle>
 						<StyledDescription>You can select the topics or set of questions, you want to answer. You can select multiple topics. If the color of the topic is white, it means it has not been selected.</StyledDescription>
-						<StyledRowView>
-							{this.state.topics.map((topic, index) => {
-								const selected = this.state.selectedTopics && this.state.selectedTopics.includes(topic._id);
-								return (
-									<TouchableWithoutFeedback key={index} onPress={() => this.topicSelected(selected, topic._id)}>
-										<StyledTopic>
-											<Icon name={topic.icon} type="font-awesome" size={32} color={selected ? VERY_CLEAR_PINK : WHITE} />
-											<IconTitle selected={selected} >{topic.name}</IconTitle>
-										</StyledTopic>
-									</TouchableWithoutFeedback>
-								)
-							})}
-						</StyledRowView>
+						<Topic topics={this.state.topics} selectedTopics={this.state.selectedTopics} topicSelected={(selected, topicID) => this.topicSelected(selected, topicID)} />
 					</StyledView>
 				</ScrollView>
 			</Container>
