@@ -38,7 +38,7 @@ export default class Improve extends Component {
 		super(props);
 		this.state = {
 			topics: [],
-			selectedTopics: ['156sdf16sd5sa45d4a6f65sdf65sf']
+			selectedTopics: []
 		};
 	}
 
@@ -49,7 +49,17 @@ export default class Improve extends Component {
 	async componentDidMount(): Promise<void> {
 		const result = await ApiTopic.getAllTopics();
 		const topics = result.get_all_topics;
-		this.setState({ topics });
+		const selectedTopics = topics.length > 0 ? [topics[0].id] : []
+		this.setState({ topics, selectedTopics });
+	}
+
+	/**
+	* Selection the topic of the question
+	* @params {boolean} selected True if the icon is selected or false is unselected (Not usefull here)
+	* @params {string} topicID The id of the topic selected
+	**/
+	topicSelected(selected: boolean, topicID: string): void {
+		this.setState({selectedTopics: [topicID]})
 	}
 
 	/**

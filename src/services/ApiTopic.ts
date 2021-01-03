@@ -9,7 +9,6 @@ export default class ApiTopic {
 	* @return {ApiGetAllTopics} The topics of the game
 	**/
 	static async getAllTopics(): Promise<ApiGetAllTopics> {
-		console.log('hey');
 		return Api.getter<ApiGetAllTopics>({
 			query: `
 			query {
