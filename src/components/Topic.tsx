@@ -53,11 +53,11 @@ export default class Topic extends Component {
 		return (
 			<StyledRowView>
 				{this.props.topics.map((topic, index) => {
-					const selected = this.props.selectedTopics && this.props.selectedTopics.includes(topic._id);
+					const selected = this.props.selectedTopics && this.props.selectedTopics.includes(topic.id);
 					return (
-						<TouchableWithoutFeedback key={index} onPress={() => this.props.topicSelected(selected, topic._id)}>
+						<TouchableWithoutFeedback key={index} onPress={() => this.props.topicSelected(selected, topic.id)}>
 							<StyledTopic>
-								<Icon name={topic.icon} type="font-awesome" size={32} color={selected ? VERY_CLEAR_PINK : WHITE} />
+								<Icon name={topic.icon} type={topic.source} size={32} color={selected ? VERY_CLEAR_PINK : WHITE} />
 								<IconTitle selected={selected} >{topic.name}</IconTitle>
 							</StyledTopic>
 						</TouchableWithoutFeedback>

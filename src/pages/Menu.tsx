@@ -161,6 +161,7 @@ export default class Menu extends Component<MenuPageProps, MenuPageStates> {
 
 	topicSelected(selected: boolean, topicID: string): void {
 		let newSelectedTopics = this.state.selectedTopics;
+		console.log(topicID);
 
 		if (selected) {
 			const index = newSelectedTopics.indexOf(topicID);

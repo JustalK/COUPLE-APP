@@ -14,6 +14,7 @@ export default class ApiTopic {
 			query: `
 			query {
 				get_all_topics {
+					id
 					name
 					icon
 					source
