@@ -65,6 +65,13 @@ export default class Improve extends Component {
 		this.setState({selectedTopics: [topicID]})
 	}
 
+	inputUpdate(question) {
+		this.setState({ question })
+	}
+
+	/**
+	* Save the question created in the db and redirect to previous page
+	**/
 	save() {
 		ApiQuestion.addNewQuestion(this.state.question, this.state.selectedTopics[0]);
 		this.props.navigation.goBack();
@@ -83,7 +90,9 @@ export default class Improve extends Component {
 						<Slide
 							title="Adding a question"
 							notice="Tap in the circle under for writting a question"
-							input={true} />
+							input={true}
+							inputQuestion={this.state.question}
+							inputUpdate={(question) => this.inputUpdate(question)}/>
 						<StyledDescription>Select one topic in the list under where the question belong to.</StyledDescription>
 						<Topic topics={this.state.topics} selectedTopics={this.state.selectedTopics} topicSelected={(selected, topicID) => this.topicSelected(selected, topicID)} />
 					</StyledView>

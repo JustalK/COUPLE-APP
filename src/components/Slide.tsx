@@ -72,13 +72,6 @@ const StyledTextInput = styled(TextInput)`
  **/
 export default class Slide extends Component<SlideProps, never> {
 
-	constructor(props: SlideProps) {
-		super(props);
-		this.state = {
-			text: "What do you think..."
-		};
-	}
-
 	notice(notice: string): JSX.Element {
 		return (<StyledNotice>{notice}</StyledNotice>);
 	}
@@ -99,8 +92,8 @@ export default class Slide extends Component<SlideProps, never> {
 		return (<StyledTextInput
 			multiline={true}
 			numberOfLines={4}
-			onChangeText={(text) => this.setState({ text })}
-			value={this.state.text}
+			onChangeText={(text) => this.props.inputUpdate(text)}
+			value={this.props.inputQuestion}
 		/>)
 	}
 
