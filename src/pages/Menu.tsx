@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { TouchableWithoutFeedback, StyleSheet, ScrollView, Text, View } from 'react-native';
 import ApiQuestion from 'src/services/ApiQuestion';
+import ApiTopic from 'src/services/ApiTopic';
 import Container from 'src/components/Container';
 import CustomTopButton from 'src/components/CustomTopButton';
 import Topic from 'src/components/Topic';
@@ -93,32 +94,8 @@ export default class Menu extends Component<MenuPageProps, MenuPageStates> {
 		this.state = {
 			total: 3,
 			text: '',
-			topics: [{
-				_id: '156sdf16sd5f65sdf65sf',
-				icon: 'adjust',
-				name: 'This is a test',
-			},{
-				_id: '156sdf16sd5sa45d4a6f65sdf65sf',
-				icon: 'bars',
-				name: 'This is a test for em',
-			},{
-				_id: '156sdasd465a4sdf16sd5f65sdf65sf',
-				icon: 'bell',
-				name: 'This is a test d5s4f6 5s4 df',
-			},{
-				_id: '156sdf16sd5f65sdas4d56a4sdf65sf',
-				icon: 'radiation',
-				name: 'This is a test dsf dsf sdf sdf',
-			},{
-				_id: '156sdf16sd5asd465a4sdf65sdf65sf',
-				icon: 'camera',
-				name: 'This is a test',
-			},{
-				_id: '156sdf16sd5as4d65a4sd665sdf65sf',
-				icon: 'bolt',
-				name: 'Thisd fsdf s is a sdf sdf dsf sdf test',
-			}],
-			selectedTopics: ['156sdf16sd5sa45d4a6f65sdf65sf'],
+			topics: [],
+			selectedTopics: [],
 			questionAdded: false,
 			max: 0,
 		};
@@ -129,9 +106,11 @@ export default class Menu extends Component<MenuPageProps, MenuPageStates> {
 	 * Call the api and activate the redirection when finished
 	 **/
 	async componentDidMount(): Promise<void> {
-		const result = await ApiQuestion.countTotalQuestions();
-		const max = result.count_total_questions;
-		this.setState({ max });
+		const result_max = await ApiQuestion.countTotalQuestions();
+		const result_topics = await ApiTopic.getAllTopics();
+		const max = result_max.count_total_questions;
+		const topics = result_topics.get_all_topics;
+		this.setState({max, topics });
 	}
 
 	/**

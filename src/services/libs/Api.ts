@@ -11,6 +11,7 @@ export default class Api {
 	 * @return {Object} The result of the query
 	 **/
 	static async getter<T>(query: { query: string }): Promise<T> {
+		console.log(apiConfig.api_url);
 		const response = await fetch(apiConfig.api_url + apiConfig.endpoint, {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },

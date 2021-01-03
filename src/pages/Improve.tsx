@@ -7,6 +7,7 @@ import ContainerNotice from 'src/components/ContainerNotice';
 import Slide from 'src/components/Slide';
 import Topic from 'src/components/Topic';
 import TextPyramide from 'src/components/TextPyramide';
+import ApiTopic from 'src/services/ApiTopic';
 import { StyledMiddleView, StyledMiniLogo } from 'src/styles/Main';
 import { LOGO } from 'src/utils/Images';
 import styled from 'styled-components/native';
@@ -36,33 +37,19 @@ export default class Improve extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			topics: [{
-				_id: '156sdf16sd5f65sdf65sf',
-				icon: 'adjust',
-				name: 'This is a test',
-			},{
-				_id: '156sdf16sd5sa45d4a6f65sdf65sf',
-				icon: 'bars',
-				name: 'This is a test for em',
-			},{
-				_id: '156sdasd465a4sdf16sd5f65sdf65sf',
-				icon: 'bell',
-				name: 'This is a test d5s4f6 5s4 df',
-			},{
-				_id: '156sdf16sd5f65sdas4d56a4sdf65sf',
-				icon: 'radiation',
-				name: 'This is a test dsf dsf sdf sdf',
-			},{
-				_id: '156sdf16sd5asd465a4sdf65sdf65sf',
-				icon: 'camera',
-				name: 'This is a test',
-			},{
-				_id: '156sdf16sd5as4d65a4sd665sdf65sf',
-				icon: 'bolt',
-				name: 'Thisd fsdf s is a sdf sdf dsf sdf test',
-			}],
+			topics: [],
 			selectedTopics: ['156sdf16sd5sa45d4a6f65sdf65sf']
 		};
+	}
+
+	/**
+	 * Call only once when the component is loaded
+	 * Call the api and fill up the topics
+	 **/
+	async componentDidMount(): Promise<void> {
+		const result = await ApiTopic.getAllTopics();
+		const topics = result.get_all_topics;
+		this.setState({ topics });
 	}
 
 	/**
