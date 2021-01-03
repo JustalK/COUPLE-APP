@@ -8,8 +8,10 @@ import Slide from 'src/components/Slide';
 import Topic from 'src/components/Topic';
 import TextPyramide from 'src/components/TextPyramide';
 import ApiTopic from 'src/services/ApiTopic';
+import ApiQuestion from 'src/services/ApiQuestion';
 import { StyledMiddleView, StyledMiniLogo } from 'src/styles/Main';
 import { LOGO } from 'src/utils/Images';
+import { goHome } from 'src/utils/Navigation';
 import styled from 'styled-components/native';
 import { QuestionPageProps, QuestionPageStates } from 'src/interfaces/Question';
 import { WHITE, PINK, VERY_CLEAR_PINK, VERY_VERY_CLEAR_PINK } from 'src/styles/Colors';
@@ -37,6 +39,7 @@ export default class Improve extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			question: "This is a question",
 			topics: [],
 			selectedTopics: []
 		};
@@ -62,6 +65,11 @@ export default class Improve extends Component {
 		this.setState({selectedTopics: [topicID]})
 	}
 
+	save() {
+		ApiQuestion.addNewQuestion(this.state.question, this.state.selectedTopics[0]);
+		this.props.navigation.goBack();
+	}
+
 	/**
 	 * Display the Question screen
 	 * return {JSX.Element} Display the question screen
@@ -79,7 +87,7 @@ export default class Improve extends Component {
 						<StyledDescription>Select one topic in the list under where the question belong to.</StyledDescription>
 						<Topic topics={this.state.topics} selectedTopics={this.state.selectedTopics} topicSelected={(selected, topicID) => this.topicSelected(selected, topicID)} />
 					</StyledView>
-					<CustomButton text="Save" onPress={() => this.goGame()} />
+					<CustomButton text="Save" onPress={() => this.save()} />
 				</ScrollView>
 			</Container>
 		);

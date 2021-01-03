@@ -42,11 +42,11 @@ export default class ApiQuestion {
 	 * @params {string} The question to add
 	 * @return {Question} The question added
 	 **/
-	static async addNewQuestion(question: string): Promise<ApiAddNewQuestion> {
+	static async addNewQuestion(question: string, topicID: string): Promise<ApiAddNewQuestion> {
 		return Api.getter<ApiAddNewQuestion>({
 			query: `
 			mutation {
-				add_new_question(question: "${question}") {
+				add_new_question(question: "${question}", topics: ["${topicID}"]) {
 					question
 				}
 			}`,
