@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { TouchableWithoutFeedback, StyleSheet, ScrollView, Text, View } from 'react-native';
-import ApiQuestion from 'src/services/ApiQuestion';
-import ApiTopic from 'src/services/ApiTopic';
 import Container from 'src/components/Container';
 import CustomTopButton from 'src/components/CustomTopButton';
 import Topic from 'src/components/Topic';
@@ -95,7 +93,6 @@ export default class Menu extends Component<MenuPageProps, MenuPageStates> {
 			total: 3,
 			text: '',
 			selectedTopics: [],
-			questionAdded: false,
 		};
 	}
 
@@ -108,45 +105,14 @@ export default class Menu extends Component<MenuPageProps, MenuPageStates> {
 				name: 'Home',
 				params: {
 					total: this.state.total,
+					selectedTopics: this.state.selectedTopics,
 				},
 			}),
 		);
 	}
 
-	/**
-	 * Add a question to the game
-	 **/
-	async addNewQuestion(): Promise<void> {
-		if (this.isNewQuestionWorthIt()) {
-			const newQuestion = this.sanitizeNewQuestion();
-			await ApiQuestion.addNewQuestion(newQuestion);
-			this.setState({ questionAdded: false, text: '', max: this.state.max + 1 });
-		}
-	}
-
-	questionAdded(): void {
-		if (this.isNewQuestionWorthIt()) {
-			this.setState({ questionAdded: true });
-		}
-	}
-
-	sanitizeNewQuestion(): string {
-		if (this.state.text === undefined || this.state.text === null) {
-			return '';
-		}
-
-		let newQuestion = this.state.text.trim();
-		newQuestion = newQuestion.replace(/'/g, "\\'");
-
-		return newQuestion;
-	}
-
-	isNewQuestionWorthIt(): boolean {
-		return this.sanitizeNewQuestion() !== '';
-	}
-
 	topicSelected(selected: boolean, topicID: string): void {
-		let newSelectedTopics = this.state.selectedTopics;
+		const newSelectedTopics = this.state.selectedTopics;
 		console.log(topicID);
 
 		if (selected) {
@@ -156,7 +122,7 @@ export default class Menu extends Component<MenuPageProps, MenuPageStates> {
 			newSelectedTopics.push(topicID);
 		}
 
-		this.setState({selectedTopics: newSelectedTopics})
+		this.setState({ selectedTopics: newSelectedTopics });
 	}
 
 	/**
@@ -170,7 +136,10 @@ export default class Menu extends Component<MenuPageProps, MenuPageStates> {
 					<CustomTopButton leftIcon="long-arrow-left" onPressLeft={() => this.goBackHome()} />
 					<StyledView>
 						<StyledTitle>Main</StyledTitle>
-						<StyledDescription>You can select the number of question, you want to answer. The game will select randomly the exact number of question selected.</StyledDescription>
+						<StyledDescription>
+							You can select the number of question, you want to answer. The game will select randomly the
+							exact number of question selected.
+						</StyledDescription>
 						<StyledRowView>
 							<MainTitle>Number of questions</MainTitle>
 							<StyledRedCell>
@@ -189,8 +158,15 @@ export default class Menu extends Component<MenuPageProps, MenuPageStates> {
 							</StyledRedCell>
 						</StyledRowView>
 						<StyledTitle>Topics</StyledTitle>
-						<StyledDescription>You can select the topics or set of questions, you want to answer. You can select multiple topics. If the color of the topic is white, it means it has not been selected.</StyledDescription>
-						<Topic topics={global.topics} selectedTopics={this.state.selectedTopics} topicSelected={(selected, topicID) => this.topicSelected(selected, topicID)} />
+						<StyledDescription>
+							You can select the topics or set of questions, you want to answer. You can select multiple
+							topics. If the color of the topic is white, it means it has not been selected.
+						</StyledDescription>
+						<Topic
+							topics={global.topics}
+							selectedTopics={this.state.selectedTopics}
+							topicSelected={(selected, topicID) => this.topicSelected(selected, topicID)}
+						/>
 					</StyledView>
 				</ScrollView>
 			</Container>

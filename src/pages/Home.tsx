@@ -4,6 +4,7 @@ import { Text, TouchableWithoutFeedback, View, Image } from 'react-native';
 import Container from 'src/components/Container';
 import CustomButton from 'src/components/CustomButton';
 import CustomTopButton from 'src/components/CustomTopButton';
+import ApiQuestion from 'src/services/ApiQuestion';
 import ApiTopic from 'src/services/ApiTopic';
 import { goMenu, goImprove } from 'src/utils/Navigation';
 import { HomePageProps, HomePageStates } from 'src/interfaces/Home';
@@ -61,6 +62,7 @@ export default class Home extends Component<HomePageProps, HomePageStates> {
 		super(props);
 		this.state = {
 			total: 3,
+			selectedTopics: [],
 			loaded: false,
 		};
 	}
@@ -74,7 +76,8 @@ export default class Home extends Component<HomePageProps, HomePageStates> {
 		const result_topics = await ApiTopic.getAllTopics();
 		global.max = result_max.count_total_questions;
 		global.topics = result_topics.get_all_topics;
-		this.setState({ loaded: true });
+		const selectedTopics = result_topics.get_all_topics.map((topic) => topic.id);
+		this.setState({ selectedTopics, loaded: true });
 	}
 
 	updateTotal(total: number): void {
@@ -91,6 +94,9 @@ export default class Home extends Component<HomePageProps, HomePageStates> {
 	componentDidUpdate(prevProps: HomePageProps): void {
 		if (prevProps.route.params != undefined && this.state.total !== prevProps.route.params.total) {
 			this.setState({ total: prevProps.route.params.total });
+		}
+		if (prevProps.route.params != undefined && this.state.selectedTopics !== prevProps.route.params.selectedTopics) {
+			this.setState({ selectedTopics: prevProps.route.params.selectedTopics });
 		}
 	}
 

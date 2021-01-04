@@ -66,6 +66,21 @@ export default class Improve extends Component {
 		this.setState({ question });
 	}
 
+	sanitizeNewQuestion(): string {
+		if (this.state.text === undefined || this.state.text === null) {
+			return '';
+		}
+
+		let newQuestion = this.state.text.trim();
+		newQuestion = newQuestion.replace(/'/g, "\\'");
+
+		return newQuestion;
+	}
+
+	isNewQuestionWorthIt(): boolean {
+		return this.sanitizeNewQuestion() !== '';
+	}
+
 	/**
 	* Save the question created in the db and redirect to previous page
 	**/
