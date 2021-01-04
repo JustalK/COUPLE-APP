@@ -1,7 +1,7 @@
 import Api from 'src/services/libs/Api';
 import {
 	ApiGetAllQuestions,
-	ApiGetRandomQuestions,
+	ApiGetRandomQuestionsByTopics,
 	ApiCountTotalQuestions,
 	ApiAddNewQuestion,
 } from 'src/interfaces/Api';
@@ -17,11 +17,11 @@ export default class ApiQuestion {
 		});
 	}
 
-	static async getRandomQuestions(limit: number): Promise<ApiGetRandomQuestions> {
-		return Api.getter<ApiGetRandomQuestions>({
+	static async getRandomQuestionsByTopics(topicsID: string, limit: number): Promise<ApiGetRandomQuestionsByTopics> {
+		return Api.getter<ApiGetRandomQuestionsByTopics>({
 			query: `
 			query {
-				get_random_questions(limit: ${limit}) {
+				get_random_questions_by_topics(topics: ["${topicsID}"], limit: ${limit}) {
 					question
 				}
 			}`,

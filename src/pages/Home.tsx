@@ -88,7 +88,10 @@ export default class Home extends Component<HomePageProps, HomePageStates> {
 	 * Redirect to the game screen
 	 **/
 	async goGame(): Promise<void> {
-		this.props.navigation.navigate('Loading', { total: this.state.total });
+		this.props.navigation.navigate('Loading', {
+			selectedTopics: this.state.selectedTopics,
+			total: this.state.total,
+		});
 	}
 
 	componentDidUpdate(prevProps: HomePageProps): void {
@@ -107,11 +110,19 @@ export default class Home extends Component<HomePageProps, HomePageStates> {
 	render(): JSX.Element {
 		return (
 			<Container>
-				<CustomTopButton leftIcon="bars" onPressLeft={() => goMenu(this.props.navigation)} rightIcon="comment" onPressRight={() => goImprove(this.props.navigation)} />
+				<CustomTopButton
+					leftIcon="bars"
+					onPressLeft={() => goMenu(this.props.navigation)}
+					rightIcon="comment"
+					onPressRight={() => goImprove(this.props.navigation)}
+				/>
 				<StyledView>
 					<StyledImage source={LOGO} />
 					<StyledWelcome>Welcome</StyledWelcome>
-					<StyledDescription><StyledTitle>Do you know me?</StyledTitle> is a quiz game for couple who want to know more about each other.</StyledDescription>
+					<StyledDescription>
+						<StyledTitle>Do you know me?</StyledTitle> is a quiz game for couple who want to know more about
+						each other.
+					</StyledDescription>
 				</StyledView>
 				<CustomButton text="PLAY" onPress={() => this.goGame()} />
 				<StatusBar />

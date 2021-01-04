@@ -5,8 +5,8 @@ export interface ApiGetAllQuestions {
 	get_all_questions: QuestionProps[];
 }
 
-export interface ApiGetRandomQuestions {
-	get_random_questions: QuestionProps[];
+export interface ApiGetRandomQuestionsByTopics {
+	get_random_questions_by_topics: QuestionProps[];
 }
 
 export interface ApiCountTotalQuestions {
