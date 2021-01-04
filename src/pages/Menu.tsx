@@ -94,23 +94,9 @@ export default class Menu extends Component<MenuPageProps, MenuPageStates> {
 		this.state = {
 			total: 3,
 			text: '',
-			topics: [],
 			selectedTopics: [],
 			questionAdded: false,
-			max: 0,
 		};
-	}
-
-	/**
-	 * Call only once when the component is loaded
-	 * Call the api and activate the redirection when finished
-	 **/
-	async componentDidMount(): Promise<void> {
-		const result_max = await ApiQuestion.countTotalQuestions();
-		const result_topics = await ApiTopic.getAllTopics();
-		const max = result_max.count_total_questions;
-		const topics = result_topics.get_all_topics;
-		this.setState({max, topics });
 	}
 
 	/**
@@ -198,13 +184,13 @@ export default class Menu extends Component<MenuPageProps, MenuPageStates> {
 									<Picker.Item color={VERY_VERY_CLEAR_PINK} label="5" value={5} />
 									<Picker.Item color={VERY_VERY_CLEAR_PINK} label="10" value={10} />
 									<Picker.Item color={VERY_VERY_CLEAR_PINK} label="25" value={25} />
-									<Picker.Item color={VERY_VERY_CLEAR_PINK} label="ALL" value={this.state.max} />
+									<Picker.Item color={VERY_VERY_CLEAR_PINK} label="ALL" value={global.max} />
 								</StyledPicker>
 							</StyledRedCell>
 						</StyledRowView>
 						<StyledTitle>Topics</StyledTitle>
 						<StyledDescription>You can select the topics or set of questions, you want to answer. You can select multiple topics. If the color of the topic is white, it means it has not been selected.</StyledDescription>
-						<Topic topics={this.state.topics} selectedTopics={this.state.selectedTopics} topicSelected={(selected, topicID) => this.topicSelected(selected, topicID)} />
+						<Topic topics={global.topics} selectedTopics={this.state.selectedTopics} topicSelected={(selected, topicID) => this.topicSelected(selected, topicID)} />
 					</StyledView>
 				</ScrollView>
 			</Container>

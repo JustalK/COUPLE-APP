@@ -126,12 +126,12 @@ export default class Loading extends Component<LoadingPageProps, LoadingPageStat
 			<Container>
 				<CustomTopButton leftIcon="long-arrow-left" onPressLeft={() => goHome(this.props.navigation)} />
 				<TabView
-				  navigationState={this.state}
-				  renderScene={(rs) => this.renderScene(rs.route, rs.jumpTo)}
-				  onIndexChange={(index) => this.updateIndex(index)}
-				  initialLayout={this.initialLayout()}
-				  renderTabBar={() => null}
-					style={{flex: 7}}
+					navigationState={this.state}
+					renderScene={(rs) => this.renderScene(rs.route, rs.jumpTo)}
+					onIndexChange={(index) => this.updateIndex(index)}
+					initialLayout={this.initialLayout()}
+					renderTabBar={() => null}
+					style={{ flex: 7 }}
 				/>
 				<StyledSliderDotView>
 					<StyledDot active={this.state.index === 0} ></StyledDot>

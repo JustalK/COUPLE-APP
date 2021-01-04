@@ -39,9 +39,8 @@ export default class Improve extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			question: "This is a question",
-			topics: [],
-			selectedTopics: []
+			question: 'This is a question',
+			selectedTopics: [],
 		};
 	}
 
@@ -50,10 +49,8 @@ export default class Improve extends Component {
 	 * Call the api and fill up the topics
 	 **/
 	async componentDidMount(): Promise<void> {
-		const result = await ApiTopic.getAllTopics();
-		const topics = result.get_all_topics;
-		const selectedTopics = topics.length > 0 ? [topics[0].id] : []
-		this.setState({ topics, selectedTopics });
+		const selectedTopics = global.topics.length > 0 ? [global.topics[0].id] : [];
+		this.setState({ selectedTopics });
 	}
 
 	/**
@@ -62,17 +59,17 @@ export default class Improve extends Component {
 	* @params {string} topicID The id of the topic selected
 	**/
 	topicSelected(selected: boolean, topicID: string): void {
-		this.setState({selectedTopics: [topicID]})
+		this.setState({ selectedTopics: [topicID] });
 	}
 
-	inputUpdate(question) {
-		this.setState({ question })
+	inputUpdate(question: string): void {
+		this.setState({ question });
 	}
 
 	/**
 	* Save the question created in the db and redirect to previous page
 	**/
-	save() {
+	save(): void {
 		ApiQuestion.addNewQuestion(this.state.question, this.state.selectedTopics[0]);
 		this.props.navigation.goBack();
 	}
@@ -94,7 +91,7 @@ export default class Improve extends Component {
 							inputQuestion={this.state.question}
 							inputUpdate={(question) => this.inputUpdate(question)}/>
 						<StyledDescription>Select one topic in the list under where the question belong to.</StyledDescription>
-						<Topic topics={this.state.topics} selectedTopics={this.state.selectedTopics} topicSelected={(selected, topicID) => this.topicSelected(selected, topicID)} />
+						<Topic topics={global.topics} selectedTopics={this.state.selectedTopics} topicSelected={(selected, topicID) => this.topicSelected(selected, topicID)} />
 					</StyledView>
 					<CustomButton text="Save" onPress={() => this.save()} />
 				</ScrollView>

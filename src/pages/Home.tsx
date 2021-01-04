@@ -4,6 +4,7 @@ import { Text, TouchableWithoutFeedback, View, Image } from 'react-native';
 import Container from 'src/components/Container';
 import CustomButton from 'src/components/CustomButton';
 import CustomTopButton from 'src/components/CustomTopButton';
+import ApiTopic from 'src/services/ApiTopic';
 import { goMenu, goImprove } from 'src/utils/Navigation';
 import { HomePageProps, HomePageStates } from 'src/interfaces/Home';
 import { StyledMiddleView } from 'src/styles/Main';
@@ -59,8 +60,21 @@ export default class Home extends Component<HomePageProps, HomePageStates> {
 	constructor(props: HomePageProps) {
 		super(props);
 		this.state = {
-			total: 3
+			total: 3,
+			loaded: false,
 		};
+	}
+
+	/**
+	 * Call only once when the component is loaded
+	 * Call the api and fill up the topics
+	 **/
+	async componentDidMount(): Promise<void> {
+		const result_max = await ApiQuestion.countTotalQuestions();
+		const result_topics = await ApiTopic.getAllTopics();
+		global.max = result_max.count_total_questions;
+		global.topics = result_topics.get_all_topics;
+		this.setState({ loaded: true });
 	}
 
 	updateTotal(total: number): void {
