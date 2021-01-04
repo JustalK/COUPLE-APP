@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { TouchableWithoutFeedback, TextInput, View, Text } from 'react-native';
+import { Image, TouchableWithoutFeedback, TextInput, View, Text } from 'react-native';
 import { CustomButtonProps } from 'src/interfaces/CustomButton';
 import { WHITE, PINK, RED, VERY_VERY_CLEAR_PINK } from 'src/styles/Colors';
 import styled from 'styled-components/native';
@@ -12,8 +12,8 @@ const StyledSlideView = styled(View)`
 `
 
  const StyledCircleView = styled(View)`
-	height: 250px;
-	width: 250px;
+	height: 256px;
+	width: 256px;
 	border-radius: 125px;
 	border: 5px solid ${VERY_VERY_CLEAR_PINK};
 	background-color: ${WHITE};
@@ -66,6 +66,11 @@ const StyledTextInput = styled(TextInput)`
 	width: 250px;
 `;
 
+const StyledImage = styled(Image)`
+	height: 250px;
+	width: 250px;
+`;
+
 /**
  * Show the background and define the container
  * @params {props} Define the children to be pass to the container
@@ -97,6 +102,10 @@ export default class Slide extends Component<SlideProps, never> {
 		/>)
 	}
 
+	image(): JSX.Element {
+		return <StyledImage source={this.props.image} />;
+	}
+
 	/**
 	 * Display the container
 	 * return {JSX.Element} Display the container
@@ -109,6 +118,7 @@ export default class Slide extends Component<SlideProps, never> {
 					{this.props.notice && this.notice(this.props.notice)}
 				</StyledCenteredView>
 				<StyledCircleView>
+					{this.props.image && this.image()}
 					{this.props.input && this.input()}
 					{this.props.question && this.question(this.props.question)}
 				</StyledCircleView>
