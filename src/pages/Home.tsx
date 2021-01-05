@@ -4,8 +4,6 @@ import { Text, TouchableWithoutFeedback, View, Image } from 'react-native';
 import Container from 'src/components/Container';
 import CustomButton from 'src/components/CustomButton';
 import CustomTopButton from 'src/components/CustomTopButton';
-import ApiQuestion from 'src/services/ApiQuestion';
-import ApiTopic from 'src/services/ApiTopic';
 import { goMenu, goImprove } from 'src/utils/Navigation';
 import { HomePageProps, HomePageStates } from 'src/interfaces/Home';
 import { StyledMiddleView } from 'src/styles/Main';
@@ -25,7 +23,7 @@ const StyledImage = styled(Image)`
 `;
 
 const StyledWelcome = styled(Text)`
-	fontFamily: RobotoBlack;
+	font-family: RobotoBlack;
 	font-size: 16px;
 	text-transform: uppercase;
 	color: ${WHITE};
@@ -63,7 +61,6 @@ export default class Home extends Component<HomePageProps, HomePageStates> {
 		this.state = {
 			total: 3,
 			selectedTopics: [],
-			loaded: false,
 		};
 	}
 
@@ -72,12 +69,8 @@ export default class Home extends Component<HomePageProps, HomePageStates> {
 	 * Call the api and fill up the topics
 	 **/
 	async componentDidMount(): Promise<void> {
-		const result_max = await ApiQuestion.countTotalQuestions();
-		const result_topics = await ApiTopic.getAllTopics();
-		global.max = result_max.count_total_questions;
-		global.topics = result_topics.get_all_topics;
-		const selectedTopics = result_topics.get_all_topics.map((topic) => topic.id);
-		this.setState({ selectedTopics, loaded: true });
+		const selectedTopics = global.topics.map((topic) => topic.id);
+		this.setState({ selectedTopics });
 	}
 
 	updateTotal(total: number): void {
@@ -120,8 +113,8 @@ export default class Home extends Component<HomePageProps, HomePageStates> {
 					<StyledImage source={LOGO} />
 					<StyledWelcome>Welcome</StyledWelcome>
 					<StyledDescription>
-						<StyledTitle>Do you know me?</StyledTitle> is a quiz game for couple who want to know more about
-						each other.
+						<StyledTitle>Do you know me?</StyledTitle> is a quiz game for couple who want to know more each
+						other.
 					</StyledDescription>
 				</StyledView>
 				<CustomButton text="PLAY" onPress={() => this.goGame()} />

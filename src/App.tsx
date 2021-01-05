@@ -9,6 +9,10 @@ import Result from 'src/pages/Result';
 import Rules from 'src/pages/Rules';
 import Improve from 'src/pages/Improve';
 import Menu from 'src/pages/Menu';
+import ApiQuestion from 'src/services/ApiQuestion';
+import ApiTopic from 'src/services/ApiTopic';
+import Container from 'src/components/Container';
+import Loading from 'src/components/Loading';
 import { slideX, slideY, slideLeft } from 'src/utils/transition';
 import * as Font from 'expo-font';
 const Stack = createStackNavigator();
@@ -32,7 +36,7 @@ export default class App extends Component {
 	constructor(props: unknown) {
 		super(props);
 		this.state = {
-			fontsLoaded: false,
+			loaded: false,
 		};
 	}
 
@@ -42,11 +46,15 @@ export default class App extends Component {
 	**/
 	async componentDidMount(): Promise<void> {
 		await Font.loadAsync(customFonts);
-		this.setState({ fontsLoaded: true });
+		const result_max = await ApiQuestion.countTotalQuestions();
+		const result_topics = await ApiTopic.getAllTopics();
+		global.max = result_max.count_total_questions;
+		global.topics = result_topics.get_all_topics;
+		this.setState({ loaded: true });
 	}
 
 	render(): JSX.Element {
-		if (this.state.fontsLoaded) {
+		if (this.state.loaded) {
 			return (
 				<NavigationContainer>
 					<Stack.Navigator>
@@ -84,7 +92,9 @@ export default class App extends Component {
 				</NavigationContainer>
 			);
 		} else {
-			return <Text>Loading</Text>;
+			return (<Container>
+						<Loading />
+				</Container>);
 		}
 	}
 }
