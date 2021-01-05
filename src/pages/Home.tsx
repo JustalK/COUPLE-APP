@@ -51,12 +51,12 @@ const StyledView = styled(View)`
 
 /**
  * Display the home component
- * @params {HomePageProps} props The navigation object for redirecting the user to Loading page
+ * @params {HomePageProps} props The navigation object for redirecting the user to Rules page
  **/
 export default class Home extends Component<HomePageProps, HomePageStates> {
 	/**
 	 * Constructor of the home
-	 * @params {HomePageProps} props The navigation object for redirecting the user to Loading page
+	 * @params {HomePageProps} props The navigation object for redirecting the user to Rules page
 	 **/
 	constructor(props: HomePageProps) {
 		super(props);
@@ -88,7 +88,7 @@ export default class Home extends Component<HomePageProps, HomePageStates> {
 	 * Redirect to the game screen
 	 **/
 	async goGame(): Promise<void> {
-		this.props.navigation.navigate('Loading', {
+		this.props.navigation.navigate('Rules', {
 			selectedTopics: this.state.selectedTopics,
 			total: this.state.total,
 		});

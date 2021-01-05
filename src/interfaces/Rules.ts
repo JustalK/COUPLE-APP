@@ -1,12 +1,12 @@
 import { QuestionProps } from 'src/interfaces/Question';
 import { NavigationProps, RouteProps } from 'src/interfaces/Navigation';
 
-export interface LoadingPageProps {
+export interface RulesPageProps {
 	total: number;
 	route: RouteProps;
 	navigation: NavigationProps;
 }
 
-export interface LoadingPageStates {
+export interface RulesPageStates {
 	questions: QuestionProps[];
 }

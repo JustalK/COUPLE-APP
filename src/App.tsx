@@ -6,7 +6,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Home from 'src/pages/Home';
 import Question from 'src/pages/Question';
 import Result from 'src/pages/Result';
-import Loading from 'src/pages/Loading';
+import Rules from 'src/pages/Rules';
 import Improve from 'src/pages/Improve';
 import Menu from 'src/pages/Menu';
 import { slideX, slideY, slideLeft } from 'src/utils/transition';
@@ -61,8 +61,8 @@ export default class App extends Component {
 							options={{ headerShown: false, cardStyleInterpolator: slideX }}
 						/>
 						<Stack.Screen
-							name="Loading"
-							component={Loading}
+							name="Rules"
+							component={Rules}
 							options={{ headerShown: false, cardStyleInterpolator: slideY }}
 						/>
 						<Stack.Screen

@@ -5,7 +5,7 @@ import ApiQuestion from 'src/services/ApiQuestion';
 import CustomTopButton from 'src/components/CustomTopButton';
 import Slide from 'src/components/Slide';
 import { goHome } from 'src/utils/Navigation';
-import { LoadingPageProps, LoadingPageStates } from 'src/interfaces/Loading';
+import { RulesPageProps, RulesPageStates } from 'src/interfaces/Rules';
 import { TabView, TabBar } from 'react-native-tab-view';
 import ContainerNotice from 'src/components/ContainerNotice';
 import CustomButton from 'src/components/CustomButton';
@@ -40,14 +40,14 @@ import styled from 'styled-components/native';
 
 /**
  * Display the loading component
- * @params {LoadingPageProps} props The navigation object for redirecting the suer to question and getting the total questions
+ * @params {RulesPageProps} props The navigation object for redirecting the suer to question and getting the total questions
  **/
-export default class Loading extends Component<LoadingPageProps, LoadingPageStates> {
+export default class Rules extends Component<RulesPageProps, RulesPageStates> {
 	/**
 	 * The constructor of the loading screen
-	 * @params {LoadingPageProps} props The navigation object for redirecting the suer to question and getting the total questions
+	 * @params {RulesPageProps} props The navigation object for redirecting the suer to question and getting the total questions
 	 **/
-	constructor(props: LoadingPageProps) {
+	constructor(props: RulesPageProps) {
 		super(props);
 		this.state = {
 			questions: [],
