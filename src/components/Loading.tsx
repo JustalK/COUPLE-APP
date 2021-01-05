@@ -10,7 +10,6 @@ const StyledView = styled(View)`
 `;
 
 const StyledText = styled(Text)`
-	font-family: RobotoBlack;
 	color: ${VERY_CLEAR_PINK};
 	margin-top: 20px;
 	font-size: 20px;

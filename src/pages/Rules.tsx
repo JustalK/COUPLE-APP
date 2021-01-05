@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Container from 'src/components/Container';
-import { StyleSheet, Text, View, Pressable, Dimensions } from 'react-native';
+import { Text, View, Pressable, Dimensions } from 'react-native';
 import ApiQuestion from 'src/services/ApiQuestion';
 import CustomTopButton from 'src/components/CustomTopButton';
 import Slide from 'src/components/Slide';
@@ -161,9 +161,3 @@ export default class Rules extends Component<RulesPageProps, RulesPageStates> {
 		);
 	}
 }
-
-const styles = StyleSheet.create({
-	scene: {
-		flex: 1
-	}
-});
