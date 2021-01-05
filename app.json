@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Do you know me?",
-    "slug": "do-you-know-me",
+    "slug": "DO-YOU-KNOW-ME-?",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -13,21 +13,23 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
+	"assetBundlePatterns": [
+      "assets/**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.justalk.doyouknowme"
     },
-    "android": {
+	"android": {
+      "package": "com.justalk.doyouknowme",
+      "versionCode": 3,
+	  "permissions": [],
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
-      },
-      "package": "com.justalk.doyouknowme"
+        "backgroundColor": "#111116"
+      }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/icon.png"
     }
   }
 }
