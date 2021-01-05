@@ -8,9 +8,9 @@ import { MenuPageProps, MenuPageStates } from 'src/interfaces/Menu';
 import { LOGO } from 'src/utils/Images';
 import { WHITE, PINK, VERY_CLEAR_PINK, VERY_VERY_CLEAR_PINK } from 'src/styles/Colors';
 import { Picker } from '@react-native-picker/picker';
-import { Icon } from 'react-native-elements';
 import { CommonActions } from '@react-navigation/native';
 import styled from 'styled-components/native';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 
 const StyledRowView = styled(View)`
 	width: 100%;
@@ -44,7 +44,6 @@ const IconTitle = styled(Text)<{selected: boolean}>`
  * Display the menu screen
  **/
 export default class Topic extends Component {
-
 	/**
 	 * Display the Menu screen
 	 * return {JSX.Element} Display the menu screen
@@ -57,7 +56,7 @@ export default class Topic extends Component {
 					return (
 						<TouchableWithoutFeedback key={index} onPress={() => this.props.topicSelected(selected, topic.id)}>
 							<StyledTopic>
-								<Icon name={topic.icon} type={topic.source} size={32} color={selected ? VERY_CLEAR_PINK : WHITE} />
+								<FontAwesomeIcon icon={topic.icon} size={32} color={selected ? VERY_CLEAR_PINK : WHITE} />
 								<IconTitle selected={selected} >{topic.name}</IconTitle>
 							</StyledTopic>
 						</TouchableWithoutFeedback>

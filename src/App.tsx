@@ -16,6 +16,16 @@ import Loading from 'src/components/Loading';
 import { slideX, slideY, slideLeft } from 'src/utils/transition';
 import * as Font from 'expo-font';
 const Stack = createStackNavigator();
+import { library } from '@fortawesome/fontawesome-svg-core';
+// Save all the icon from font-awesome for dynamic import
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import * as Icons from '@fortawesome/free-solid-svg-icons';
+
+const iconList = Object.keys(Icons)
+	.filter((key) => key !== 'fas' && key !== 'prefix')
+	.map((icon) => Icons[icon]);
+
+library.add(...iconList);
 
 /**
 * The custom font to load
