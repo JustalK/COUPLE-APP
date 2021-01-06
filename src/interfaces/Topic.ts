@@ -1,4 +1,5 @@
 export interface TopicProps {
+	id: string;
 	name: string;
 	icon: string;
 	source: string;

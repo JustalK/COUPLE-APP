@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Image, TouchableWithoutFeedback, TextInput, View, Text } from 'react-native';
-import { CustomButtonProps } from 'src/interfaces/CustomButton';
+import { SlideComponentProps } from 'src/interfaces/Slide';
 import { WHITE, PINK, RED, VERY_VERY_CLEAR_PINK } from 'src/styles/Colors';
 import styled from 'styled-components/native';
 import { Icon } from 'react-native-elements';
@@ -75,7 +75,7 @@ const StyledImage = styled(Image)`
  * Show the background and define the container
  * @params {props} Define the children to be pass to the container
  **/
-export default class Slide extends Component<SlideProps, never> {
+export default class Slide extends Component<SlideComponentProps, never> {
 
 	notice(notice: string): JSX.Element {
 		return (<StyledNotice>{notice}</StyledNotice>);
@@ -85,7 +85,7 @@ export default class Slide extends Component<SlideProps, never> {
 		return (<StyledQuestion>{this.capitalize(question)}</StyledQuestion>);
 	}
 
-	capitalize(str){
+	capitalize(str: string): string {
 		return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 	}
 
