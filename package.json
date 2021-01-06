@@ -1,7 +1,7 @@
 {
   "main": "src/App",
   "scripts": {
-    "start": "expo start",
+    "start": "tsc && expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",

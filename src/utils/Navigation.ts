@@ -1,21 +1,21 @@
-export const IMAGE_BUTTON = require('src/images/button.png');
+import { NavigationProps } from 'src/interfaces/Navigation';
 
-const goSomewhere = (navigation, route: string): void => {
+const goSomewhere = (navigation: NavigationProps, route: string): void => {
 	navigation.navigate(route);
-}
+};
 
-export const goResult = (navigation): void => {
+export const goResult = (navigation: NavigationProps): void => {
 	goSomewhere(navigation, 'Result');
-}
+};
 
-export const goMenu = (navigation): void => {
+export const goMenu = (navigation: NavigationProps): void => {
 	goSomewhere(navigation, 'Menu');
-}
+};
 
-export const goHome = (navigation): void => {
+export const goHome = (navigation: NavigationProps): void => {
 	goSomewhere(navigation, 'Home');
-}
+};
 
-export const goImprove = (navigation): void => {
+export const goImprove = (navigation: NavigationProps): void => {
 	goSomewhere(navigation, 'Improve');
-}
+};
