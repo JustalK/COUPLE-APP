@@ -13,7 +13,7 @@ import { StyledMiddleView, StyledMiniLogo } from 'src/styles/Main';
 import { LOGO } from 'src/utils/Images';
 import { goHome } from 'src/utils/Navigation';
 import styled from 'styled-components/native';
-import { QuestionPageProps, QuestionPageStates } from 'src/interfaces/Question';
+import { ImprovePageProps, ImprovePageStates } from 'src/interfaces/Improve';
 import { WHITE, PINK, VERY_CLEAR_PINK, VERY_VERY_CLEAR_PINK } from 'src/styles/Colors';
 
 const StyledView = styled(View)`
@@ -34,12 +34,11 @@ const StyledDescription = styled(Text)`
  * Display the question component
  * @params {HomeProps} props The navigation informations
  **/
-export default class Improve extends Component {
-
-	constructor(props) {
+export default class Improve extends Component<ImprovePageProps, ImprovePageStates> {
+	constructor(props: ImprovePageProps) {
 		super(props);
 		this.state = {
-			question: 'This is a question',
+			question: 'Do you know...',
 			selectedTopics: [],
 		};
 	}
@@ -67,11 +66,11 @@ export default class Improve extends Component {
 	}
 
 	sanitizeNewQuestion(): string {
-		if (this.state.text === undefined || this.state.text === null) {
+		if (this.state.question === undefined || this.state.question === null) {
 			return '';
 		}
 
-		let newQuestion = this.state.text.trim();
+		let newQuestion = this.state.question.trim();
 		newQuestion = newQuestion.replace(/'/g, "\\'");
 
 		return newQuestion;
@@ -104,7 +103,7 @@ export default class Improve extends Component {
 							notice="Tap in the circle under for writting a question"
 							input={true}
 							inputQuestion={this.state.question}
-							inputUpdate={(question) => this.inputUpdate(question)}/>
+							inputUpdate={(question: string) => this.inputUpdate(question)}/>
 						<StyledDescription>Select one topic in the list under where the question belong to.</StyledDescription>
 						<Topic topics={global.topics} selectedTopics={this.state.selectedTopics} topicSelected={(selected, topicID) => this.topicSelected(selected, topicID)} />
 					</StyledView>
