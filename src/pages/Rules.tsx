@@ -5,7 +5,7 @@ import ApiQuestion from 'src/services/ApiQuestion';
 import CustomTopButton from 'src/components/CustomTopButton';
 import Slide from 'src/components/Slide';
 import { goHome } from 'src/utils/Navigation';
-import { RulesPageProps, RulesPageStates } from 'src/interfaces/Rules';
+import { RulesPageProps, RulesPageStates, RoutesProps } from 'src/interfaces/Rules';
 import { TabView, TabBar } from 'react-native-tab-view';
 import ContainerNotice from 'src/components/ContainerNotice';
 import CustomButton from 'src/components/CustomButton';
@@ -15,15 +15,14 @@ import { SLIDE_1, SLIDE_2, SLIDE_3 } from 'src/utils/Images';
 import { WHITE, PINK, RED } from 'src/styles/Colors';
 import styled from 'styled-components/native';
 
-
- const StyledSliderDotView = styled(View)`
+const StyledSliderDotView = styled(View)`
 	flex: 1
 	flex-direction: row;
 	align-items: center;
 	justify-content: center;
-`
+`;
 
- const StyledDot = styled(View)<{active: boolean}>`
+const StyledDot = styled(View)<{ active: boolean }>`
 	width: 12px;
 	height: 12px;
 	border-radius: 6px;
@@ -36,7 +35,7 @@ import styled from 'styled-components/native';
 		background-color: ${PINK};
 		border: 1px solid ${WHITE};
 	`}
-`
+`;
 
 /**
  * Display the loading component
@@ -95,7 +94,7 @@ export default class Rules extends Component<RulesPageProps, RulesPageStates> {
 		this.setState({ index });
 	}
 
-	renderScene(route: RouteProps, jumpTo: (key: string) => void): JSX.Element | undefined {
+	renderScene(route: RoutesProps, jumpTo: (key: string) => void): JSX.Element | undefined {
 		switch (route.key) {
 			case 'first_slide':
 				return (

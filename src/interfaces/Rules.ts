@@ -9,4 +9,10 @@ export interface RulesPageProps {
 
 export interface RulesPageStates {
 	questions: QuestionProps[];
+	index: number;
+	routes: RoutesProps[];
+}
+
+export interface RoutesProps {
+	key: string;
 }
