@@ -5,6 +5,7 @@ export interface QuestionPageProps {
 	questions: QuestionProps[];
 	route: RouteProps;
 	navigation: NavigationProps;
+	goMenu: () => void;
 }
 
 export interface QuestionPageStates {

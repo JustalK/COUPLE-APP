@@ -3,3 +3,18 @@ export interface CustomButtonProps {
 	text: string;
 	onPress: () => void;
 }
+
+export interface CustomTopButtonProps {
+	leftIcon?: string;
+	onPressLeft?: () => void;
+	middleIcon?: string;
+	onPressMiddle?: () => void;
+	rightIcon?: string;
+	onPressRight?: () => void;
+}
+
+export interface CustomTopButtonStates {
+	hasBeenPressedLeft: boolean;
+	hasBeenPressedRight: boolean;
+	hasBeenPressedMiddle: boolean;
+}

@@ -91,7 +91,6 @@ export default class Menu extends Component<MenuPageProps, MenuPageStates> {
 		super(props);
 		this.state = {
 			total: 3,
-			text: '',
 			selectedTopics: [],
 		};
 	}
@@ -165,7 +164,9 @@ export default class Menu extends Component<MenuPageProps, MenuPageStates> {
 						<Topic
 							topics={global.topics}
 							selectedTopics={this.state.selectedTopics}
-							topicSelected={(selected, topicID) => this.topicSelected(selected, topicID)}
+							topicSelected={(selected: boolean, topicID: string): void =>
+								this.topicSelected(selected, topicID)
+							}
 						/>
 					</StyledView>
 				</ScrollView>

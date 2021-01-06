@@ -117,7 +117,14 @@ export default class Question extends Component<QuestionPageProps, QuestionPageS
 	render(): JSX.Element {
 		return (
 			<Container>
-				<CustomTopButton leftIcon="long-arrow-left" onPressLeft={() => this.goMenu()} middleIcon="comment" onPressMiddle={() => goImprove(this.props.navigation)} rightIcon="times" onPressRight={() => goResult(this.props.navigation)} />
+				<CustomTopButton
+					leftIcon="long-arrow-left"
+					onPressLeft={() => true}
+					middleIcon="comment"
+					onPressMiddle={() => goImprove(this.props.navigation)}
+					rightIcon="times"
+					onPressRight={() => goResult(this.props.navigation)}
+				/>
 				<StyledView>
 					<Slide
 						title={'Question ' + (this.state.answers + 1)}

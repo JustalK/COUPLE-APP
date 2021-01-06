@@ -4,7 +4,7 @@ import ApiQuestion from 'src/services/ApiQuestion';
 import Container from 'src/components/Container';
 import CustomTopButton from 'src/components/CustomTopButton';
 import { StyledMiddleView, StyledMiniLogo } from 'src/styles/Main';
-import { MenuPageProps, MenuPageStates } from 'src/interfaces/Menu';
+import { TopicComponentProps } from 'src/interfaces/Topic';
 import { LOGO } from 'src/utils/Images';
 import { WHITE, PINK, VERY_CLEAR_PINK, VERY_VERY_CLEAR_PINK } from 'src/styles/Colors';
 import { Picker } from '@react-native-picker/picker';
@@ -43,7 +43,7 @@ const IconTitle = styled(Text)<{selected: boolean}>`
 /**
  * Display the menu screen
  **/
-export default class Topic extends Component {
+export default class Topic extends Component<TopicComponentProps, never> {
 	/**
 	 * Display the Menu screen
 	 * return {JSX.Element} Display the menu screen

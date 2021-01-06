@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { TouchableWithoutFeedback, View, Text } from 'react-native';
-import { CustomButtonProps } from 'src/interfaces/CustomButton';
+import { TouchableWithoutFeedback, View } from 'react-native';
+import { CustomTopButtonProps } from 'src/interfaces/CustomButton';
 import { WHITE, VERY_CLEAR_PINK } from 'src/styles/Colors';
 import styled from 'styled-components/native';
 import { Icon } from 'react-native-elements';
@@ -24,7 +24,7 @@ const StyledMiddleView = styled(View)`
  * Show the background and define the container
  * @params {props} Define the children to be pass to the container
  **/
-export default class CustomTopButton extends Component<CustomTopButtonProps, never> {
+export default class CustomTopButton extends Component<CustomTopButtonProps, CustomTopButtonState> {
 	constructor(props: CustomTopButton) {
 		super(props);
 		this.state = {

@@ -6,7 +6,5 @@ export interface MenuPageProps {
 
 export interface MenuPageStates {
 	total: number;
-	text: string;
-	questionAdded: boolean;
-	max: number;
+	selectedTopics: string[];
 }
