@@ -19,10 +19,10 @@ import { AppStates } from 'src/interfaces/App';
 import { library } from '@fortawesome/fontawesome-svg-core';
 // Save all the icon from font-awesome for dynamic import
 import * as Icons from '@fortawesome/free-solid-svg-icons';
-import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 const iconList = Object.keys(Icons)
 	.filter((key: string) => key !== 'fas' && key !== 'prefix')
+  // @ts-ignore: I dont find the definition for all the IconName pass to the Icon
 	.map((icon) => Icons[icon]);
 
 library.add(...iconList);

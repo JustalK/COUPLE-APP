@@ -40,6 +40,7 @@ export default class CustomTopButton extends Component<CustomTopButtonProps, Cus
 
 
 	onPress(callback: string, hasBeenPressed: string) {
+    // @ts-ignore: The callback is on too many file
 		this.props[callback]();
 		this.setState({[hasBeenPressed]: false});
 	}

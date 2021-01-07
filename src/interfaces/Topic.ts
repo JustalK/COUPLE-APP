@@ -1,7 +1,9 @@
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
+
 export interface TopicProps {
 	id: string;
 	name: string;
-	icon: string;
+	icon: IconProp;
 	source: string;
 }
 
