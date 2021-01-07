@@ -21,4 +21,5 @@ export interface CustomTopButtonStates {
 	hasBeenPressedLeft: boolean;
 	hasBeenPressedRight: boolean;
 	hasBeenPressedMiddle: boolean;
+  [x: string]: boolean;
 }

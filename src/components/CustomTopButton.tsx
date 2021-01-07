@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { TouchableWithoutFeedback, View } from 'react-native';
-import { CustomTopButtonProps } from 'src/interfaces/CustomButton';
+import { CustomTopButtonProps, CustomTopButtonStates } from 'src/interfaces/CustomButton';
 import { WHITE, VERY_CLEAR_PINK } from 'src/styles/Colors';
 import styled from 'styled-components/native';
 import { Icon } from 'react-native-elements';
@@ -24,8 +24,8 @@ const StyledMiddleView = styled(View)`
  * Show the background and define the container
  * @params {props} Define the children to be pass to the container
  **/
-export default class CustomTopButton extends Component<CustomTopButtonProps, CustomTopButtonState> {
-	constructor(props: CustomTopButton) {
+export default class CustomTopButton extends Component<CustomTopButtonProps, CustomTopButtonStates> {
+	constructor(props: CustomTopButtonProps) {
 		super(props);
 		this.state = {
 			hasBeenPressedLeft: false,
@@ -57,16 +57,16 @@ export default class CustomTopButton extends Component<CustomTopButtonProps, Cus
 	leftIcon(): JSX.Element {
 		return (
 			<StyledLeftView>
-				{this.showIcon(this.props.leftIcon, 'hasBeenPressedLeft', 'onPressLeft')}
+				{this.props.leftIcon && this.showIcon(this.props.leftIcon, 'hasBeenPressedLeft', 'onPressLeft')}
 				<StyledMiddleView>
-					{this.showIcon(this.props.middleIcon, 'hasBeenPressedMiddle', 'onPressMiddle')}
+					{this.props.middleIcon && this.showIcon(this.props.middleIcon, 'hasBeenPressedMiddle', 'onPressMiddle')}
 				</StyledMiddleView>
 			</StyledLeftView>
 		);
 	}
 
-	rightIcon(): JSX.Element {
-		return this.showIcon(this.props.rightIcon, 'hasBeenPressedRight', 'onPressRight');
+	rightIcon(icon: string): JSX.Element {
+		return this.showIcon(icon, 'hasBeenPressedRight', 'onPressRight');
 	}
 
 	/**
@@ -77,7 +77,7 @@ export default class CustomTopButton extends Component<CustomTopButtonProps, Cus
 		return (
 			<StyledView>
 				{this.props.leftIcon && this.leftIcon()}
-				{this.props.rightIcon && this.rightIcon()}
+				{this.props.rightIcon && this.rightIcon(this.props.rightIcon)}
 			</StyledView>
 		);
 	}
