@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { TouchableWithoutFeedback, View, Text } from 'react-native';
-import { CustomButtonProps } from 'src/interfaces/CustomButton';
+import { CustomButtonProps, CustomButtonStates } from 'src/interfaces/CustomButton';
 import { WHITE, PINK } from 'src/styles/Colors';
 import styled from 'styled-components/native';
 
@@ -36,8 +36,8 @@ const StyledText = styled(Text)<{hasBeenPressed: boolean}>`
  * Show the background and define the container
  * @params {props} Define the children to be pass to the container
  **/
-export default class CustomButton extends Component<CustomButtonProps, never> {
-	constructor(props: HomePageProps) {
+export default class CustomButton extends Component<CustomButtonProps, CustomButtonStates> {
+	constructor(props: CustomButtonProps) {
 		super(props);
 		this.state = {
 			hasBeenPressed: false

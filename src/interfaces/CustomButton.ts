@@ -4,6 +4,10 @@ export interface CustomButtonProps {
 	onPress: () => void;
 }
 
+export interface CustomButtonStates {
+	hasBeenPressed: boolean;
+}
+
 export interface CustomTopButtonProps {
 	leftIcon?: string;
 	onPressLeft?: () => void;
