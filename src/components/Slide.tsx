@@ -97,7 +97,7 @@ export default class Slide extends Component<SlideComponentProps, never> {
 		return (<StyledTextInput
 			multiline={true}
 			numberOfLines={4}
-			onChangeText={(text) => this.props.inputUpdate(text)}
+			onChangeText={(text) => this.props.inputUpdate && this.props.inputUpdate(text)}
 			value={this.props.inputQuestion}
 		/>)
 	}
