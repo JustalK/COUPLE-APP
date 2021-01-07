@@ -18,7 +18,7 @@ const StyledText = styled(Text)`
  * Show the background and define the container
  * @params {props} Define the children to be pass to the container
  **/
-export default class Loading extends Component<never, never> {
+export default class Loading extends Component {
 	/**
 	 * Display the container
 	 * return {JSX.Element} Display the container

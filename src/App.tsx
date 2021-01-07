@@ -1,6 +1,5 @@
 import { registerRootComponent } from 'expo';
 import React, { Component } from 'react';
-import { Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Home from 'src/pages/Home';
@@ -16,13 +15,14 @@ import Loading from 'src/components/Loading';
 import { slideX, slideY, slideLeft } from 'src/utils/transition';
 import * as Font from 'expo-font';
 const Stack = createStackNavigator();
+import { AppStates } from 'src/interfaces/App';
 import { library } from '@fortawesome/fontawesome-svg-core';
 // Save all the icon from font-awesome for dynamic import
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import * as Icons from '@fortawesome/free-solid-svg-icons';
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 const iconList = Object.keys(Icons)
-	.filter((key) => key !== 'fas' && key !== 'prefix')
+	.filter((key: string) => key !== 'fas' && key !== 'prefix')
 	.map((icon) => Icons[icon]);
 
 library.add(...iconList);
@@ -38,12 +38,11 @@ const customFonts = {
 /**
  * Entry point of the app, display the home by default
  **/
-export default class App extends Component {
-
+export default class App extends Component<never, AppStates> {
 	/**
 	* The constructor and initializer of the state
 	**/
-	constructor(props: unknown) {
+	constructor(props: never) {
 		super(props);
 		this.state = {
 			loaded: false,
@@ -102,9 +101,11 @@ export default class App extends Component {
 				</NavigationContainer>
 			);
 		} else {
-			return (<Container>
-						<Loading />
-				</Container>);
+			return (
+				<Container>
+					<Loading />
+				</Container>
+			);
 		}
 	}
 }
