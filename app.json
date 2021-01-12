@@ -1,14 +1,14 @@
 {
   "expo": {
     "name": "Do you know me?",
-    "slug": "DO-YOU-KNOW-ME-?",
+    "slug": "DO-YOU-KNOW-ME",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#111116"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -22,7 +22,7 @@
     },
 	"android": {
       "package": "com.justalk.doyouknowme",
-      "versionCode": 3,
+      "versionCode": 1,
 	  "permissions": [],
       "adaptiveIcon": {
         "backgroundColor": "#111116"

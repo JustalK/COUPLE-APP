@@ -1,6 +1,6 @@
-![Alt text](documentation/app/1.png?raw=true "Couple-app-1")
-![Alt text](documentation/app/2.png?raw=true "Couple-app-2")
-![Alt text](documentation/app/3.png?raw=true "Couple-app-3")
+![Alt text](documentation/app/v2/1.png?raw=true "Couple-app-1")
+![Alt text](documentation/app/v2/2.png?raw=true "Couple-app-2")
+![Alt text](documentation/app/v2/3.png?raw=true "Couple-app-3")
 
 # COUPLE-APP
 
