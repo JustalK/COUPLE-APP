@@ -1,6 +1,7 @@
 export interface NavigationProps {
 	navigate: any; // eslint-disable-line @typescript-eslint/no-explicit-any
 	dispatch?: any; // eslint-disable-line @typescript-eslint/no-explicit-any
+	goBack?: any; // eslint-disable-line @typescript-eslint/no-explicit-any
 }
 
 export interface RouteProps {

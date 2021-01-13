@@ -1,62 +1,84 @@
 import React, { Component } from 'react';
-import { TextInput, StyleSheet, Pressable, Text, View } from 'react-native';
-import ApiQuestion from 'src/services/ApiQuestion';
+import { TouchableWithoutFeedback, StyleSheet, ScrollView, Text, View } from 'react-native';
 import Container from 'src/components/Container';
-import TextPyramide from 'src/components/TextPyramide';
+import CustomTopButton from 'src/components/CustomTopButton';
+import Topic from 'src/components/Topic';
 import { StyledMiddleView, StyledMiniLogo } from 'src/styles/Main';
 import { MenuPageProps, MenuPageStates } from 'src/interfaces/Menu';
 import { LOGO } from 'src/utils/Images';
-import { WHITE, OBLACK, BLACK, RED } from 'src/styles/Colors';
+import { WHITE, PINK, VERY_CLEAR_PINK, VERY_VERY_CLEAR_PINK } from 'src/styles/Colors';
 import { Picker } from '@react-native-picker/picker';
 import { Icon } from 'react-native-elements';
 import { CommonActions } from '@react-navigation/native';
 import styled from 'styled-components/native';
 
-const StyledView = styled(View)`
-	background-color: ${OBLACK};
-	margin: 0 10%;
-	margin-bottom: 50px;
-`;
+const StyledTitle = styled(Text)`
+	text-transform: uppercase;
+	font-family: RobotoBlack;
+	color: ${WHITE};
+	font-size: 18px;
+	margin-bottom: 30px;
+`
 
-const StyledRow = styled(View)<{ isWhite?: boolean }>`
+const StyledDescription = styled(Text)`
+	font-family: RobotoRegular;
+	color: ${VERY_CLEAR_PINK};
+	font-size: 14px;
+	margin-bottom: 30px;
+`
+
+const StyledView = styled(View)`
+	align-items: center;
+	justify-content: flex-end;
+	margin: 0 30px;
+`
+
+const StyledRowView = styled(View)`
+	width: 100%;
 	flex-direction: row;
-	border: 1px solid ${WHITE};
+	flex-wrap: wrap;
+	justify-content: space-between;
+	margin-bottom: 30px;
+`
+
+const StyledTopic = styled(View)`
+	width: 25%;
+	margin-bottom: 30px;
+	align-items: center;
+`
+
+const IconTitle = styled(Text)<{selected: boolean}>`
+	font-family: RobotoRegular;
+	color: ${WHITE};
+	font-size: 12px;
+	margin: 5px;
+	text-align: center;
 
 	${(props) =>
-		props.isWhite &&
+		props.selected &&
 		`
-		background-color: ${WHITE};
-		height: 50px;
-		borderTopWidth: 0;
-		alignItems: center;
-		justifyContent: center;
+		color: ${VERY_CLEAR_PINK};
 	`}
-`;
+`
 
-const StyledLegend = styled(Text)`
-	line-height: 50px;
-	font-size: 18px;
-	padding: 0 20px;
+
+const MainTitle = styled(Text)`
+	font-family: RobotoRegular;
 	color: ${WHITE};
-`;
+	font-size: 16px;
+	margin: 5px;
+	line-height: 50px;
+`
 
 const StyledPicker = styled(Picker)`
 	height: 50px;
 	width: 100px;
 	border: 1px solid ${WHITE};
-	color: ${WHITE};
-`;
-
-const StyledTextInput = styled(TextInput)`
-	width: 300px;
-	padding: 0 20px;
-	color: ${WHITE};
+	color: ${PINK};
 `;
 
 const StyledRedCell = styled(View)`
-	border-left-width: 1px;
-	border-left-color: ${WHITE};
-	background-color: ${RED};
+	background-color: ${WHITE};
 	padding-left: 10px;
 	justify-content: center;
 `;
@@ -69,20 +91,8 @@ export default class Menu extends Component<MenuPageProps, MenuPageStates> {
 		super(props);
 		this.state = {
 			total: 3,
-			text: '',
-			questionAdded: false,
-			max: 0,
+			selectedTopics: [],
 		};
-	}
-
-	/**
-	 * Call only once when the component is loaded
-	 * Call the api and activate the redirection when finished
-	 **/
-	async componentDidMount(): Promise<void> {
-		const result = await ApiQuestion.countTotalQuestions();
-		const max = result.count_total_questions;
-		this.setState({ max });
 	}
 
 	/**
@@ -94,41 +104,24 @@ export default class Menu extends Component<MenuPageProps, MenuPageStates> {
 				name: 'Home',
 				params: {
 					total: this.state.total,
+					selectedTopics: this.state.selectedTopics,
 				},
 			}),
 		);
 	}
 
-	/**
-	 * Add a question to the game
-	 **/
-	async addNewQuestion(): Promise<void> {
-		if (this.isNewQuestionWorthIt()) {
-			const newQuestion = this.sanitizeNewQuestion();
-			await ApiQuestion.addNewQuestion(newQuestion);
-			this.setState({ questionAdded: false, text: '', max: this.state.max + 1 });
-		}
-	}
+	topicSelected(selected: boolean, topicID: string): void {
+		const newSelectedTopics = this.state.selectedTopics;
+		console.log(topicID);
 
-	questionAdded(): void {
-		if (this.isNewQuestionWorthIt()) {
-			this.setState({ questionAdded: true });
-		}
-	}
-
-	sanitizeNewQuestion(): string {
-		if (this.state.text === undefined || this.state.text === null) {
-			return '';
+		if (selected) {
+			const index = newSelectedTopics.indexOf(topicID);
+			newSelectedTopics.splice(index, 1);
+		} else {
+			newSelectedTopics.push(topicID);
 		}
 
-		let newQuestion = this.state.text.trim();
-		newQuestion = newQuestion.replace(/'/g, "\\'");
-
-		return newQuestion;
-	}
-
-	isNewQuestionWorthIt(): boolean {
-		return this.sanitizeNewQuestion() !== '';
+		this.setState({ selectedTopics: newSelectedTopics });
 	}
 
 	/**
@@ -137,23 +130,17 @@ export default class Menu extends Component<MenuPageProps, MenuPageStates> {
 	 **/
 	render(): JSX.Element {
 		return (
-			<Container bg={OBLACK}>
-				<Pressable style={styles.pressableMenu} onPress={() => this.goBackHome()}>
-					<Icon name="long-arrow-right" type="font-awesome" size={30} color={WHITE} />
-				</Pressable>
-				<StyledMiniLogo source={LOGO} />
-				<StyledMiddleView marginTop={100}>
-					<TextPyramide
-						text="Game options"
-						height={30}
-						size={16}
-						backgroundColor={WHITE}
-						color={BLACK}
-						icon="gamepad"
-					/>
+			<Container>
+				<ScrollView>
+					<CustomTopButton leftIcon="long-arrow-left" onPressLeft={() => this.goBackHome()} />
 					<StyledView>
-						<StyledRow>
-							<StyledLegend>Number of questions :</StyledLegend>
+						<StyledTitle>Main</StyledTitle>
+						<StyledDescription>
+							You can select the number of question, you want to answer. The game will select randomly the
+							exact number of question selected.
+						</StyledDescription>
+						<StyledRowView>
+							<MainTitle>Number of questions</MainTitle>
 							<StyledRedCell>
 								<StyledPicker
 									selectedValue={this.state.total}
@@ -161,62 +148,29 @@ export default class Menu extends Component<MenuPageProps, MenuPageStates> {
 										this.setState({ total: Number(value) });
 									}}
 								>
-									<Picker.Item color={RED} label="3" value={3} />
-									<Picker.Item color={RED} label="5" value={5} />
-									<Picker.Item color={RED} label="10" value={10} />
-									<Picker.Item color={RED} label="25" value={25} />
-									<Picker.Item color={RED} label="ALL" value={this.state.max} />
+									<Picker.Item color={VERY_VERY_CLEAR_PINK} label="3" value={3} />
+									<Picker.Item color={VERY_VERY_CLEAR_PINK} label="5" value={5} />
+									<Picker.Item color={VERY_VERY_CLEAR_PINK} label="10" value={10} />
+									<Picker.Item color={VERY_VERY_CLEAR_PINK} label="25" value={25} />
+									<Picker.Item color={VERY_VERY_CLEAR_PINK} label="ALL" value={global.max} />
 								</StyledPicker>
 							</StyledRedCell>
-						</StyledRow>
+						</StyledRowView>
+						<StyledTitle>Topics</StyledTitle>
+						<StyledDescription>
+							You can select the topics or set of questions, you want to answer. You can select multiple
+							topics. If the color of the topic is white, it means it has not been selected.
+						</StyledDescription>
+						<Topic
+							topics={global.topics}
+							selectedTopics={this.state.selectedTopics}
+							topicSelected={(selected: boolean, topicID: string): void =>
+								this.topicSelected(selected, topicID)
+							}
+						/>
 					</StyledView>
-					<TextPyramide
-						text="Add questions"
-						height={30}
-						size={16}
-						backgroundColor={WHITE}
-						color={BLACK}
-						icon="cog"
-					/>
-					<StyledView>
-						<StyledRow>
-							<StyledTextInput
-								multiline={true}
-								numberOfLines={4}
-								onChangeText={(text) => this.setState({ text })}
-								value={this.state.text}
-							/>
-							<StyledRedCell>
-								<Pressable onPressIn={() => this.questionAdded()} onPress={() => this.addNewQuestion()}>
-									<Icon
-										name="check"
-										type="font-awesome"
-										size={24}
-										color={this.state.questionAdded ? BLACK : WHITE}
-										style={styles.iconCustom}
-									/>
-								</Pressable>
-							</StyledRedCell>
-						</StyledRow>
-						<StyledRow isWhite={true}>
-							<Text>The game contains {this.state.max} questions.</Text>
-						</StyledRow>
-					</StyledView>
-					<StyledView></StyledView>
-				</StyledMiddleView>
+				</ScrollView>
 			</Container>
 		);
 	}
 }
-
-const styles = StyleSheet.create({
-	iconCustom: {
-		paddingLeft: 10,
-		paddingRight: 20,
-	},
-	pressableMenu: {
-		position: 'absolute',
-		top: 30,
-		right: 30,
-	},
-});

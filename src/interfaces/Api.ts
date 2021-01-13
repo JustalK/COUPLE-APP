@@ -1,11 +1,12 @@
 import { QuestionProps } from 'src/interfaces/Question';
+import { TopicProps } from 'src/interfaces/Topic';
 
 export interface ApiGetAllQuestions {
 	get_all_questions: QuestionProps[];
 }
 
-export interface ApiGetRandomQuestions {
-	get_random_questions: QuestionProps[];
+export interface ApiGetRandomQuestionsByTopics {
+	get_random_questions_by_topics: QuestionProps[];
 }
 
 export interface ApiCountTotalQuestions {
@@ -14,4 +15,8 @@ export interface ApiCountTotalQuestions {
 
 export interface ApiAddNewQuestion {
 	question: QuestionProps;
+}
+
+export interface ApiGetAllTopics {
+	get_all_topics: TopicProps[];
 }

@@ -1,6 +1,4 @@
-![Alt text](documentation/app/1.png?raw=true "Couple-app-1")
-![Alt text](documentation/app/2.png?raw=true "Couple-app-2")
-![Alt text](documentation/app/3.png?raw=true "Couple-app-3")
+![Alt text](documentation/presentation/presentation.png?raw=true "Couple-app")
 
 # COUPLE-APP
 
@@ -71,6 +69,12 @@ lt --port 5000 --subdomain couple-api
 ###### Mockup v2
 
 I improve the design of the app and created the mockup on [FIGMA](https://www.figma.com/proto/fK0lEXn2VcFoHc9RtRkcSj/Do-you-know-me?node-id=1%3A2&scaling=scale-down)
+
+### Screens
+
+![Alt text](documentation/app/v2/1.png?raw=true "Couple-app-1")
+![Alt text](documentation/app/v2/2.png?raw=true "Couple-app-2")
+![Alt text](documentation/app/v2/3.png?raw=true "Couple-app-3")
 
 #### Technical challenges
 
